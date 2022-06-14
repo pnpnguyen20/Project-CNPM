@@ -1,1 +1,1 @@
-npm install
+Nhớ chạy lại npm install
