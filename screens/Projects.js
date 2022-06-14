@@ -116,7 +116,7 @@ export default function Projects(props) {
                 width: 7,
                 height: 7,
                 backgroundColor: board ? "#fff" : "#fff5",
-                borderRadius: "50%",
+                borderRadius: 50,
                 alignSelf: "center",
                 marginHorizontal: 5,
               }}
