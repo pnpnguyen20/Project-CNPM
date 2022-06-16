@@ -43,7 +43,8 @@ const Board = (props) => {
       style={{
         marginTop: 18,
         backgroundColor: "#1c1c1e",
-        width: 380,
+        width: 280,
+        marginHorizontal: 20,
         flexDirection: "column",
         maxHeight: 505,
         borderRadius: 6,

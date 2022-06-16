@@ -4,7 +4,7 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  Button,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
@@ -94,7 +94,11 @@ export default function Projects(props) {
       <View style={{ backgroundColor: "#528ae6", height: 1, opacity: 0.36 }} />
       {/* item4 */}
 
-      <Board projectName={projectName}></Board>
+      <ScrollView horizontal style={{ backgroundColor: "gray" }}>
+        <Board projectName={projectName} />
+        <Board projectName={projectName} />
+        <Board projectName={projectName} />
+      </ScrollView>
 
       {/* <Button
         title="Go to Home"
