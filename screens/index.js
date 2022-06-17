@@ -1,7 +1,5 @@
-import Dashboards from "./Dashboards";
 import Projects from "./Projects";
 import Home from "./Home";
-import Issues from "./Issues";
-import Notifications from "./Notifications";
+import Account from "./Account";
 
-export { Dashboards, Projects, Home, Issues, Notifications };
+export { Projects, Home, Account };

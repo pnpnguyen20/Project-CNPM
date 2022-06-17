@@ -4,7 +4,6 @@ import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Projects, Home, Dashboards, Issues, Notifications } from "./screens";
 import BotTab from "./navigation/BotTab";
 
 export default function App(props) {
@@ -16,6 +15,7 @@ export default function App(props) {
         initialRouteName="BotTab"
         screenOptions={{
           headerShown: false,
+          // headerBackButtonMenuEnabled: true,
         }}
       >
         {/* <Stack.Screen name={"Projects"} component={Projects} /> */}

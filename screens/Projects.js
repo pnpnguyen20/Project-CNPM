@@ -9,16 +9,9 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
 
-import { UiHeaderButton, Board, UIBottomButton } from "../components";
+import { UiHeaderButton, Board } from "../components";
 
 export default function Projects(props) {
-  const uiBottomList = [
-    { isSelected: false, iconName: "home", useName: "Home" },
-    { isSelected: true, iconName: "folder", useName: "Projects" },
-    { isSelected: false, iconName: "box-tissue", useName: "Issues" },
-    { isSelected: false, iconName: "credit-card", useName: "Dashboards" },
-    { isSelected: false, iconName: "bell", useName: "Notifications" },
-  ];
   const [projectName, setProjectName] = useState("new-project");
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
   return (
@@ -67,8 +60,7 @@ export default function Projects(props) {
         <TouchableOpacity>
           <Icon name={"bars"} style={{ color: "#528ae6", fontSize: 20 }} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          {/* <Entypo name="dots-three-horizontal" size={22} color="#528ae6" /> */}
+        <TouchableOpacity onPress={() => alert("bam con cac")}>
           <Entypo
             name={"dots-three-horizontal"}
             style={{
@@ -94,7 +86,7 @@ export default function Projects(props) {
       <View style={{ backgroundColor: "#528ae6", height: 1, opacity: 0.36 }} />
       {/* item4 */}
 
-      <ScrollView horizontal style={{ backgroundColor: "gray" }}>
+      <ScrollView horizontal style={{}}>
         <Board projectName={projectName} />
         <Board projectName={projectName} />
         <Board projectName={projectName} />
@@ -114,8 +106,9 @@ export default function Projects(props) {
             justifyContent: "center",
           }}
         >
-          {selectedBoard.map((board) => (
+          {selectedBoard.map((board, index) => (
             <View
+              key={index}
               style={{
                 width: 7,
                 height: 7,
@@ -128,12 +121,12 @@ export default function Projects(props) {
           ))}
         </View>
       </View>
-
+      {/* a line */}
       <View
         style={{
           backgroundColor: "#528ae6",
-          height: 1,
           opacity: 0.18,
+          height: 1,
           marginVertical: 10,
         }}
       />

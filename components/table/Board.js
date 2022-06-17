@@ -39,14 +39,14 @@ const Board = (props) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      // keyboardVerticalOffset={85}
+      keyboardVerticalOffset={130}
       style={{
         marginTop: 18,
         backgroundColor: "#1c1c1e",
         width: 280,
         marginHorizontal: 20,
         flexDirection: "column",
-        maxHeight: 505,
+        maxHeight: 500,
         borderRadius: 6,
       }}
     >
@@ -141,7 +141,8 @@ const Board = (props) => {
               color: "#528ae6",
               fontSize: 18,
               marginStart: 15,
-              marginVertical: 12,
+              marginTop: 12,
+              marginBottom: 16,
             }}
           >
             + &nbsp;Create

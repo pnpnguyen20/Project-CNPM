@@ -1,10 +1,8 @@
 import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Projects, Dashboards, Home, Issues, Notifications } from "../screens";
+import { Projects, Home, Account } from "../screens";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-//import { UIBottomButton } from "../components";
 
 const Tab = createBottomTabNavigator();
 const uiBottomList = [
@@ -17,21 +15,9 @@ const uiBottomList = [
   },
   {
     isSelected: false,
-    iconName: "checkbox-multiple-marked-outline",
-    useName: "Issues",
-    componentName: Issues,
-  },
-  {
-    isSelected: false,
-    iconName: "credit-card",
-    useName: "Dashboards",
-    componentName: Dashboards,
-  },
-  {
-    isSelected: false,
-    iconName: "bell",
-    useName: "Notifications",
-    componentName: Notifications,
+    iconName: "account",
+    useName: "Account",
+    componentName: Account,
   },
 ];
 
@@ -42,12 +28,12 @@ export default function BotTab() {
     tabBarInactiveTintColor: "#fff5",
     tabBarActiveBackgroundColor: "black",
     tabBarInactiveBackgroundColor: "black",
-    // tabb,
   });
   return (
     <Tab.Navigator initialRouteName="Projects" screenOptions={screenOptions}>
-      {uiBottomList.map((each) => (
+      {uiBottomList.map((each, index) => (
         <Tab.Screen
+          key={index}
           screenOptions={screenOptions}
           name={each.useName}
           component={each.componentName}
@@ -60,6 +46,15 @@ export default function BotTab() {
                 size={size}
               />
             ),
+            // tabBarItemStyle: { borderWidth: 1, borderColor: "#101010" },
+            tabBarStyle: {
+              // paddingBottom: 0,
+              // position: "absolute",
+              // height: 50,
+              // bottom: 35,
+              borderTopWidth: 0,
+              // borderTopColor: "#528ae6",
+            },
           }}
         />
       ))}
