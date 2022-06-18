@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
-import { React, useState } from "react";
+import { React, useRef, useState } from "react";
 import Task from "./Task";
 
 const Board = (props) => {
@@ -36,6 +36,8 @@ const Board = (props) => {
   };
   const [isSelectCreate, setIsSelectCreate] = useState(false);
 
+  const scrollRef = useRef();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -43,10 +45,9 @@ const Board = (props) => {
       style={{
         marginTop: 18,
         backgroundColor: "#1c1c1e",
-        width: 280,
-        marginHorizontal: 20,
+        width: 350,
+        marginHorizontal: 5,
         flexDirection: "column",
-        maxHeight: 500,
         borderRadius: 6,
       }}
     >
@@ -89,8 +90,14 @@ const Board = (props) => {
         </TouchableOpacity>
       </View>
       <ScrollView
-      // ref={(ref) => (this.scrollView = ref)}
-      // onContentSizeChange={() => this.scrollToEnd({ animated: true })}
+        ref={scrollRef}
+        // ref={(ref) => (this.scrollView = ref)}
+        onContentSizeChange={(contentW, contentH) => {
+          scrollRef.current.scrollTo({ y: contentH, animated: true });
+        }}
+        // maintainVisibleContentPosition={()}
+
+        // onContentSizeChange={() => this.scrollToEnd({ animated: true })}
       >
         {taskItems.map((item, index) => {
           return (

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useRef, useState } from "react";
 import {
   Text,
   View,
@@ -14,9 +14,13 @@ import { UiHeaderButton, Board } from "../components";
 export default function Projects(props) {
   const [projectName, setProjectName] = useState("new-project");
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
+
+  const scrollRef = useRef();
+  const boardWidth = 360;
+
   return (
     <SafeAreaView
-      style={{ backgroundColor: "black", flex: 1, alignItems: "center" }}
+      style={{ backgroundColor: "#000", flex: 1, alignItems: "center" }}
     >
       {/* item 1 */}
       <View
@@ -60,7 +64,7 @@ export default function Projects(props) {
         <TouchableOpacity>
           <Icon name={"bars"} style={{ color: "#528ae6", fontSize: 20 }} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert("bam con cac")}>
+        <TouchableOpacity onPress={() => alert("bam cd ;a")}>
           <Entypo
             name={"dots-three-horizontal"}
             style={{
@@ -86,40 +90,51 @@ export default function Projects(props) {
       <View style={{ backgroundColor: "#528ae6", height: 1, opacity: 0.36 }} />
       {/* item4 */}
 
-      <ScrollView horizontal style={{}}>
+      <ScrollView
+        style={{ maxHeight: 500 }}
+        ref={scrollRef}
+        horizontal
+        // onScrollEndDrag={(e) => {
+        //   const offs = -30;
+        //   const pos =
+        //     Math.round((e.nativeEvent.contentOffset.x - offs) / boardWidth) *
+        //       boardWidth +
+        //     offs;
+        //   scrollRef.current.scrollTo({ x: pos, animated: true });
+        // }}
+      >
+        <Board projectName={projectName} />
+        <Board projectName={projectName} />
         <Board projectName={projectName} />
         <Board projectName={projectName} />
         <Board projectName={projectName} />
       </ScrollView>
 
-      {/* <Button
-        title="Go to Home"
-        onPress={() => props.navigation?.navigate("Home")}
+      <View
+        style={{
+          flex: 1,
+        }}
       />
-      <Button title="Go back" onPress={() => navigation.goBack()} /> */}
 
-      <View style={{ flex: 1 }} />
-      <View style={{}}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-        >
-          {selectedBoard.map((board, index) => (
-            <View
-              key={index}
-              style={{
-                width: 7,
-                height: 7,
-                backgroundColor: board ? "#fff" : "#fff5",
-                borderRadius: 50,
-                alignSelf: "center",
-                marginHorizontal: 5,
-              }}
-            />
-          ))}
-        </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        {selectedBoard.map((board, index) => (
+          <View
+            key={index}
+            style={{
+              width: 7,
+              height: 7,
+              backgroundColor: board ? "#fff" : "#fff5",
+              borderRadius: 50,
+              alignSelf: "center",
+              marginHorizontal: 5,
+            }}
+          />
+        ))}
       </View>
       {/* a line */}
       <View
