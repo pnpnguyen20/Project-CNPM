@@ -11,19 +11,19 @@ import {
 import { Entypo } from "@expo/vector-icons";
 
 import { React, useRef, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Task from "./Task";
+import BoardModal from "./BoardModal";
+import tempData from "../tempData";
 
 const Board = (props) => {
   const [task, setTask] = useState({ text: "" });
-  const [taskItems, setTaskItems] = useState([
-    { text: "this is a task" },
-    {
-      text: "this is another task eeeeeeeeeeeeeeeeeeeeeee",
-    },
-    { text: "more..." },
-  ]);
+  const [taskItems, setTaskItems] = useState([]);
+
+  const [boardModalVisible, setBoardModalVisible] = useState(false);
 
   const handleAddTask = () => {
+    // console.log(tempData[0].tasks[0]);
     setTaskItems([...taskItems, task]);
     setTask({ text: "" });
     setIsSelectCreate(false);
@@ -65,7 +65,7 @@ const Board = (props) => {
             marginStart: 15,
           }}
         >
-          TO DO
+          {props.title}
         </Text>
         <Text
           style={{
@@ -78,7 +78,11 @@ const Board = (props) => {
           {taskItems.length}
         </Text>
         <View style={{ flex: 1 }} />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setBoardModalVisible(true);
+          }}
+        >
           <Entypo
             name={"dots-three-horizontal"}
             style={{
@@ -88,16 +92,30 @@ const Board = (props) => {
             }}
           />
         </TouchableOpacity>
+        <BoardModal
+          isVisible={boardModalVisible}
+          styles={{
+            backgroundColor: "#2c2c2e",
+            width: 230,
+            position: "absolute",
+            top: 145 + useSafeAreaInsets().top,
+            right: "5%",
+            borderRadius: 15,
+          }}
+          // addBoard={handleAddBoard}
+          close={() => {
+            setBoardModalVisible(!boardModalVisible);
+          }}
+          handleDeleteBoard={props.handleDeleteBoard}
+          id={props.id}
+        />
       </View>
       <ScrollView
+        style={{}}
         ref={scrollRef}
-        // ref={(ref) => (this.scrollView = ref)}
         onContentSizeChange={(contentW, contentH) => {
           scrollRef.current.scrollTo({ y: contentH, animated: true });
         }}
-        // maintainVisibleContentPosition={()}
-
-        // onContentSizeChange={() => this.scrollToEnd({ animated: true })}
       >
         {taskItems.map((item, index) => {
           return (
@@ -116,6 +134,7 @@ const Board = (props) => {
           );
         })}
       </ScrollView>
+      {/*  */}
       {isSelectCreate ? (
         <TextInput
           style={{
@@ -150,6 +169,7 @@ const Board = (props) => {
               marginStart: 15,
               marginTop: 12,
               marginBottom: 16,
+              position: "relative",
             }}
           >
             + &nbsp;Create

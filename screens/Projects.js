@@ -1,26 +1,72 @@
-import { React, useRef, useState } from "react";
+import { React, useCallback, useRef, useState } from "react";
 import {
   Text,
   View,
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
 
-import { UiHeaderButton, Board } from "../components";
+import { UiHeaderButton, Board, tempData } from "../components";
+
+import PopUpModal from "../components/PopUpModal";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Projects(props) {
   const [projectName, setProjectName] = useState("new-project");
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
 
-  const scrollRef = useRef();
-  const boardWidth = 360;
+  const scrollRef1 = useRef();
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [boards, setBoards] = useState(tempData);
+  const handleAddBoard = (title) => {
+    // console.log(new Date().getTime() % 1e7);
+    setBoards([
+      ...boards,
+      {
+        id: new Date().getTime() % 1e5,
+        projectName: "",
+        title: title ? title.toUpperCase() : "NEW COLUMN",
+        tasks: [{ text: "this is a task" }],
+      },
+    ]);
+
+    setTimeout(() => {
+      scrollRef1.current.scrollToEnd({ animated: true });
+    }, 100);
+  };
+  const handleDeleteBoard = (id) => {
+    // let itemsCopy = [...boards];
+    const filteredData = boards.filter((item) => item.id !== id);
+    // itemsCopy.splice(index, 1);
+    setBoards(filteredData);
+  };
+
+  const renderItem = ({ item }) => (
+    <Board
+      id={item.id}
+      projectName={projectName}
+      title={item.title}
+      handleDeleteBoard={handleDeleteBoard}
+    />
+  );
+
+  // <View
+  //   style={{ width: 500, height: 500, backgroundColor: "white", flex: 1 }}
+  // />;
 
   return (
     <SafeAreaView
-      style={{ backgroundColor: "#000", flex: 1, alignItems: "center" }}
+      style={{
+        backgroundColor: "#000",
+        flex: 1,
+        flexDirection: "column",
+      }}
     >
       {/* item 1 */}
       <View
@@ -64,7 +110,11 @@ export default function Projects(props) {
         <TouchableOpacity>
           <Icon name={"bars"} style={{ color: "#528ae6", fontSize: 20 }} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert("bam cd ;a")}>
+        <TouchableOpacity
+          onPress={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
           <Entypo
             name={"dots-three-horizontal"}
             style={{
@@ -74,7 +124,23 @@ export default function Projects(props) {
             }}
           />
         </TouchableOpacity>
+        <PopUpModal
+          isVisible={modalVisible}
+          styles={{
+            backgroundColor: "#2c2c2e",
+            width: 230,
+            top: 40 + useSafeAreaInsets().top,
+            right: 10,
+            position: "absolute",
+            borderRadius: 10,
+          }}
+          addBoard={handleAddBoard}
+          close={() => {
+            setModalVisible(false);
+          }}
+        />
       </View>
+
       {/* item2 */}
       <View
         style={{
@@ -87,12 +153,19 @@ export default function Projects(props) {
         <UiHeaderButton name="Settings" isSelected={false} />
       </View>
       {/* item3 */}
-      <View style={{ backgroundColor: "#528ae6", height: 1, opacity: 0.36 }} />
+      <View
+        style={{
+          backgroundColor: "#8aafed",
+          height: 0.5,
+          opacity: 0.6,
+          width: "100%",
+        }}
+      />
       {/* item4 */}
 
-      <ScrollView
-        style={{ maxHeight: 500 }}
-        ref={scrollRef}
+      {/* <ScrollView
+        style={{ maxHeight: 500, flexGrow: 0 }}
+        ref={scrollRef1}
         horizontal
         // onScrollEndDrag={(e) => {
         //   const offs = -30;
@@ -100,18 +173,40 @@ export default function Projects(props) {
         //     Math.round((e.nativeEvent.contentOffset.x - offs) / boardWidth) *
         //       boardWidth +
         //     offs;
-        //   scrollRef.current.scrollTo({ x: pos, animated: true });
+        //   scrollRef1.current.scrollTo({ x: pos, animated: true });
         // }}
+        onContentSizeChange={() => {}}
       >
-        <Board projectName={projectName} />
-        <Board projectName={projectName} />
-        <Board projectName={projectName} />
-        <Board projectName={projectName} />
-        <Board projectName={projectName} />
-      </ScrollView>
+        {boards.map((board, index) => {
+          return (
+            <Board
+              key={index}
+              index={index}
+              projectName={projectName}
+              title={board.title}
+              handleDeleteBoard={handleDeleteBoard}
+            />
+          );
+        })}
+      </ScrollView> */}
+
+      <FlatList
+        ref={scrollRef1}
+        initialNumToRender={4}
+        onContentSizeChange={() => {
+          // scrollRef1.current.scrollToEnd({ animated: true });
+        }}
+        style={{ maxHeight: 500, flexGrow: 0 }}
+        horizontal
+        scrollEnabled
+        data={boards}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
 
       <View
         style={{
+          width: 300,
           flex: 1,
         }}
       />
@@ -139,10 +234,11 @@ export default function Projects(props) {
       {/* a line */}
       <View
         style={{
-          backgroundColor: "#528ae6",
-          opacity: 0.18,
+          backgroundColor: "#fff",
+          opacity: 0.15,
           height: 1,
           marginVertical: 10,
+          width: "100%",
         }}
       />
     </SafeAreaView>

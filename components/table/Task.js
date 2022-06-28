@@ -9,7 +9,6 @@ const Task = (props) => {
         marginHorizontal: 10,
         marginTop: 8,
         paddingHorizontal: 7,
-        // paddingTop: 5,
         paddingBottom: 5,
         borderRadius: 6,
       }}
@@ -18,7 +17,6 @@ const Task = (props) => {
         style={{
           color: "white",
           fontSize: 17,
-          // lineHeight: 15,
           marginTop: 8,
           marginBottom: 12,
         }}
