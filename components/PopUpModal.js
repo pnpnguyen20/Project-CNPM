@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+import colors from "../constants/colors";
 
 export const InputModal = (props) => {
   const [title, setTitle] = useState("");
@@ -41,7 +42,7 @@ export const InputModal = (props) => {
               paddingLeft: 5,
               width: "85%",
               alignSelf: "center",
-              backgroundColor: "black",
+              backgroundColor: colors.mainBackground,
               borderColor: "#fff5",
               borderWidth: 1,
               borderRadius: 7,
@@ -75,7 +76,7 @@ export const InputModal = (props) => {
                 props.close();
               }}
             >
-              <Text style={{ color: "#528ae6", fontWeight: "bold" }}>
+              <Text style={{ color: colors.primary, fontWeight: "bold" }}>
                 Cancel
               </Text>
             </TouchableOpacity>
@@ -108,7 +109,7 @@ const PopUpModal = (props) => {
     <View>
       <InputModal
         styles={{
-          backgroundColor: "#2c2c2e",
+          backgroundColor: colors.boardBackground,
           width: 250,
           borderRadius: 10,
           alignSelf: "center",
@@ -124,57 +125,64 @@ const PopUpModal = (props) => {
         }}
       />
       <Modal animationType="none" transparent={true} visible={props.isVisible}>
-        <View>
-          <View style={props.styles}>
-            <View style={{ flexDirection: "column" }}>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: "white",
-                  opacity: 0.5,
-                  textAlign: "center",
-                  marginVertical: 10,
-                }}
-              >
-                Board actions
-              </Text>
-              <View
-                style={{
-                  height: 0.5,
-                  backgroundColor: "white",
-                  opacity: 0.5,
-                }}
-              />
-
-              <TouchableOpacity
-                style={{
-                  paddingVertical: 10,
-                  paddingLeft: 15,
-                }}
-                onPress={() => {
-                  setInputModalVisible(true);
-                  props.close();
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 15 }}>
-                  Add new column
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => {
+            props.close();
+          }}
+        >
+          <View>
+            <View style={props.styles}>
+              <View style={{ flexDirection: "column" }}>
+                <Text
+                  style={{
+                    fontSize: 13,
+                    color: "white",
+                    opacity: 0.5,
+                    textAlign: "center",
+                    marginVertical: 10,
+                  }}
+                >
+                  Board actions
                 </Text>
-              </TouchableOpacity>
-              <View
-                style={{
-                  height: 0.5,
-                  backgroundColor: "white",
-                  opacity: 0.5,
-                }}
-              />
-              <TouchableOpacity
-                style={{ paddingVertical: 10, paddingLeft: 15 }}
-              >
-                <Text style={{ color: "white", fontSize: 15 }}>Share</Text>
-              </TouchableOpacity>
+                <View
+                  style={{
+                    height: 0.5,
+                    backgroundColor: "white",
+                    opacity: 0.5,
+                  }}
+                />
+
+                <TouchableOpacity
+                  style={{
+                    paddingVertical: 10,
+                    paddingLeft: 15,
+                  }}
+                  onPress={() => {
+                    setInputModalVisible(true);
+                    props.close();
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 15 }}>
+                    Add new column
+                  </Text>
+                </TouchableOpacity>
+                <View
+                  style={{
+                    height: 0.5,
+                    backgroundColor: "white",
+                    opacity: 0.5,
+                  }}
+                />
+                <TouchableOpacity
+                  style={{ paddingVertical: 10, paddingLeft: 15 }}
+                >
+                  <Text style={{ color: "white", fontSize: 15 }}>Share</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
+        </Pressable>
       </Modal>
     </View>
   );

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { Modal, Text, View, TouchableOpacity } from "react-native";
+import { Modal, Text, View, TouchableOpacity, Pressable } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-web";
 
 const BoardModal = (props) => {
   return (
-    <View>
-      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+    <Modal animationType="none" transparent={true} visible={props.isVisible}>
+      <Pressable
+        style={{ flex: 1 }}
+        onPress={() => {
+          props.close();
+        }}
+      >
         <View>
           <View style={props.styles}>
             <View
@@ -73,7 +79,11 @@ const BoardModal = (props) => {
                 }}
               >
                 <Text
-                  style={{ color: "#de3131", fontSize: 15, fontWeight: "bold" }}
+                  style={{
+                    color: "#de3131",
+                    fontSize: 15,
+                    fontWeight: "bold",
+                  }}
                 >
                   Delete column
                 </Text>
@@ -81,8 +91,8 @@ const BoardModal = (props) => {
             </View>
           </View>
         </View>
-      </Modal>
-    </View>
+      </Pressable>
+    </Modal>
   );
 };
 

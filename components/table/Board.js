@@ -14,7 +14,7 @@ import { React, useRef, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Task from "./Task";
 import BoardModal from "./BoardModal";
-import tempData from "../tempData";
+import colors from "../../constants/colors";
 
 const Board = (props) => {
   const [task, setTask] = useState({ text: "" });
@@ -23,7 +23,6 @@ const Board = (props) => {
   const [boardModalVisible, setBoardModalVisible] = useState(false);
 
   const handleAddTask = () => {
-    // console.log(tempData[0].tasks[0]);
     setTaskItems([...taskItems, task]);
     setTask({ text: "" });
     setIsSelectCreate(false);
@@ -44,7 +43,7 @@ const Board = (props) => {
       keyboardVerticalOffset={130}
       style={{
         marginTop: 18,
-        backgroundColor: "#1c1c1e",
+        backgroundColor: colors.boardBackground,
         width: 350,
         marginHorizontal: 5,
         flexDirection: "column",
@@ -55,7 +54,7 @@ const Board = (props) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          paddingVertical: 10,
+          marginBottom: 5,
         }}
       >
         <Text
@@ -88,21 +87,21 @@ const Board = (props) => {
             style={{
               color: "#fff8",
               fontSize: 22,
-              marginEnd: 15,
+              marginEnd: 5,
+              padding: 12,
             }}
           />
         </TouchableOpacity>
         <BoardModal
           isVisible={boardModalVisible}
           styles={{
-            backgroundColor: "#2c2c2e",
+            backgroundColor: colors.boardBackground,
             width: 230,
             position: "absolute",
             top: 145 + useSafeAreaInsets().top,
             right: "5%",
             borderRadius: 15,
           }}
-          // addBoard={handleAddBoard}
           close={() => {
             setBoardModalVisible(!boardModalVisible);
           }}
@@ -138,7 +137,7 @@ const Board = (props) => {
       {isSelectCreate ? (
         <TextInput
           style={{
-            color: "#fff",
+            color: colors.textColor,
             fontSize: 18,
             marginStart: 15,
             marginVertical: 12,
@@ -152,7 +151,7 @@ const Board = (props) => {
           onSubmitEditing={() => {
             if (task.text != null && task.text != "") handleAddTask();
           }}
-          autoFocus={true} // sau khi an +create => hien textinput & focus
+          autoFocus={true}
           onBlur={() => Keyboard.dismiss()}
           // keybo
         />
@@ -164,7 +163,7 @@ const Board = (props) => {
         >
           <Text
             style={{
-              color: "#528ae6",
+              color: colors.primary,
               fontSize: 18,
               marginStart: 15,
               marginTop: 12,

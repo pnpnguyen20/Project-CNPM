@@ -1,13 +1,14 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
+import colors from "../../constants/colors";
 
 const Task = (props) => {
   return (
     <View
       style={{
-        backgroundColor: "#2c2c2e",
+        backgroundColor: colors.taskBackground,
         marginHorizontal: 10,
-        marginTop: 8,
+        marginBottom: 8,
         paddingHorizontal: 7,
         paddingBottom: 5,
         borderRadius: 6,
@@ -23,14 +24,14 @@ const Task = (props) => {
       >
         {props.text}
       </Text>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Image
           style={{
-            width: 15,
-            height: 15,
-            alignSelf: "center",
+            width: 14,
+            height: 14,
             marginRight: 5,
             marginBottom: 5,
+            tintColor: colors.primary,
           }}
           source={require("../../assets/check.png")}
         />

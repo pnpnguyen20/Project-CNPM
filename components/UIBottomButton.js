@@ -3,6 +3,7 @@ import { TouchableOpacity } from "react-native";
 
 import { View, Text } from "react-native";
 import React from "react";
+import colors from "../constants/colors";
 
 const UIBottomButton = (props) => {
   return (
@@ -17,14 +18,14 @@ const UIBottomButton = (props) => {
       <Icon
         name={props.iconName}
         style={{
-          color: props.isSelected ? "#528ae6" : "#fff",
+          color: props.isSelected ? colors.primary : "#fff",
           fontSize: 20,
         }}
       />
       <Text
         style={{
           marginTop: 5,
-          color: props.isSelected ? "#528ae6" : "#fff",
+          color: props.isSelected ? colors.primary : "#fff",
           fontSize: 10,
         }}
       >

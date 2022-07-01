@@ -3,6 +3,7 @@ import { TouchableOpacity } from "react-native";
 
 import { View, Text } from "react-native";
 import React from "react";
+import colors from "../constants/colors";
 
 const UiHeaderButton = (props) => {
   return (
@@ -13,7 +14,7 @@ const UiHeaderButton = (props) => {
     >
       <Text
         style={{
-          color: props.isSelected ? "#528ae6" : "#7b7b7d",
+          color: props.isSelected ? colors.primary : colors.inactive,
           fontSize: 18,
         }}
       >
@@ -21,7 +22,7 @@ const UiHeaderButton = (props) => {
       </Text>
       <View
         style={{
-          backgroundColor: props.isSelected ? "#528ae6" : null,
+          backgroundColor: props.isSelected ? colors.primary : null,
           height: 3,
           borderRadius: 10,
           marginTop: 6,

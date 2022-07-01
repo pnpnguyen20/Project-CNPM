@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Projects, Home, Account } from "../screens";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import colors from "../constants/colors";
 
 const Tab = createBottomTabNavigator();
 const uiBottomList = [
@@ -24,10 +25,10 @@ const uiBottomList = [
 export default function BotTab() {
   const screenOptions = () => ({
     headerShown: false,
-    tabBarActiveTintColor: "#528ae6",
-    tabBarInactiveTintColor: "#fff5",
-    tabBarActiveBackgroundColor: "black",
-    tabBarInactiveBackgroundColor: "black",
+    tabBarActiveTintColor: colors.primary,
+    tabBarInactiveTintColor: colors.inactive,
+    tabBarActiveBackgroundColor: colors.mainBackground,
+    tabBarInactiveBackgroundColor: colors.mainBackground,
   });
   return (
     <Tab.Navigator initialRouteName="Projects" screenOptions={screenOptions}>
@@ -46,14 +47,8 @@ export default function BotTab() {
                 size={size}
               />
             ),
-            // tabBarItemStyle: { borderWidth: 1, borderColor: "#101010" },
             tabBarStyle: {
-              // paddingBottom: 0,
-              // position: "absolute",
-              // height: 50,
-              // bottom: 35,
               borderTopWidth: 0,
-              // borderTopColor: "#528ae6",
             },
           }}
         />

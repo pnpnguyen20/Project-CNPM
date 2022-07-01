@@ -14,6 +14,7 @@ import { UiHeaderButton, Board, tempData } from "../components";
 
 import PopUpModal from "../components/PopUpModal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import colors from "../constants/colors";
 
 export default function Projects(props) {
   const [projectName, setProjectName] = useState("new-project");
@@ -25,7 +26,6 @@ export default function Projects(props) {
 
   const [boards, setBoards] = useState(tempData);
   const handleAddBoard = (title) => {
-    // console.log(new Date().getTime() % 1e7);
     setBoards([
       ...boards,
       {
@@ -41,9 +41,7 @@ export default function Projects(props) {
     }, 100);
   };
   const handleDeleteBoard = (id) => {
-    // let itemsCopy = [...boards];
     const filteredData = boards.filter((item) => item.id !== id);
-    // itemsCopy.splice(index, 1);
     setBoards(filteredData);
   };
 
@@ -56,14 +54,10 @@ export default function Projects(props) {
     />
   );
 
-  // <View
-  //   style={{ width: 500, height: 500, backgroundColor: "white", flex: 1 }}
-  // />;
-
   return (
     <SafeAreaView
       style={{
-        backgroundColor: "#000",
+        backgroundColor: colors.mainBackground,
         flex: 1,
         flexDirection: "column",
       }}
@@ -81,7 +75,7 @@ export default function Projects(props) {
           <Icon
             name={"chevron-left"}
             style={{
-              color: "#528ae6",
+              color: colors.primary,
               fontSize: 18,
               marginLeft: 20,
               width: 55,
@@ -96,19 +90,21 @@ export default function Projects(props) {
             marginHorizontal: 40,
           }}
         >
-          <Text style={{ color: "#528ae6", fontSize: 20 }}>{projectName}</Text>
+          <Text style={{ color: colors.primary, fontSize: 20 }}>
+            {projectName}
+          </Text>
           <Icon
             name={"caret-down"}
             style={{
               marginLeft: 5,
-              color: "#528ae6",
+              color: colors.primary,
               fontSize: 16,
               alignSelf: "center",
             }}
           />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Icon name={"bars"} style={{ color: "#528ae6", fontSize: 20 }} />
+          <Icon name={"bars"} style={{ color: colors.primary, fontSize: 20 }} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -118,7 +114,7 @@ export default function Projects(props) {
           <Entypo
             name={"dots-three-horizontal"}
             style={{
-              color: "#528ae6",
+              color: colors.primary,
               fontSize: 22,
               marginHorizontal: 22,
             }}
@@ -127,7 +123,7 @@ export default function Projects(props) {
         <PopUpModal
           isVisible={modalVisible}
           styles={{
-            backgroundColor: "#2c2c2e",
+            backgroundColor: colors.boardBackground,
             width: 230,
             top: 40 + useSafeAreaInsets().top,
             right: 10,
@@ -163,39 +159,10 @@ export default function Projects(props) {
       />
       {/* item4 */}
 
-      {/* <ScrollView
-        style={{ maxHeight: 500, flexGrow: 0 }}
-        ref={scrollRef1}
-        horizontal
-        // onScrollEndDrag={(e) => {
-        //   const offs = -30;
-        //   const pos =
-        //     Math.round((e.nativeEvent.contentOffset.x - offs) / boardWidth) *
-        //       boardWidth +
-        //     offs;
-        //   scrollRef1.current.scrollTo({ x: pos, animated: true });
-        // }}
-        onContentSizeChange={() => {}}
-      >
-        {boards.map((board, index) => {
-          return (
-            <Board
-              key={index}
-              index={index}
-              projectName={projectName}
-              title={board.title}
-              handleDeleteBoard={handleDeleteBoard}
-            />
-          );
-        })}
-      </ScrollView> */}
-
       <FlatList
         ref={scrollRef1}
         initialNumToRender={4}
-        onContentSizeChange={() => {
-          // scrollRef1.current.scrollToEnd({ animated: true });
-        }}
+        onContentSizeChange={() => {}}
         style={{ maxHeight: 500, flexGrow: 0 }}
         horizontal
         scrollEnabled
