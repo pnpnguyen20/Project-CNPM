@@ -1,7 +1,6 @@
-import { View, Button, TouchableOpacity, Text, Image, StyleSheet, SafeAreaView, ScrollView} from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, SafeAreaView, ScrollView} from "react-native";
 import React from "react";
 import colors from "../constants/colors";
-
 
 const Account = () => {
   return (
