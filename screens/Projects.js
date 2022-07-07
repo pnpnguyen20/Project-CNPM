@@ -2,10 +2,11 @@ import { React, useCallback, useRef, useState } from "react";
 import {
   Text,
   View,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Platform,
+  StatusBar
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
@@ -13,7 +14,7 @@ import { Entypo } from "@expo/vector-icons";
 import { UiHeaderButton, Board, tempData } from "../components";
 
 import PopUpModal from "../components/PopUpModal";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
 export default function Projects(props) {
@@ -60,6 +61,7 @@ export default function Projects(props) {
         backgroundColor: colors.mainBackground,
         flex: 1,
         flexDirection: "column",
+        paddingTop: 10
       }}
     >
       {/* item 1 */}
