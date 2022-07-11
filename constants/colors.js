@@ -1,5 +1,5 @@
 export default {
-  primary: "coral", //"#528ae6",
+  primary: "#528ae6",
   mainBackground: "#000",
   boardBackground: "#1c1c1e",
   taskBackground: "#2c2c2e",
