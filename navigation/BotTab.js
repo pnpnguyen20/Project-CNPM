@@ -3,7 +3,9 @@ import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Projects, Home, Account } from "../screens";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 import colors from "../constants/colors";
+import ProjectList from "../screens/ProjectList";
 
 const Tab = createBottomTabNavigator();
 const uiBottomList = [
@@ -19,6 +21,12 @@ const uiBottomList = [
     iconName: "account",
     useName: "Account",
     componentName: Account,
+  },
+    {
+    isSelected: false,
+    iconName: "view-sequential",
+    useName: "ProjectList",
+    componentName: ProjectList,
   },
 ];
 
