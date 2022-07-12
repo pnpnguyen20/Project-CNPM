@@ -29,7 +29,7 @@ const Account = () => {
         
             <TouchableOpacity onPress={() => {}}>
               <View style={styles.menuItem}>
-                <Icon name = "lock" color="white" size = {20} />
+                <Icon name = "info" color="white" size = {20} />
                 <Text style={styles.menuItemText}>Change Password</Text>
               </View>
             </TouchableOpacity>
@@ -38,6 +38,13 @@ const Account = () => {
               <View style={styles.menuItem}>
                 <Icon name = "log-out" color="white" size = {20} />
                 <Text style={styles.menuItemText}>Log out</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.menuItem}>
+                <Icon name = "info" color="white" size = {20} />
+                <Text style={styles.menuItemText}>About Manager: Teams & Tasks</Text>
               </View>
             </TouchableOpacity>
           
