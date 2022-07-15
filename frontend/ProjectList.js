@@ -1,12 +1,12 @@
-import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, Platform, StatusBar} from "react-native";
+import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, StatusBar} from "react-native";
 import React, { useState } from "react";
 import colors from "../constants/colors";
-import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
-import Icon from "react-native-vector-icons/Feather";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+
 const ProjectList = () => {
     const [page, setPage] = useState('All');
-  return (
+    return (
     <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1}}>
         <ScrollView showsVerticalScrollIndicator = {false} contentContainerStyle = {{paddingTop: 10, paddingBottom:30}}>
             <View style = {{flex: 1}}>
@@ -46,6 +46,7 @@ const ProjectList = () => {
 };
 
 export default ProjectList;
+
 const styles = StyleSheet.create({
     inputContainer: {
         flex: 1,

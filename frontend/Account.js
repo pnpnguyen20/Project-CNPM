@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, Platform, StatusBar} from "react-native";
 import React from "react";
 import colors from "../constants/colors";
-import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Feather";
 
 const Account = () => {
@@ -15,7 +15,7 @@ const Account = () => {
             
             <View style = {{marginLeft: 30}}>
               <Text style = {{fontSize: 24, fontWeight: 'bold', color: 'white'}}>Trần Quang Thịnh </Text>
-              <Text style = {{fontSize: 14, lineHeight: 14, fontWeight: '500', color: 'white'}}>tqthinh20@clc.fitus.edu.vn</Text>
+              <Text style = {{fontSize: 14, lineHeight: 14, fontWeight: '500', color: 'white'}}>tqthinh20@clc.fitus.edu.vn1</Text>
             </View>  
           </View>
           

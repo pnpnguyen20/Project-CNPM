@@ -1,11 +1,12 @@
-import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Projects, Home, Account } from "../screens";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import colors from "../constants/colors";
-import ProjectList from "../screens/ProjectList";
+
+import Projects from "../frontend/Projects";
+import Home from "../frontend/Home";
+import Account from "../frontend/Account";
+// import ProjectList from "../frontend/ProjectList";
 
 const Tab = createBottomTabNavigator();
 const uiBottomList = [
@@ -22,12 +23,12 @@ const uiBottomList = [
     useName: "Account",
     componentName: Account,
   },
-    {
-    isSelected: false,
-    iconName: "view-sequential",
-    useName: "ProjectList",
-    componentName: ProjectList,
-  },
+  // {
+  //   isSelected: false,
+  //   iconName: "view-sequential",
+  //   useName: "Project List",
+  //   componentName: ProjectList,
+  // },
 ];
 
 export default function BotTab() {
