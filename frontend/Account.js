@@ -4,7 +4,7 @@ import colors from "../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Feather";
 
-const Account = () => {
+const Account = ({navigation}) => {
   return (
     <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1}}>
       <ScrollView
@@ -20,7 +20,7 @@ const Account = () => {
           </View>
           
           <View style={styles.menuWrapper}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => navigation.navigate("EditProfile")}>
               <View style={styles.menuItem}> 
                 <Icon name = "edit" color="white" size = {20} />
                 <Text style={styles.menuItemText}>Edit profile</Text>
@@ -41,7 +41,7 @@ const Account = () => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
               <View style={styles.menuItem}>
                 <Icon name = "info" color="white" size = {20} />
                 <Text style={styles.menuItemText}>About Manager: Teams & Tasks</Text>
