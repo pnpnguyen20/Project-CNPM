@@ -1,5 +1,5 @@
 class Task {
-    constructor(proj_id, task_id, task_name, task_status, task_description, task_createday, task_deadline, task_last_edit_time, task_last_editor, task_creator) {
+    constructor(proj_id, task_id, task_name, task_status, task_description, task_createday, task_deadline, task_last_edit_time, task_last_editor, task_creator, task_emp) {
         this.proj_id = proj_id
         this.task_id = task_id
         this.task_name = task_name
@@ -10,6 +10,7 @@ class Task {
         this.task_last_edit_time = task_last_edit_time
         this.task_last_editor = task_last_editor
         this.task_creator = task_creator
+        this.task_emp = task_emp
     }
 }
 
@@ -19,4 +20,8 @@ class Task_employee extends User {
         this.proj_id = proj_id
         this.task_id = task_id
     }
+}
+
+function load_TaskList(params) {
+
 }
