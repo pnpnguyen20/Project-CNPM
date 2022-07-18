@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import {StatusBar} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import BotTab from "./navigation/BotTab";
 
@@ -16,7 +17,7 @@ export default function App(props) {
       >
         <Stack.Screen name={"BotTab"} component={BotTab} />
       </Stack.Navigator> */}
-
+      <StatusBar barStyle= 'light-content'/>
       <BotTab/>
       
     </NavigationContainer>

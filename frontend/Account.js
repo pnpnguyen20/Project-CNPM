@@ -9,15 +9,18 @@ const Account = ({navigation}) => {
     <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1}}>
       <ScrollView
         showsVerticalScrollIndicator = {false}
-        contentContainerStyle = {{paddingTop: 60, paddingBottom:30}}>
-          <View style = {{marginTop: 30, paddingHorizontal: 29, flexDirection: "row"}}>
-            <Image style = {styles.profile_pic} source = {{uri: "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" }}/>
+        contentContainerStyle = {{paddingBottom: 30}}>
+          <View style = {{backgroundColor: colors.primary, paddingTop: 60, paddingBottom: 30}}>
+            <View style = {{marginTop: 30, paddingHorizontal: 29, flexDirection: "row"}}>
+              <Image style = {styles.profile_pic} source = {{uri: "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" }}/>
             
-            <View style = {{marginLeft: 30}}>
-              <Text style = {{fontSize: 24, fontWeight: 'bold', color: 'white'}}>Trần Quang Thịnh </Text>
-              <Text style = {{fontSize: 14, lineHeight: 14, fontWeight: '500', color: 'white'}}>tqthinh20@clc.fitus.edu.vn1</Text>
-            </View>  
+              <View style = {{marginLeft: 30}}>
+                <Text style = {{fontSize: 24, fontWeight: 'bold', color: 'white'}}>Trần Quang Thịnh </Text>
+                <Text style = {{fontSize: 14, lineHeight: 14, fontWeight: '500', color: 'white'}}>tqthinh20@clc.fitus.edu.vn</Text>
+              </View>  
+            </View>
           </View>
+          
           
           <View style={styles.menuWrapper}>
             <TouchableOpacity onPress={() => navigation.navigate("EditProfile")}>
@@ -29,15 +32,8 @@ const Account = ({navigation}) => {
         
             <TouchableOpacity onPress={() => navigation.navigate("ChangePass")}>
               <View style={styles.menuItem}>
-                <Icon name = "info" color="white" size = {20} />
+                <Icon name = "lock" color="white" size = {20} />
                 <Text style={styles.menuItemText}>Change Password</Text>
-              </View>
-            </TouchableOpacity>
-        
-            <TouchableOpacity onPress={() => {}}>
-              <View style={styles.menuItem}>
-                <Icon name = "log-out" color="white" size = {20} />
-                <Text style={styles.menuItemText}>Log out</Text>
               </View>
             </TouchableOpacity>
 
@@ -47,13 +43,19 @@ const Account = ({navigation}) => {
                 <Text style={styles.menuItemText}>About Manager: Teams & Tasks</Text>
               </View>
             </TouchableOpacity>
+    
+            <TouchableOpacity onPress={() => {}}>
+              <View style={styles.menuItem}>
+                <Icon name = "log-out" color="white" size = {20} />
+                <Text style={styles.menuItemText}>Log out</Text>
+              </View>
+            </TouchableOpacity>
           
           </View>
       </ScrollView> 
     </SafeAreaView>
   );
 };
-
 
 export default Account;
 const styles = StyleSheet.create({

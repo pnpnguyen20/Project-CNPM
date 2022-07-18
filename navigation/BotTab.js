@@ -5,19 +5,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AboutUs from "../frontend/AboutUs";
 import EditProfile from "../frontend/EditProfile";
 import ChangePass from "../frontend/ChangePass";
-import Projects from "../frontend/Projects";
-import Home from "../frontend/Home";
+import ProjectDetail from "../frontend/ProjectDetail";
+import Notification from "../frontend/Notification";
 import Account from "../frontend/Account";
 
 const Stack = createNativeStackNavigator();
 
 const AccountStackNavigator = () => {
     return (
-    <Stack.Navigator initialRouteName="account" screenOptions={{headerStyle: {
-      backgroundColor: "#000000",
-    },
-    headerTintColor: "white",
-    headerBackTitle: "Back", }}>       
+    <Stack.Navigator initialRouteName="account" screenOptions={{ headerShown: false }}>         
         <Stack.Screen name={"account"} component={Account} />
         <Stack.Screen name={"AboutUs"} component={AboutUs} />
         <Stack.Screen name={"EditProfile"} component={EditProfile} />
@@ -29,15 +25,15 @@ const AccountStackNavigator = () => {
 const ProjectStackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Projects" screenOptions={{ headerShown: false }}>  
-      <Stack.Screen name={"Project"} component={Projects} />
+      <Stack.Screen name={"Project"} component={ProjectDetail} />
     </Stack.Navigator>
   );
 }
 
-const HomeStackNavigator = () => {
+const NotifStackNavigator = () => {
     return (
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>  
-        <Stack.Screen name={"Home"} component={Home} />
+      <Stack.Navigator initialRouteName="notification" screenOptions={{ headerShown: false }}>  
+        <Stack.Screen name={"notification"} component={Notification} />
       </Stack.Navigator>
     );
   }
@@ -116,10 +112,9 @@ const BotTab = () => {
        });
   return (
     <Tab.Navigator initialRouteName="Projects" screenOptions={screenOptions}>
-
-      <Tab.Screen name={"Home"} component={HomeStackNavigator} />
-      <Tab.Screen name={"Projects"} component={ProjectStackNavigator} />
-      <Tab.Screen name={"Account"} component={AccountStackNavigator} />
+      <Tab.Screen name={"Projects"} component={ProjectStackNavigator} options= {{tabBarLabel: 'Project',tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="folder" color={color} size={size}/>),}}/>
+      <Tab.Screen name={"Notification"} component={NotifStackNavigator} options= {{tabBarLabel: 'Notification',tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="bell" color={color} size={size}/>),}}/>
+      <Tab.Screen name={"Account"} component={AccountStackNavigator} options= {{tabBarLabel: 'Account',tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="account" color={color} size={size}/>),}}/>
 
     </Tab.Navigator>
   );

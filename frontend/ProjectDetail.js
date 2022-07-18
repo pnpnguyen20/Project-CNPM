@@ -17,7 +17,7 @@ import PopUpModal from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
-export default function Projects(props) {
+export default function ProjectDetail(props) {
   const [projectName, setProjectName] = useState("new-project");
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
 

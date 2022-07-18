@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, TextInput, StyleSheet} from 'react-native';
 
 import Feather from 'react-native-vector-icons/Feather';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from "../constants/colors";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,7 +10,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const ChangePass = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style = {{marginLeft: 30, marginRight:30}}>
+      <View style={{flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10}}>
+          
+          <TouchableOpacity onPress={() => navigation.navigate("account")}> 
+            <Icon name={"chevron-left"} style={{color: colors.primary, fontSize: 30, marginLeft: 20, width: 50}}/>
+          </TouchableOpacity>
+
+          <Text style = {{color: "white", fontSize: 20, justifyContent: "center", flexDirection: "row",}}>Change Password</Text>
+        </View>
+
+      <View style = {{marginHorizontal: 30}}>
         <View style={styles.action}>
           <Feather name="lock" color={colors.inactive} size={20} />
           <TextInput
@@ -55,11 +64,11 @@ const ChangePass = ({navigation}) => {
         </View>
         
         <View style = {{flexDirection: "column", alignSelf: "center", marginVertical: 30}}>
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("BotTab")}>
+          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
             <Text style={styles.panelButtonTitle}>Confirm</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("BotTab")}>
+          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
             <Text style={styles.panelButtonTitle}>Cancel</Text>
           </TouchableOpacity>
         </View>
@@ -73,12 +82,12 @@ const ChangePass = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 70,
     backgroundColor: colors.mainBackground
   },
   commandButton: {
+    marginHorizontal: 30,
     paddingHorizontal: 100,
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderRadius: 10,
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -106,7 +115,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === 'android' ? 0 : -12,
+    //marginTop: Platform.OS === 'android' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

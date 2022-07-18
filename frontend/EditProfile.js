@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {React, useState} from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const EditProfile = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style = {{marginHorizontal: 30}}>
+      <View style={{flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10}}>
+          
+          <TouchableOpacity onPress={() => navigation.navigate("account")}> 
+            <Icon name={"chevron-left"} style={{color: colors.primary, fontSize: 30, marginLeft: 20, width: 50}}/>
+          </TouchableOpacity>
+
+          <Text style = {{color: "white", fontSize: 20, justifyContent: "center", flexDirection: "row",}}>Edit Profile</Text>
+        </View>
+
+      <View style = {{marginHorizontal: 30,}}>
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.inactive} size={20} />
           <TextInput
@@ -105,7 +114,6 @@ export default EditProfile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 70,
     backgroundColor: colors.mainBackground
   },
   commandButton: {
@@ -138,7 +146,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === 'android' ? 0 : -12,
+    //marginTop: Platform.OS === 'android' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },
