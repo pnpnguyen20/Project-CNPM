@@ -27,7 +27,7 @@ const Account = ({navigation}) => {
               </View>
             </TouchableOpacity>
         
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => navigation.navigate("ChangePass")}>
               <View style={styles.menuItem}>
                 <Icon name = "info" color="white" size = {20} />
                 <Text style={styles.menuItemText}>Change Password</Text>
