@@ -10,7 +10,7 @@ const Account = ({navigation}) => {
       <ScrollView
         showsVerticalScrollIndicator = {false}
         contentContainerStyle = {{paddingBottom: 30}}>
-          <View style = {{backgroundColor: colors.primary, paddingTop: 60, paddingBottom: 30}}>
+          <View style = {{backgroundColor: colors.primary, paddingTop: 60, paddingBottom: 30, borderBottomEndRadius: 20}}>
             <View style = {{marginTop: 30, paddingHorizontal: 29, flexDirection: "row"}}>
               <Image style = {styles.profile_pic} source = {{uri: "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" }}/>
             
@@ -23,10 +23,10 @@ const Account = ({navigation}) => {
           
           
           <View style={styles.menuWrapper}>
-            <TouchableOpacity onPress={() => navigation.navigate("EditProfile")}>
+            <TouchableOpacity onPress={() => navigation.navigate("ProfileInfo")}>
               <View style={styles.menuItem}> 
                 <Icon name = "edit" color="white" size = {20} />
-                <Text style={styles.menuItemText}>Edit profile</Text>
+                <Text style={styles.menuItemText}>Profile infomation</Text>
               </View>
             </TouchableOpacity>
         

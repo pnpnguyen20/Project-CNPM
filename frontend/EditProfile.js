@@ -12,14 +12,20 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const EditProfile = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10}}>
-          
-          <TouchableOpacity onPress={() => navigation.navigate("account")}> 
-            <Icon name={"chevron-left"} style={{color: colors.primary, fontSize: 30, marginLeft: 20, width: 50}}/>
-          </TouchableOpacity>
-
-          <Text style = {{color: "white", fontSize: 20, justifyContent: "center", flexDirection: "row",}}>Edit Profile</Text>
-        </View>
+        <View style={{ flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10, }}>
+        
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileInfo")}>
+            <Icon name={"chevron-left"} style={{ color: colors.primary, fontSize: 30, marginLeft: 20, width: 55, }}/>
+        </TouchableOpacity>
+   
+        <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
+            <Text style={{ color: "white", fontSize: 20 }}>Edit profile</Text>
+        </TouchableOpacity>
+    
+        <TouchableOpacity> 
+            <Feather name={"edit"} style={{color: "black", fontSize: 20, marginLeft: 50, marginHorizontal: 22,}}/>
+        </TouchableOpacity>
+    </View>
 
       <View style = {{marginHorizontal: 30,}}>
         <View style={styles.action}>
@@ -95,11 +101,11 @@ const EditProfile = ({navigation}) => {
           />
         </View>
         <View style = {{flexDirection: "column", alignSelf: "center", marginVertical: 30}}>
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
+          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
             <Text style={styles.panelButtonTitle}>Confirm</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
+          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
             <Text style={styles.panelButtonTitle}>Cancel</Text>
           </TouchableOpacity>
         </View>

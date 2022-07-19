@@ -8,6 +8,7 @@ import ChangePass from "../frontend/ChangePass";
 import ProjectDetail from "../frontend/ProjectDetail";
 import Notification from "../frontend/Notification";
 import Account from "../frontend/Account";
+import ProfileInfo from "../frontend/ProfileInfo";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const AccountStackNavigator = () => {
     <Stack.Navigator initialRouteName="account" screenOptions={{ headerShown: false }}>         
         <Stack.Screen name={"account"} component={Account} />
         <Stack.Screen name={"AboutUs"} component={AboutUs} />
+        <Stack.Screen name={"ProfileInfo"} component={ProfileInfo} />
         <Stack.Screen name={"EditProfile"} component={EditProfile} />
         <Stack.Screen name={"ChangePass"} component={ChangePass}/>
     </Stack.Navigator>

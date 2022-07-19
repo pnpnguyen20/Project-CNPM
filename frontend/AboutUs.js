@@ -7,13 +7,19 @@ import Icon from "react-native-vector-icons/Feather";
 const About = ({navigation}) => {
     return (
       <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1, flexDirection: "column",}}>
-        <View style={{flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10}}>
-          
-          <TouchableOpacity onPress={() => navigation.navigate("account")}> 
-            <Icon name={"chevron-left"} style={{color: colors.primary, fontSize: 30, marginLeft: 20, width: 50}}/>
+        <View style={{ flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10, }}>
+        
+          <TouchableOpacity onPress={() => navigation.navigate("account")}>
+            <Icon name={"chevron-left"} style={{ color: colors.primary, fontSize: 30, marginLeft: 20, width: 55, }}/>
           </TouchableOpacity>
-
-          <Text style = {{color: "white", fontSize: 20, justifyContent: "center", flexDirection: "row",}}>About Us</Text>
+   
+          <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
+            <Text style={{ color: "white", fontSize: 20 }}>About us</Text>
+          </TouchableOpacity>
+    
+          <TouchableOpacity> 
+            <Icon name={"edit"} style={{color: "black", fontSize: 20, marginLeft: 50, marginHorizontal: 22,}}/>
+          </TouchableOpacity>
         </View>
 
         <View style = {{ marginHorizontal: 20}}> 
