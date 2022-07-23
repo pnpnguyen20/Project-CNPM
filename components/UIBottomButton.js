@@ -18,14 +18,14 @@ const UIBottomButton = (props) => {
       <Icon
         name={props.iconName}
         style={{
-          color: props.isSelected ? colors.primary : "#fff",
+          color: props.isSelected ? colors.primary1 : "#fff",
           fontSize: 20,
         }}
       />
       <Text
         style={{
           marginTop: 5,
-          color: props.isSelected ? colors.primary : "#fff",
+          color: props.isSelected ? colors.primary1 : "#fff",
           fontSize: 10,
         }}
       >

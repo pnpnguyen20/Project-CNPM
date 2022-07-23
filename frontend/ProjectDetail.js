@@ -17,7 +17,7 @@ import { PopUpModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
-export default function ProjectDetail(props) {
+export default function ProjectDetail({ navigation }, props) {
   const [projectName, setProjectName] = useState("new-project");
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
 
@@ -82,15 +82,14 @@ export default function ProjectDetail(props) {
           flexDirection: "row",
           height: 45,
           alignItems: "center",
-          backgroundColor: "#fff2"
         }}
       >
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("ProjectList")}>
           <Icon
             name={"chevron-left"}
             style={{
-              color: colors.primary,
+              color: colors.primary1,
               fontSize: 18,
               marginLeft: 20,
               width: 55,
@@ -105,14 +104,14 @@ export default function ProjectDetail(props) {
             marginHorizontal: 40,
           }}
         >
-          <Text style={{ color: colors.primary, fontSize: 20 }}>
+          <Text style={{ color: colors.primary1, fontSize: 20 }}>
             {projectName}
           </Text>
           <Icon
             name={"caret-down"}
             style={{
               marginLeft: 5,
-              color: colors.primary,
+              color: colors.primary1,
               fontSize: 16,
               alignSelf: "center",
             }}
@@ -126,7 +125,7 @@ export default function ProjectDetail(props) {
           <Entypo
             name={"dots-three-horizontal"}
             style={{
-              color: colors.primary,
+              color: colors.primary1,
               fontSize: 22,
               marginHorizontal: 22,
             }}

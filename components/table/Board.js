@@ -191,7 +191,7 @@ const Board = (props) => {
         >
           <Text
             style={{
-              color: colors.primary,
+              color: colors.primary1,
               fontSize: 18,
               marginStart: 15,
               marginTop: 12,

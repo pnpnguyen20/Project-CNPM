@@ -74,7 +74,7 @@ const ModalInputBoardName = (props) => {
                 props.close();
               }}
             >
-              <Text style={{ color: colors.primary, fontWeight: "bold" }}>
+              <Text style={{ color: colors.primary1, fontWeight: "bold" }}>
                 Cancel
               </Text>
             </TouchableOpacity>
@@ -164,7 +164,7 @@ const InputModal = (props) => {
                 props.close();
               }}
             >
-              <Text style={{ color: colors.primary, fontWeight: "bold" }}>
+              <Text style={{ color: colors.primary1, fontWeight: "bold" }}>
                 Cancel
               </Text>
             </TouchableOpacity>

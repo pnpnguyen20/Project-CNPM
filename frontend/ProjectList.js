@@ -2,76 +2,102 @@ import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, StatusBar 
 import { React, useState } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
-
+import { Entypo } from "@expo/vector-icons";
+import { TextInput } from "react-native-paper";
+import { tempData } from "../components";
 
 const ProjectList = () => {
-    const [page, setPage] = useState('All');
+    const [text, setText] = useState('');
     return (
-        <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1 }}>
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 10, paddingBottom: 30 }}>
-                <View style={{ flex: 1 }}>
-                    <StatusBar barStyle='light-content' />
-                    <View style={{ width: '100%', height: '25%' }}>
-                        <View style={{ width: '100%', flex: 1, backgroundColor: '#005b96', justifyContent: 'center', alignItems: 'center' }} >
-                            <Text styles={{ fontSize: 50, fontWeight: 'bold', colors: 'white' }}> Project List</Text>
-                        </View>
-                        <View style={{ marginTop: 40 }} />
-                        {/* <View style = {styles.inputContainer}>
-                        <Icon name = 'search' size = {28}/>
-                        <TextInput/>
-                    </View> */}
+        <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1, paddingVertical: 10, paddingHorizontal: 20 }}>
+            <View style={{ flexDirection: 'row', margin: 10, alignItems: 'center' }}>
+                <View style={{ backgroundColor: 'coral', borderRadius: 50, width: 35, height: 35 }} />
+                <TouchableOpacity style={{ right: 5, position: "absolute" }}>
+                    <Entypo
+                        name={"plus"}
+                        style={{
+                            color: colors.primary1,
+                            fontSize: 40,
+                        }}
+                    />
+                </TouchableOpacity>
+            </View>
 
-                        <View style={{ height: 50, flexDirection: 'row' }}>
-                            <TouchableOpacity style={styles.ItemMenu} onPress={() => { setPage('All') }} disabled={page === 'All' ? true : false}>
-                                <Text style={{ fontSize: 10, color: '#FFFFFF' }}>All</Text>
-                                {page === 'All' ? <View style={styles.viewPage}></View> : null}
+            <View>
+                <Text style={{ color: colors.textColor, fontSize: 30, fontWeight: 'bold', marginBottom: 12 }}>
+                    Projects
+                </Text>
+            </View>
 
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.ItemMenu} onPress={() => { setPage('On Progress') }} disabled={page === 'On Progress' ? true : false}>
-                                <Text style={{ fontSize: 10, color: '#FFFFFF' }}>On Progess</Text>
-                                {page === 'On Progress' ? <View style={styles.viewPage}></View> : null}
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.ItemMenu} onPress={() => { setPage('Done') }} disabled={page === 'Done' ? true : false}>
-                                <Text style={{ fontSize: 10, color: '#FFFFFF' }}>Done</Text>
-                                {page === 'Done' ? <View style={styles.viewPage}></View> : null}
-                            </TouchableOpacity>
-                        </View>
+            <View style={{
+                flexDirection: 'row',
+                backgroundColor: 'rgba(255,255,255,.2)',
+                opacity: .5,
+                height: 40,
+                borderRadius: 10,
+            }}>
+                <Entypo
+                    name={"magnifying-glass"}
+                    style={{
+                        color: colors.textColor,
+                        fontSize: 22,
+                        alignSelf: 'center',
+                        margin: 5,
+                    }}
+                />
+                <TextInput
+                    style={{
+                        flex: 1,
+                        backgroundColor: 'transparent',
+                        height: 30,
+                        alignSelf: 'center',
+                        color: "green",
+                    }}
+                    placeholder={"Search projects"}
+                    placeholderTextColor={colors.textColor}
+                    value={text}
+                    onChangeText={(newText) => setText(newText)}
+                    onBlur={() => Keyboard.dismiss()}
+                />
+            </View>
+
+
+            <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15 }}>All projects</Text>
+
+            {/* <FlatList
+        ref={scrollRef}
+        scrollEnabled
+        data={taskItems}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      /> */}
+            {tempData.map((item) =>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("ProjectList")}
+                    style={{
+                        height: 75,
+                        width: "100%",
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                    }}>
+                    <View style={{
+                        backgroundColor: 'white',
+                        width: 35,
+                        height: 35,
+                        marginRight: 10,
+                        // alignSelf: 'center',
+                    }} />
+                    <View style={{ flex: 1 }}>
+                        <Text style={{ fontSize: 18, color: colors.textColor, alignContent: 'center', }}>{item.projectName}</Text>
+                        <Text style={{ fontSize: 13, color: colors.textColor, alignContent: 'center', }}>Due date: 10/10/2000</Text>
                     </View>
-                </View>
+                    <View style={{ width: "100%", height: .1, opacity: .25, backgroundColor: colors.textColor, position: "absolute", bottom: 0, }} />
+                </TouchableOpacity>)}
 
-            </ScrollView>
-            <View style={{ flex: 1, backgroundColor: 'white' }} />
         </SafeAreaView>
 
     );
 };
 
-
-
-const styles = StyleSheet.create({
-    inputContainer: {
-        flex: 1,
-        height: 30,
-        borderRadius: 10,
-        flexDirection: 'row',
-        backgroundColor: 'white',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-
-    },
-    ItemMenu: {
-        width: '33%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    viewPage: {
-        position: 'absolute',
-        bottom: 0,
-        height: 5,
-        width: '100%',
-        backgroundColor: '#005b96'
-    },
-})
 
 export default ProjectList;

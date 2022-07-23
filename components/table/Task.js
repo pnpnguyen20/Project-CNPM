@@ -31,7 +31,7 @@ const Task = (props) => {
             height: 14,
             marginRight: 5,
             marginBottom: 5,
-            tintColor: colors.primary,
+            tintColor: colors.primary1,
           }}
           source={require("../../assets/check.png")}
         />

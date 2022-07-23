@@ -30,8 +30,9 @@ const AccountStackNavigator = () => {
 
 const ProjectStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Projects" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={"Project"} component={ProjectList} />
+    <Stack.Navigator initialRouteName="ProjectDetail" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name={"ProjectList"} component={ProjectList} />
+      <Stack.Screen name={"ProjectDetail"} component={ProjectDetail} />
     </Stack.Navigator>
   );
 }
