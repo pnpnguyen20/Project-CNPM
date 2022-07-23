@@ -17,7 +17,7 @@ const Task = (props) => {
       <Text
         style={{
           color: "white",
-          fontSize: 17,
+          fontSize: 18,
           marginTop: 8,
           marginBottom: 12,
         }}
@@ -38,7 +38,7 @@ const Task = (props) => {
         <Text
           style={{
             color: "white",
-            fontSize: 13,
+            fontSize: 14,
             opacity: 0.5,
           }}
         >

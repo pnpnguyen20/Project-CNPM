@@ -5,8 +5,6 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  Platform,
-  StatusBar
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
@@ -17,16 +15,15 @@ import { PopUpModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
-export default function ProjectDetail({ navigation }, props) {
-  const [projectName, setProjectName] = useState("new-project");
+export default function ProjectDetail({ route, navigation }) {
+  const [projectName, setProjectName] = useState(route.params.projectName);
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
 
   const scrollRef1 = useRef();
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [boards, setBoards] = useState(tempData);
-  const [boardName, setBoardName] = useState(tempData.title);
+  const [boards, setBoards] = useState(route.params.boards);
   const handleAddBoard = (title) => {
     setBoards([
       ...boards,
@@ -58,13 +55,14 @@ export default function ProjectDetail({ navigation }, props) {
     setBoards(filteredData);
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item, index }) => (
     <Board
       id={item.id}
       projectName={projectName}
       title={item.title}
       handleDeleteBoard={handleDeleteBoard}
       handleRenameBoard={handleRenameBoard}
+      tasks={route.params.boards[index] ? route.params.boards[index].tasks : []}
     />
   );
 
@@ -84,15 +82,17 @@ export default function ProjectDetail({ navigation }, props) {
           alignItems: "center",
         }}
       >
-
-        <TouchableOpacity onPress={() => navigation.navigate("ProjectList")}>
-          <Icon
-            name={"chevron-left"}
+        <TouchableOpacity onPress={() => {
+          navigation.navigate("ProjectList")
+        }}>
+          <Entypo
+            name={"arrow-long-left"}
             style={{
               color: colors.primary1,
-              fontSize: 18,
-              marginLeft: 20,
-              width: 55,
+              fontSize: 25,
+              marginTop: 5,
+              marginHorizontal: 30,
+
             }}
           />
         </TouchableOpacity>
@@ -101,10 +101,10 @@ export default function ProjectDetail({ navigation }, props) {
             flexDirection: "row",
             justifyContent: "center",
             flex: 1,
-            marginHorizontal: 40,
+            marginHorizontal: 30,
           }}
         >
-          <Text style={{ color: colors.primary1, fontSize: 20 }}>
+          <Text style={{ color: colors.primary1, fontSize: 22, fontWeight: 'bold' }}>
             {projectName}
           </Text>
           <Icon
@@ -112,7 +112,7 @@ export default function ProjectDetail({ navigation }, props) {
             style={{
               marginLeft: 5,
               color: colors.primary1,
-              fontSize: 16,
+              fontSize: 18,
               alignSelf: "center",
             }}
           />
@@ -123,10 +123,11 @@ export default function ProjectDetail({ navigation }, props) {
           }}
         >
           <Entypo
-            name={"dots-three-horizontal"}
+            name={"menu"}
             style={{
               color: colors.primary1,
-              fontSize: 22,
+              fontSize: 35,
+              marginTop: 5,
               marginHorizontal: 22,
             }}
           />
@@ -162,7 +163,7 @@ export default function ProjectDetail({ navigation }, props) {
       <FlatList
         ref={scrollRef1}
         initialNumToRender={4}
-        style={{ maxHeight: 500, flexGrow: 0 }}
+        style={{ maxHeight: 500, flexGrow: 0, marginLeft: 20 }}
         horizontal
         scrollEnabled
         data={boards}
@@ -172,30 +173,10 @@ export default function ProjectDetail({ navigation }, props) {
 
       <View
         style={{
-          width: 300,
-          flex: 1,
-        }}
-      />
-
-      <View
-        style={{
           flexDirection: "row",
           justifyContent: "center",
         }}
       >
-        {selectedBoard.map((board, index) => (
-          <View
-            key={index}
-            style={{
-              width: 7,
-              height: 7,
-              backgroundColor: board ? "#fff" : "#fff5",
-              borderRadius: 50,
-              alignSelf: "center",
-              marginHorizontal: 5,
-            }}
-          />
-        ))}
       </View>
       {/* a line */}
       <View

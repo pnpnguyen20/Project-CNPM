@@ -94,7 +94,7 @@ const BoardModal = (props) => {
                 >
                   <Text
                     style={{
-                      color: "#de3131",
+                      color: colors.warning,
                       fontSize: 15,
                       fontWeight: "bold",
                     }}

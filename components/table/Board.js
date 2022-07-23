@@ -21,7 +21,7 @@ import { TaskModal } from "../PopUpModal";
 
 const Board = (props) => {
   const [task, setTask] = useState({ text: "" });
-  const [taskItems, setTaskItems] = useState([]);
+  const [taskItems, setTaskItems] = useState(props.tasks ? props.tasks : []);
 
   const [boardModalVisible, setBoardModalVisible] = useState(false);
   const [taskModalVisible, setTaskModalVisible] = useState(false)
@@ -67,8 +67,8 @@ const Board = (props) => {
       style={{
         marginTop: 18,
         backgroundColor: colors.primary3,
-        width: 350,
-        marginHorizontal: 5,
+        width: 300,
+        marginHorizontal: 10,
         flexDirection: "column",
         borderRadius: 6,
       }}

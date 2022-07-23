@@ -14,6 +14,7 @@ import colors from "../constants/colors";
 
 const ModalInputBoardName = (props) => {
   const [title, setTitle] = useState("");
+
   return (
     <View>
       <Modal animationType="none" transparent={true} visible={props.isVisible}>
@@ -265,7 +266,19 @@ const PopUpModal = (props) => {
                 <TouchableOpacity
                   style={{ paddingVertical: 10, paddingLeft: 15 }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>Share</Text>
+                  <Text style={{ color: "white", fontSize: 15 }}>Project Details</Text>
+                </TouchableOpacity>
+                <View
+                  style={{
+                    height: 0.5,
+                    backgroundColor: "white",
+                    opacity: 0.5,
+                  }}
+                />
+                <TouchableOpacity
+                  style={{ paddingVertical: 10, paddingLeft: 15 }}
+                >
+                  <Text style={{ color: colors.warning, fontSize: 15, fontWeight: "bold", }}>Leave Project</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -385,4 +398,95 @@ const TaskModal = (props) => {
   );
 };
 
-export { PopUpModal, InputModal, ModalInputBoardName, TaskModal };
+const ProjectInputModal = (props) => {
+  const [title, setTitle] = useState("");
+
+  return (
+    <View>
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <View style={props.styles}>
+          <Text
+            style={{
+              color: "white",
+              textAlign: "center",
+              fontWeight: "bold",
+              marginTop: 14,
+              fontSize: 16,
+            }}
+          >
+            Add new project
+          </Text>
+          <TextInput
+            autoFocus
+            placeholder="Project name"
+            value={title}
+            style={{
+              alignItems: "center",
+              height: 30,
+              color: "#fff9",
+              marginVertical: 15,
+              paddingLeft: 5,
+              width: "85%",
+              alignSelf: "center",
+              backgroundColor: colors.mainBackground,
+              borderColor: "#fff5",
+              borderWidth: 1,
+              borderRadius: 7,
+            }}
+            onChangeText={(text) => {
+              setTitle(text);
+            }}
+            onSubmitEditing={() => {
+              props.addBoard(title);
+              setTitle("");
+              props.close();
+            }}
+          />
+          <View
+            style={{ backgroundColor: "#fff5", height: 1, width: "100%" }}
+          ></View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                paddingVertical: 10,
+                paddingHorizontal: 24,
+              }}
+              onPress={() => {
+                setTitle("");
+                props.close();
+              }}
+            >
+              <Text style={{ color: colors.primary1, fontWeight: "bold" }}>
+                Cancel
+              </Text>
+            </TouchableOpacity>
+            <View
+              style={{ backgroundColor: "#fff5", width: 1, height: "100%" }}
+            ></View>
+            <TouchableOpacity
+              style={{
+                paddingVertical: 10,
+                paddingHorizontal: 30,
+              }}
+              onPress={() => {
+                // props.addBoard(title);
+                setTitle("");
+                props.close();
+              }}
+            >
+              <Text style={{ color: "#fff6" }}>Add</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+};
+
+export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal };
