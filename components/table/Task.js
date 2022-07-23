@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import colors from "../../constants/colors";
-import { TaskModal } from "../PopUpModal";
 
 const Task = (props) => {
   return (

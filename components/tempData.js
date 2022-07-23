@@ -5,7 +5,7 @@ const tempData = [
     title: "TO DO",
     tasks: [
       { id: "233213", text: "this is a task" },
-      { text: "another task..." }
+      { id: "113213", text: "another task..." }
     ],
   },
   {

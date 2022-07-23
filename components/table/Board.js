@@ -25,28 +25,36 @@ const Board = (props) => {
 
   const [boardModalVisible, setBoardModalVisible] = useState(false);
   const [taskModalVisible, setTaskModalVisible] = useState(false)
+  const [clickedID, setClickedID] = useState();
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => setTaskModalVisible(true)}>
+    <TouchableOpacity
+      id={item.id}
+      onPress={() => {
+        setClickedID(item.id);
+        setTaskModalVisible(true)
+      }}>
       <Task
-        id={item.id}
         text={item.text}
         memberName={"Nguyen Van An"}
-        handleDeleteTask={completeTask}
       />
     </TouchableOpacity>
+
   );
 
   const handleAddTask = () => {
     setTaskItems([...taskItems, task]);
     setTask({ text: "" });
     setIsSelectCreate(false);
+
+    setTimeout(() => {
+      scrollRef.current.scrollToEnd({ animated: true });
+    }, 150);
   };
 
-  const completeTask = (index) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
+  const handleDeleteTask = (id) => {
+    const filteredData = taskItems.filter((item) => item.id !== id);
+    setTaskItems(filteredData);
   };
   const [isSelectCreate, setIsSelectCreate] = useState(false);
 
@@ -140,7 +148,8 @@ const Board = (props) => {
         close={() => {
           setTaskModalVisible(!taskModalVisible);
         }}
-        handleDeleteTask={completeTask}
+        handleDeleteTask={handleDeleteTask}
+        id={clickedID}
       />
 
 
@@ -151,31 +160,6 @@ const Board = (props) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-
-      {/* <ScrollView
-        style={{}}
-        ref={scrollRef}
-        onContentSizeChange={(contentW, contentH) => {
-          scrollRef.current.scrollTo({ y: contentH, animated: true });
-        }}
-      >
-        {taskItems.map((item, index) => {
-          return (
-            <TouchableOpacity
-              key={index}
-              onPress={() => {
-                setTaskModalVisible(true);
-              }}
-            >
-              <Task
-                text={item.text}
-                projectName={props.projectName.toUpperCase()}
-                index={index + 1}
-              />
-            </TouchableOpacity>
-          );
-        })}
-      </ScrollView> */}
 
 
       {isSelectCreate ? (

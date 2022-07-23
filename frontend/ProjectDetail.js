@@ -40,7 +40,7 @@ export default function ProjectDetail(props) {
 
     setTimeout(() => {
       scrollRef1.current.scrollToEnd({ animated: true });
-    }, 100);
+    }, 150);
   };
 
   const handleRenameBoard = (id, newName) => {
