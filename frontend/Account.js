@@ -1,58 +1,58 @@
-import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, Platform, StatusBar} from "react-native";
+import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, Platform, StatusBar } from "react-native";
 import React from "react";
 import colors from "../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Feather";
 
-const Account = ({navigation}) => {
+const Account = ({ navigation }) => {
   return (
-    <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1}}>
+    <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1 }}>
       <ScrollView
-        showsVerticalScrollIndicator = {false}
-        contentContainerStyle = {{paddingBottom: 30}}>
-          <View style = {{backgroundColor: colors.primary, paddingTop: 60, paddingBottom: 30, borderBottomEndRadius: 20}}>
-            <View style = {{marginTop: 30, paddingHorizontal: 29, flexDirection: "row"}}>
-              <Image style = {styles.profile_pic} source = {{uri: "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" }}/>
-            
-              <View style = {{marginLeft: 30}}>
-                <Text style = {{fontSize: 24, fontWeight: 'bold', color: 'white'}}>Trần Quang Thịnh </Text>
-                <Text style = {{fontSize: 14, lineHeight: 14, fontWeight: '500', color: 'white'}}>tqthinh20@clc.fitus.edu.vn</Text>
-              </View>  
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 30 }}>
+        <View style={{ backgroundColor: colors.primary1, paddingTop: 60, paddingBottom: 30, borderBottomEndRadius: 20 }}>
+          <View style={{ marginTop: 30, paddingHorizontal: 29, flexDirection: "row" }}>
+            <Image style={styles.profile_pic} source={{ uri: "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" }} />
+
+            <View style={{ marginLeft: 30 }}>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>Trần Quang Thịnh </Text>
+              <Text style={{ fontSize: 14, lineHeight: 14, fontWeight: '500', color: 'white' }}>tqthinh20@clc.fitus.edu.vn</Text>
             </View>
           </View>
-          
-          
-          <View style={styles.menuWrapper}>
-            <TouchableOpacity onPress={() => navigation.navigate("ProfileInfo")}>
-              <View style={styles.menuItem}> 
-                <Icon name = "edit" color="white" size = {20} />
-                <Text style={styles.menuItemText}>Profile infomation</Text>
-              </View>
-            </TouchableOpacity>
-        
-            <TouchableOpacity onPress={() => navigation.navigate("ChangePass")}>
-              <View style={styles.menuItem}>
-                <Icon name = "lock" color="white" size = {20} />
-                <Text style={styles.menuItemText}>Change Password</Text>
-              </View>
-            </TouchableOpacity>
+        </View>
 
-            <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-              <View style={styles.menuItem}>
-                <Icon name = "info" color="white" size = {20} />
-                <Text style={styles.menuItemText}>About Manager: Teams & Tasks</Text>
-              </View>
-            </TouchableOpacity>
-    
-            <TouchableOpacity onPress={() => {}}>
-              <View style={styles.menuItem}>
-                <Icon name = "log-out" color="white" size = {20} />
-                <Text style={styles.menuItemText}>Log out</Text>
-              </View>
-            </TouchableOpacity>
-          
-          </View>
-      </ScrollView> 
+
+        <View style={styles.menuWrapper}>
+          <TouchableOpacity onPress={() => navigation.navigate("ProfileInfo")}>
+            <View style={styles.menuItem}>
+              <Icon name="edit" color="white" size={20} />
+              <Text style={styles.menuItemText}>Profile infomation</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate("ChangePass")}>
+            <View style={styles.menuItem}>
+              <Icon name="lock" color="white" size={20} />
+              <Text style={styles.menuItemText}>Change Password</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
+            <View style={styles.menuItem}>
+              <Icon name="info" color="white" size={20} />
+              <Text style={styles.menuItemText}>About Manager: Teams & Tasks</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => { }}>
+            <View style={styles.menuItem}>
+              <Icon name="log-out" color="white" size={20} />
+              <Text style={styles.menuItemText}>Log out</Text>
+            </View>
+          </TouchableOpacity>
+
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

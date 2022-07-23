@@ -7,6 +7,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  FlatList
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
@@ -15,12 +16,26 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Task from "./Task";
 import BoardModal from "./BoardModal";
 import colors from "../../constants/colors";
+import { TaskModal } from "../PopUpModal";
+
 
 const Board = (props) => {
   const [task, setTask] = useState({ text: "" });
   const [taskItems, setTaskItems] = useState([]);
 
   const [boardModalVisible, setBoardModalVisible] = useState(false);
+  const [taskModalVisible, setTaskModalVisible] = useState(false)
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => setTaskModalVisible(true)}>
+      <Task
+        id={item.id}
+        text={item.text}
+        memberName={"Nguyen Van An"}
+        handleDeleteTask={completeTask}
+      />
+    </TouchableOpacity>
+  );
 
   const handleAddTask = () => {
     setTaskItems([...taskItems, task]);
@@ -43,7 +58,7 @@ const Board = (props) => {
       keyboardVerticalOffset={130}
       style={{
         marginTop: 18,
-        backgroundColor: colors.boardBackground,
+        backgroundColor: colors.primary3,
         width: 350,
         marginHorizontal: 5,
         flexDirection: "column",
@@ -95,7 +110,7 @@ const Board = (props) => {
         <BoardModal
           isVisible={boardModalVisible}
           styles={{
-            backgroundColor: colors.boardBackground,
+            backgroundColor: colors.primary3,
             width: 230,
             position: "absolute",
             top: 145 + useSafeAreaInsets().top,
@@ -106,10 +121,38 @@ const Board = (props) => {
             setBoardModalVisible(!boardModalVisible);
           }}
           handleDeleteBoard={props.handleDeleteBoard}
+          handleRenameBoard={props.handleRenameBoard}
           id={props.id}
         />
       </View>
-      <ScrollView
+
+
+      <TaskModal
+        isVisible={taskModalVisible}
+        styles={{
+          backgroundColor: colors.primary3,
+          width: 230,
+          position: "absolute",
+          top: 145 + useSafeAreaInsets().top,
+          right: "5%",
+          borderRadius: 15,
+        }}
+        close={() => {
+          setTaskModalVisible(!taskModalVisible);
+        }}
+        handleDeleteTask={completeTask}
+      />
+
+
+      <FlatList
+        ref={scrollRef}
+        scrollEnabled
+        data={taskItems}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+
+      {/* <ScrollView
         style={{}}
         ref={scrollRef}
         onContentSizeChange={(contentW, contentH) => {
@@ -121,7 +164,7 @@ const Board = (props) => {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                completeTask(index);
+                setTaskModalVisible(true);
               }}
             >
               <Task
@@ -132,8 +175,9 @@ const Board = (props) => {
             </TouchableOpacity>
           );
         })}
-      </ScrollView>
-      {/*  */}
+      </ScrollView> */}
+
+
       {isSelectCreate ? (
         <TextInput
           style={{
@@ -147,13 +191,13 @@ const Board = (props) => {
           placeholder={"Issue summary"}
           placeholderTextColor="#fff5"
           value={task.text}
-          onChangeText={(newText) => setTask({ text: newText })}
+          onChangeText={(newText) => setTask({ id: new Date().getTime() % 1e6, text: newText })}
           onSubmitEditing={() => {
             if (task.text != null && task.text != "") handleAddTask();
           }}
           autoFocus={true}
           onBlur={() => Keyboard.dismiss()}
-          // keybo
+        // keybo
         />
       ) : (
         <TouchableOpacity

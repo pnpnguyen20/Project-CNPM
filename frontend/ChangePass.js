@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, ImageBackground, TextInput, StyleSheet } from 'react-native';
 
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,25 +7,25 @@ import colors from "../constants/colors";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const ChangePass = ({navigation}) => {
+const ChangePass = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-        <View style={{ flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10, }}>
-        
-        <TouchableOpacity onPress={() => navigation.navigate("account")}>
-            <Icon name={"chevron-left"} style={{ color: colors.primary, fontSize: 30, marginLeft: 20, width: 55, }}/>
-        </TouchableOpacity>
-   
-        <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
-            <Text style={{ color: "white", fontSize: 20 }}>Change password</Text>
-        </TouchableOpacity>
-    
-        <TouchableOpacity> 
-            <Feather name={"edit"} style={{color: "black", fontSize: 20, marginLeft: 50, marginHorizontal: 22,}}/>
-        </TouchableOpacity>
-    </View>
+      <View style={{ flexDirection: "row", height: 65, alignItems: "center", paddingBottom: 10, }}>
 
-      <View style = {{marginHorizontal: 30}}>
+        <TouchableOpacity onPress={() => navigation.navigate("account")}>
+          <Icon name={"chevron-left"} style={{ color: colors.primary1, fontSize: 30, marginLeft: 20, width: 55, }} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
+          <Text style={{ color: "white", fontSize: 20 }}>Change password</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Feather name={"edit"} style={{ color: "black", fontSize: 20, marginLeft: 50, marginHorizontal: 22, }} />
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ marginHorizontal: 30 }}>
         <View style={styles.action}>
           <Feather name="lock" color={colors.inactive} size={20} />
           <TextInput
@@ -68,8 +68,8 @@ const ChangePass = ({navigation}) => {
             ]}
           />
         </View>
-        
-        <View style = {{flexDirection: "column", alignSelf: "center", marginVertical: 30}}>
+
+        <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
           <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
             <Text style={styles.panelButtonTitle}>Confirm</Text>
           </TouchableOpacity>
@@ -78,8 +78,8 @@ const ChangePass = ({navigation}) => {
             <Text style={styles.panelButtonTitle}>Cancel</Text>
           </TouchableOpacity>
         </View>
-        
-    </View>
+
+      </View>
     </SafeAreaView>
   );
 };
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 100,
     paddingVertical: 10,
     borderRadius: 10,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary1,
     alignItems: 'center',
     marginTop: 10,
   },

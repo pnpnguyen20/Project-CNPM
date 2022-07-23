@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import colors from "../../constants/colors";
+import { TaskModal } from "../PopUpModal";
 
 const Task = (props) => {
   return (
     <View
       style={{
-        backgroundColor: colors.taskBackground,
+        backgroundColor: colors.primary4,
         marginHorizontal: 10,
         marginBottom: 8,
         paddingHorizontal: 7,
@@ -42,7 +43,7 @@ const Task = (props) => {
             opacity: 0.5,
           }}
         >
-          {props.projectName}-{props.index}
+          {props.memberName}
         </Text>
       </View>
     </View>

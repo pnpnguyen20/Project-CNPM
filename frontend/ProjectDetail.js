@@ -11,9 +11,9 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
 
-import { UiHeaderButton, Board, tempData } from "../components";
+import { Board, tempData } from "../components";
 
-import PopUpModal from "../components/PopUpModal";
+import { PopUpModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
@@ -26,14 +26,15 @@ export default function ProjectDetail(props) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [boards, setBoards] = useState(tempData);
+  const [boardName, setBoardName] = useState(tempData.title);
   const handleAddBoard = (title) => {
     setBoards([
       ...boards,
       {
-        id: new Date().getTime() % 1e5,
+        id: new Date().getTime() % 1e6,
         projectName: "",
         title: title ? title.toUpperCase() : "NEW COLUMN",
-        tasks: [{ text: "this is a task" }],
+        tasks: [{ id: new Date().getTime() % 1e6, text: "this is a task" }],
       },
     ]);
 
@@ -41,6 +42,17 @@ export default function ProjectDetail(props) {
       scrollRef1.current.scrollToEnd({ animated: true });
     }, 100);
   };
+
+  const handleRenameBoard = (id, newName) => {
+    const temp = [...boards];
+    temp.forEach((b) => {
+      if (b.id == id)
+        b.title = newName
+    });
+
+    setBoards(temp)
+  };
+
   const handleDeleteBoard = (id) => {
     const filteredData = boards.filter((item) => item.id !== id);
     setBoards(filteredData);
@@ -52,6 +64,7 @@ export default function ProjectDetail(props) {
       projectName={projectName}
       title={item.title}
       handleDeleteBoard={handleDeleteBoard}
+      handleRenameBoard={handleRenameBoard}
     />
   );
 
@@ -64,15 +77,15 @@ export default function ProjectDetail(props) {
         paddingTop: 10
       }}
     >
-      {/* item 1 */}
       <View
         style={{
           flexDirection: "row",
           height: 45,
           alignItems: "center",
-          paddingBottom: 10,
+          backgroundColor: "#fff2"
         }}
       >
+
         <TouchableOpacity>
           <Icon
             name={"chevron-left"}
@@ -105,9 +118,6 @@ export default function ProjectDetail(props) {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name={"bars"} style={{ color: colors.primary, fontSize: 20 }} />
-        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             setModalVisible(!modalVisible);
@@ -125,7 +135,7 @@ export default function ProjectDetail(props) {
         <PopUpModal
           isVisible={modalVisible}
           styles={{
-            backgroundColor: colors.boardBackground,
+            backgroundColor: colors.primary3,
             width: 230,
             top: 40 + useSafeAreaInsets().top,
             right: 10,
@@ -146,25 +156,13 @@ export default function ProjectDetail(props) {
           alignSelf: "center",
         }}
       >
-        <UiHeaderButton name="Board" isSelected={true} />
-        <UiHeaderButton name="Roadmap" isSelected={false} />
-        <UiHeaderButton name="Settings" isSelected={false} />
+
       </View>
       {/* item3 */}
-      <View
-        style={{
-          backgroundColor: "#8aafed",
-          height: 0.5,
-          opacity: 0.6,
-          width: "100%",
-        }}
-      />
-      {/* item4 */}
 
       <FlatList
         ref={scrollRef1}
         initialNumToRender={4}
-        onContentSizeChange={() => {}}
         style={{ maxHeight: 500, flexGrow: 0 }}
         horizontal
         scrollEnabled

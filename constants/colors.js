@@ -1,8 +1,10 @@
 export default {
-  primary: "#528ae6",
   mainBackground: "#000",
-  boardBackground: "#1c1c1e",
-  taskBackground: "#2c2c2e",
+
+  primary: "#528ae6",
+  primary2: "#F7F7F7",
+  primary3: "#1c1c1c",
+  primary4: "#2c2c2c",
   textColor: "#fff",
   inactive: "rgba(209,209,209,0.6)",
 
