@@ -1,5 +1,5 @@
-user_list = load_UserList
+var user_list = load_UserList
 
-proj_list = load_ProjectList
+var proj_list = load_ProjectList
 
-task_list = load_TaskList
+var task_list = load_TaskList

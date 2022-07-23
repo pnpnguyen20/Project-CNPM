@@ -5,6 +5,7 @@ class User {
         this.user_authen = user_authen
     }
 }
+
 class User_info {
     constructor(user_name, mail, phone, birth, gender, address, user_id) {
         this.user_name = user_name
@@ -26,6 +27,19 @@ class User_authenticator {
     }
 }
 
-function load_UserList(params) {
 
-}
+var db = require('../database')
+
+load_UserList = function() {
+    db.transaction(function(transaction) {
+        transaction.executeSql('SELECT US_ID, US_ACCOUNT FROM USER_AUTHEN', [], selectedRowValues, errorHandler);
+    });
+};
+
+selectedRowValues = function(transaction, results) {
+    for (var i = 0; i < results.rows.length; i++) {
+        var row = results.rows.item(i);
+        alert(row['ID']);
+        alert(row['ACCOUNT']);
+    }
+};
