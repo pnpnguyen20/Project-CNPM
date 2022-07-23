@@ -6,7 +6,7 @@ const Task = (props) => {
   return (
     <View
       style={{
-        backgroundColor: colors.primary4,
+        backgroundColor: colors.mainBackground,
         marginHorizontal: 10,
         marginBottom: 8,
         paddingHorizontal: 7,
@@ -16,7 +16,7 @@ const Task = (props) => {
     >
       <Text
         style={{
-          color: "white",
+          color: colors.textColor,
           fontSize: 18,
           marginTop: 8,
           marginBottom: 12,
@@ -37,9 +37,9 @@ const Task = (props) => {
         />
         <Text
           style={{
-            color: "white",
+            color: colors.textColor,
             fontSize: 14,
-            opacity: 0.5,
+            opacity: 0.75,
           }}
         >
           {props.memberName}

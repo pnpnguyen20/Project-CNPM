@@ -21,7 +21,7 @@ const ModalInputBoardName = (props) => {
         <View style={props.styles}>
           <Text
             style={{
-              color: "white",
+              color: colors.textColor,
               textAlign: "center",
               fontWeight: "bold",
               marginTop: 14,
@@ -37,13 +37,13 @@ const ModalInputBoardName = (props) => {
             style={{
               alignItems: "center",
               height: 30,
-              color: "#fff9",
+              color: colors.textColor,
               marginVertical: 15,
               paddingLeft: 5,
               width: "85%",
               alignSelf: "center",
               backgroundColor: colors.mainBackground,
-              borderColor: "#fff5",
+              borderColor: colors.primary3,
               borderWidth: 1,
               borderRadius: 7,
             }}
@@ -56,7 +56,7 @@ const ModalInputBoardName = (props) => {
             }}
           />
           <View
-            style={{ backgroundColor: "#fff5", height: 1, width: "100%" }}
+            style={{ backgroundColor: colors.textColor, opacity: .3, height: 1, width: "100%" }}
           ></View>
           <View
             style={{
@@ -80,7 +80,7 @@ const ModalInputBoardName = (props) => {
               </Text>
             </TouchableOpacity>
             <View
-              style={{ backgroundColor: "#fff5", width: 1, height: "100%" }}
+              style={{ backgroundColor: colors.textColor, opacity: .3, width: 1, height: "100%" }}
             ></View>
             <TouchableOpacity
               style={{
@@ -92,7 +92,7 @@ const ModalInputBoardName = (props) => {
                 props.close();
               }}
             >
-              <Text style={{ color: "#fff6" }}>Rename</Text>
+              <Text style={{ color: colors.textColor }}>Rename</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -110,7 +110,7 @@ const InputModal = (props) => {
         <View style={props.styles}>
           <Text
             style={{
-              color: "white",
+              color: colors.textColor,
               textAlign: "center",
               fontWeight: "bold",
               marginTop: 14,
@@ -126,13 +126,13 @@ const InputModal = (props) => {
             style={{
               alignItems: "center",
               height: 30,
-              color: "#fff9",
+              color: colors.textColor,
               marginVertical: 15,
               paddingLeft: 5,
               width: "85%",
               alignSelf: "center",
               backgroundColor: colors.mainBackground,
-              borderColor: "#fff5",
+              borderColor: colors.primary3,
               borderWidth: 1,
               borderRadius: 7,
             }}
@@ -146,7 +146,7 @@ const InputModal = (props) => {
             }}
           />
           <View
-            style={{ backgroundColor: "#fff5", height: 1, width: "100%" }}
+            style={{ backgroundColor: colors.textColor, height: .5, opacity: .3, width: "100%" }}
           ></View>
           <View
             style={{
@@ -170,7 +170,7 @@ const InputModal = (props) => {
               </Text>
             </TouchableOpacity>
             <View
-              style={{ backgroundColor: "#fff5", width: 1, height: "100%" }}
+              style={{ backgroundColor: colors.textColor, width: 1, opacity: .3, height: "100%" }}
             ></View>
             <TouchableOpacity
               style={{
@@ -183,7 +183,7 @@ const InputModal = (props) => {
                 props.close();
               }}
             >
-              <Text style={{ color: "#fff6" }}>Add</Text>
+              <Text style={{ color: colors.textColor }}>Add</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -204,8 +204,9 @@ const PopUpModal = (props) => {
           alignSelf: "center",
           flexDirection: "column",
           top: 200,
-          shadowOpacity: 1,
-          shadowRadius: 300,
+          shadowOpacity: 0.5,
+          shadowRadius: 75,
+          shadowColor: colors.textColor,
         }}
         isVisible={inputModalVisible}
         addBoard={props.addBoard}
@@ -222,11 +223,16 @@ const PopUpModal = (props) => {
         >
           <View>
             <View style={props.styles}>
-              <View style={{ flexDirection: "column" }}>
+              <View style={{
+                flexDirection: "column",
+                shadowOpacity: 0.5,
+                shadowRadius: 75,
+                shadowColor: colors.textColor,
+              }}>
                 <Text
                   style={{
                     fontSize: 13,
-                    color: "white",
+                    color: colors.textColor,
                     opacity: 0.5,
                     textAlign: "center",
                     marginVertical: 10,
@@ -237,7 +243,7 @@ const PopUpModal = (props) => {
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
@@ -252,26 +258,26 @@ const PopUpModal = (props) => {
                     props.close();
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
                     Add new column
                   </Text>
                 </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
                 <TouchableOpacity
                   style={{ paddingVertical: 10, paddingLeft: 15 }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>Project Details</Text>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>Project Details</Text>
                 </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
@@ -323,7 +329,7 @@ const TaskModal = (props) => {
                 <Text
                   style={{
                     fontSize: 13,
-                    color: "white",
+                    color: colors.textColor,
                     opacity: 0.5,
                     textAlign: "center",
                     marginVertical: 10,
@@ -334,7 +340,7 @@ const TaskModal = (props) => {
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
@@ -348,14 +354,14 @@ const TaskModal = (props) => {
                     props.close();
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
                     Edit task
                   </Text>
                 </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
@@ -368,7 +374,7 @@ const TaskModal = (props) => {
                     props.close();
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
                     Assign member
                   </Text>
                 </TouchableOpacity>
@@ -376,7 +382,7 @@ const TaskModal = (props) => {
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
@@ -387,7 +393,7 @@ const TaskModal = (props) => {
                     props.close();
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>Delete task</Text>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>Delete task</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -407,7 +413,7 @@ const ProjectInputModal = (props) => {
         <View style={props.styles}>
           <Text
             style={{
-              color: "white",
+              color: colors.textColor,
               textAlign: "center",
               fontWeight: "bold",
               marginTop: 14,
@@ -423,13 +429,13 @@ const ProjectInputModal = (props) => {
             style={{
               alignItems: "center",
               height: 30,
-              color: "#fff9",
+              color: colors.textColor,
               marginVertical: 15,
               paddingLeft: 5,
               width: "85%",
               alignSelf: "center",
               backgroundColor: colors.mainBackground,
-              borderColor: "#fff5",
+              borderColor: colors.primary3,
               borderWidth: 1,
               borderRadius: 7,
             }}
@@ -443,7 +449,7 @@ const ProjectInputModal = (props) => {
             }}
           />
           <View
-            style={{ backgroundColor: "#fff5", height: 1, width: "100%" }}
+            style={{ backgroundColor: colors.textColor, opacity: .3, height: 1, width: "100%" }}
           ></View>
           <View
             style={{
@@ -467,7 +473,7 @@ const ProjectInputModal = (props) => {
               </Text>
             </TouchableOpacity>
             <View
-              style={{ backgroundColor: "#fff5", width: 1, height: "100%" }}
+              style={{ backgroundColor: colors.textColor, opacity: .3, width: 1, height: "100%" }}
             ></View>
             <TouchableOpacity
               style={{
@@ -480,7 +486,7 @@ const ProjectInputModal = (props) => {
                 props.close();
               }}
             >
-              <Text style={{ color: "#fff6" }}>Add</Text>
+              <Text style={{ color: colors.textColor }}>Add</Text>
             </TouchableOpacity>
           </View>
         </View>

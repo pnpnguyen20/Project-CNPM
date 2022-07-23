@@ -38,8 +38,9 @@ const BoardModal = (props) => {
               <View
                 style={{
                   flexDirection: "column",
-                  shadowOpacity: 0.75,
+                  shadowOpacity: 0.5,
                   shadowRadius: 75,
+                  shadowColor: colors.textColor,
                 }}
               >
 
@@ -50,14 +51,14 @@ const BoardModal = (props) => {
                     props.close();
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
                     Rename column
                   </Text>
                 </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
@@ -67,21 +68,21 @@ const BoardModal = (props) => {
                     props.close();
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 15 }}>
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
                     Move column right
                   </Text>
                 </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />
                 <View
                   style={{
                     height: 0.5,
-                    backgroundColor: "white",
+                    backgroundColor: colors.textColor,
                     opacity: 0.5,
                   }}
                 />

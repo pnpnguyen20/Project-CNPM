@@ -1,12 +1,13 @@
 export default {
-  mainBackground: "#000",
+  mainBackground: "#fff",
 
   primary1: "#528ae6",
   primary2: "#F7F7F7",
-  primary3: "#1c1c1c",
+  primary3: "#ecedf0",
   primary4: "#2c2c2c",
-  textColor: "#fff",
-  inactive: "rgba(209,209,209,0.6)",
+  textColor: "#313131",
+
+  inactive: "#999999",
 
   placeholder: "rgba(0,0,0,0.6)",
 

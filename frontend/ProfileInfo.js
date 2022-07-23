@@ -19,7 +19,7 @@ const ProfileInfo = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
-          <Text style={{ color: "white", fontSize: 20 }}>Profile information</Text>
+          <Text style={{ color: colors.textColor, fontSize: 20 }}>Profile information</Text>
         </TouchableOpacity>
 
         <TouchableOpacity syle={{}} onPress={() => navigation.navigate("EditProfile")}>
@@ -30,37 +30,37 @@ const ProfileInfo = ({ navigation }) => {
       <View style={{ marginHorizontal: 30, }}>
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.inactive} size={20} />
-          <Text style={{ color: "white", marginLeft: 10 }}>Name</Text>
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Name</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: "white", }}>àkajfjalf</Text>
+            <Text style={{ color: colors.textColor, }}>àkajfjalf</Text>
           </View>
         </View>
         <View style={styles.action}>
           <Feather name="phone" color={colors.inactive} size={20} />
-          <Text style={{ color: "white", marginLeft: 10 }}>Phone</Text>
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Phone</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: "white", }}>Tagadgag</Text>
+            <Text style={{ color: colors.textColor, }}>Tagadgag</Text>
           </View>
         </View>
         <View style={styles.action}>
           <FontAwesome name="envelope-o" color={colors.inactive} size={20} />
-          <Text style={{ color: "white", marginLeft: 10 }}>Email</Text>
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Email</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: "white", }}>agaewrqwfasf</Text>
+            <Text style={{ color: colors.textColor, }}>agaewrqwfasf</Text>
           </View>
         </View>
         <View style={styles.action}>
           <FontAwesome name="calendar" color={colors.inactive} size={20} />
-          <Text style={{ color: "white", marginLeft: 10 }}>Birth date</Text>
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Birth date</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: "white", }}>ágadbvsdava</Text>
+            <Text style={{ color: colors.textColor, }}>ágadbvsdava</Text>
           </View>
         </View>
         <View style={styles.action}>
           <Icon name="map-marker-outline" color={colors.inactive} size={20} />
-          <Text style={{ color: "white", marginLeft: 10 }}>Address</Text>
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Address</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: "white", }}>aqwfasvaf</Text>
+            <Text style={{ color: colors.textColor, }}>aqwfasvaf</Text>
           </View>
         </View>
       </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   panelButtonTitle: {
     fontSize: 17,
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.textColor,
   },
   action: {
     flexDirection: 'row',

@@ -14,7 +14,7 @@ const About = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
-          <Text style={{ color: "white", fontSize: 20 }}>About us</Text>
+          <Text style={{ color: colors.textColor, fontSize: 20 }}>About us</Text>
         </TouchableOpacity>
 
         <TouchableOpacity>
@@ -23,13 +23,13 @@ const About = ({ navigation }) => {
       </View>
 
       <View style={{ marginHorizontal: 20 }}>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 15 }}>Manager: Teams & Tasks is the flexible work management tool that will gather project’s information and indivitual tasks at one place with a user-friendly interface. Work, organize tasks anywhere, anytime, get the jobs done and increase productivity.</Text>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 5 }}>This app is contributed by 5 members of Group 05 - 20CLC11:</Text>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 5 }}>   20127005 - </Text>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 5 }}>   20127317 - </Text>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 5 }}>   20127337 - Trần Quang Thịnh</Text>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 5 }}>   20127... - </Text>
-        <Text style={{ fontSize: 15, color: 'white', paddingBottom: 5 }}>   20127... - </Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 15 }}>Manager: Teams & Tasks is the flexible work management tool that will gather project’s information and indivitual tasks at one place with a user-friendly interface. Work, organize tasks anywhere, anytime, get the jobs done and increase productivity.</Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 5 }}>This app is contributed by 5 members of Group 05 - 20CLC11:</Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 5 }}>   20127005 - </Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 5 }}>   20127317 - </Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 5 }}>   20127337 - Trần Quang Thịnh</Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 5 }}>   20127... - </Text>
+        <Text style={{ fontSize: 15, color: colors.textColor, paddingBottom: 5 }}>   20127... - </Text>
       </View>
 
     </SafeAreaView>

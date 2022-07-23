@@ -77,27 +77,17 @@ const Board = (props) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          marginBottom: 5,
         }}
       >
         <Text
           style={{
-            color: "white",
+            color: colors.textColor,
             fontSize: 18,
             marginStart: 15,
+            fontFamily: 'Lucida Console',
           }}
         >
           {props.title}
-        </Text>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 18,
-            marginStart: 5,
-            opacity: 0.5,
-          }}
-        >
-          {taskItems.length}
         </Text>
         <View style={{ flex: 1 }} />
         <TouchableOpacity
@@ -108,7 +98,7 @@ const Board = (props) => {
           <Entypo
             name={"dots-three-horizontal"}
             style={{
-              color: "#fff8",
+              color: colors.textColor,
               fontSize: 22,
               marginEnd: 5,
               padding: 12,
@@ -118,7 +108,7 @@ const Board = (props) => {
         <BoardModal
           isVisible={boardModalVisible}
           styles={{
-            backgroundColor: colors.primary3,
+            backgroundColor: colors.mainBackground,
             width: 230,
             position: "absolute",
             top: 145 + useSafeAreaInsets().top,
@@ -191,8 +181,8 @@ const Board = (props) => {
         >
           <Text
             style={{
-              color: colors.primary1,
-              fontSize: 18,
+              color: colors.textColor,
+              fontSize: 17,
               marginStart: 15,
               marginTop: 12,
               marginBottom: 16,

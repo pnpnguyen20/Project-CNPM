@@ -104,14 +104,14 @@ export default function ProjectDetail({ route, navigation }) {
             marginHorizontal: 30,
           }}
         >
-          <Text style={{ color: colors.primary1, fontSize: 22, fontWeight: 'bold' }}>
+          <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
             {projectName}
           </Text>
           <Icon
             name={"caret-down"}
             style={{
               marginLeft: 5,
-              color: colors.primary1,
+              color: colors.textColor,
               fontSize: 18,
               alignSelf: "center",
             }}
@@ -135,7 +135,7 @@ export default function ProjectDetail({ route, navigation }) {
         <PopUpModal
           isVisible={modalVisible}
           styles={{
-            backgroundColor: colors.primary3,
+            backgroundColor: colors.mainBackground,
             width: 230,
             top: 40 + useSafeAreaInsets().top,
             right: 10,
@@ -156,7 +156,6 @@ export default function ProjectDetail({ route, navigation }) {
           alignSelf: "center",
         }}
       >
-
       </View>
       {/* item3 */}
 
@@ -171,23 +170,6 @@ export default function ProjectDetail({ route, navigation }) {
         keyExtractor={(item) => item.id}
       />
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-      </View>
-      {/* a line */}
-      <View
-        style={{
-          backgroundColor: "#fff",
-          opacity: 0.15,
-          height: 1,
-          marginVertical: 10,
-          width: "100%",
-        }}
-      />
     </SafeAreaView>
   );
 }

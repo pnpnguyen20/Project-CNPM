@@ -35,9 +35,9 @@ const ProjectList = ({ navigation }) => {
 
             <View style={{
                 flexDirection: 'row',
-                backgroundColor: 'rgba(255,255,255,.15)',
+                backgroundColor: colors.primary3,
                 opacity: .75,
-                height: 50,
+                height: 45,
                 borderRadius: 10,
             }}>
                 <Entypo
@@ -65,7 +65,7 @@ const ProjectList = ({ navigation }) => {
                 />
             </View>
 
-            <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15 }}>All projects</Text>
+            <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15, fontWeight: 'bold' }}>All projects</Text>
 
 
             {filteredData.map((item, index) =>

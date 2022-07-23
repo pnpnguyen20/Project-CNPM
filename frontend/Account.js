@@ -25,28 +25,28 @@ const Account = ({ navigation }) => {
         <View style={styles.menuWrapper}>
           <TouchableOpacity onPress={() => navigation.navigate("ProfileInfo")}>
             <View style={styles.menuItem}>
-              <Icon name="edit" color="white" size={20} />
+              <Icon name="edit" color={colors.textColor} size={20} />
               <Text style={styles.menuItemText}>Profile infomation</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("ChangePass")}>
             <View style={styles.menuItem}>
-              <Icon name="lock" color="white" size={20} />
+              <Icon name="lock" color={colors.textColor} size={20} />
               <Text style={styles.menuItemText}>Change Password</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
             <View style={styles.menuItem}>
-              <Icon name="info" color="white" size={20} />
+              <Icon name="info" color={colors.textColor} size={20} />
               <Text style={styles.menuItemText}>About Manager: Teams & Tasks</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => { }}>
             <View style={styles.menuItem}>
-              <Icon name="log-out" color="white" size={20} />
+              <Icon name="log-out" color={colors.textColor} size={20} />
               <Text style={styles.menuItemText}>Log out</Text>
             </View>
           </TouchableOpacity>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   menuItemText: {
-    color: 'white',
+    color: colors.textColor,
     marginLeft: 20,
     fontWeight: '600',
     fontSize: 16,
