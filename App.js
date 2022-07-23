@@ -3,6 +3,7 @@ import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import BotTab from "./navigation/BotTab";
 import StartScreen from "./navigation/StartScreen";
+import ProjectList from "./frontend/ProjectList";
 
 export default function App(props) {
   // const Stack = createNativeStackNavigator();
@@ -10,6 +11,7 @@ export default function App(props) {
   return (
 
     <NavigationContainer>
+
       <BotTab />
       {/* <Stack.Navigator
         initialRouteName="BotTab"

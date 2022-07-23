@@ -10,6 +10,10 @@ import Notification from "../frontend/Notification";
 import Account from "../frontend/Account";
 import ProfileInfo from "../frontend/ProfileInfo";
 
+import colors from "../constants/colors";
+import ProjectList from "../frontend/ProjectList";
+
+
 const Stack = createNativeStackNavigator();
 
 const AccountStackNavigator = () => {
@@ -27,7 +31,7 @@ const AccountStackNavigator = () => {
 const ProjectStackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Projects" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={"Project"} component={ProjectDetail} />
+      <Stack.Screen name={"Project"} component={ProjectList} />
     </Stack.Navigator>
   );
 }
@@ -40,66 +44,7 @@ const NotifStackNavigator = () => {
   );
 }
 
-import colors from "../constants/colors";
-// import ProjectList from "../frontend/ProjectList";
 
-// const Tab = createBottomTabNavigator();
-// const uiBottomList = [
-//   { isSelected: false, iconName: "home", useName: "Home", componentName: Home },
-//   {
-//     isSelected: true,
-//     iconName: "folder",
-//     useName: "Projects",
-//     componentName: Projects,
-//   },
-//   {
-//     isSelected: false,
-//     iconName: "account",
-//     useName: "Account",
-//     componentName: Account,
-//   },
-//   // {
-//   //   isSelected: false,
-//   //   iconName: "view-sequential",
-//   //   useName: "Project List",
-//   //   componentName: ProjectList,
-//   // },
-// ];
-
-// export default function BotTab() {
-//   const screenOptions = () => ({
-//     headerShown: false,
-//     tabBarActiveTintColor: colors.primary,
-//     tabBarInactiveTintColor: colors.inactive,
-//     tabBarActiveBackgroundColor: colors.mainBackground,
-//     tabBarInactiveBackgroundColor: colors.mainBackground,
-//   });
-//   return (
-//     <Tab.Navigator initialRouteName="Projects" screenOptions={screenOptions}>
-//       {uiBottomList.map((each, index) => (
-//         <Tab.Screen
-//           key={index}
-//           screenOptions={screenOptions}
-//           name={each.useName}
-//           component={each.componentName}
-//           options={{
-//             tabBarLabel: each.useName,
-//             tabBarIcon: ({ color, size }) => (
-//               <MaterialCommunityIcons
-//                 name={each.iconName}
-//                 color={color}
-//                 size={size}
-//               />
-//             ),
-//             tabBarStyle: {
-//               borderTopWidth: 0,
-//             },
-//           }}
-//         />
-//       ))}
-//     </Tab.Navigator>
-//   );
-// }
 
 
 const Tab = createBottomTabNavigator();

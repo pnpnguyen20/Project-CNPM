@@ -1,7 +1,7 @@
 export default {
   mainBackground: "#000",
 
-  primary: "#528ae6",
+  primary1: "#528ae6",
   primary2: "#F7F7F7",
   primary3: "#1c1c1c",
   primary4: "#2c2c2c",
