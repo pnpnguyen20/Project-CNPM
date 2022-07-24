@@ -69,7 +69,8 @@ const Board = (props) => {
         backgroundColor: colors.primary3,
         width: 300,
         marginHorizontal: 10,
-        flexDirection: "column",
+        flexDirection: "co
+             mn",
         borderRadius: 6,
       }}
     >
@@ -84,7 +85,7 @@ const Board = (props) => {
             color: colors.textColor,
             fontSize: 18,
             marginStart: 15,
-            fontFamily: 'Lucida Console',
+            fontFamily: 'serif',
           }}
         >
           {props.title}
