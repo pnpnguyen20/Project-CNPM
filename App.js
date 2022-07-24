@@ -12,7 +12,7 @@ export default function App(props) {
 
     <NavigationContainer>
 
-      <BotTab />
+      {/* <BotTab /> */}
       {/* <Stack.Navigator
         initialRouteName="BotTab"
         screenOptions={{
@@ -25,7 +25,7 @@ export default function App(props) {
       </Stack.Navigator> */}
       {/* <Stack.Screen name={"BotTab"} component={BotTab} /> */}
       {/* <StatusBar barStyle='light-content' /> */}
-      {/* <StartScreen/> */}
+      <StartScreen/>
       {/* <BotTab /> */}
 
     </NavigationContainer>
