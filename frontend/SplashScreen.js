@@ -2,13 +2,14 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Dimensions, StyleSheet, StatusBar, Image, Button } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { useTheme } from '@react-navigation/native';
+import colors from '../constants/colors';
 
 const SplashScreen = ({ navigation }) => {
     const { colors } = useTheme();
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor='#009387' barStyle="light-content" />
+            <StatusBar backgroundColor= '#528ae6' barStyle="light-content" />
             <View style={styles.header}>
                 <Animatable.Image
                     animation="bounceIn"
@@ -30,9 +31,9 @@ const SplashScreen = ({ navigation }) => {
                 <Text style={styles.text}>Sign in with account</Text>
                 <View style={styles.button}>
                     <Button
-                        onPress={() => navigation.navigate('LogIn')}
+                        onPress={() => navigation.navigate('SignInScreen')}
                         title="Get Started"
-                        color="#08d4c4"
+                        color= {colors.primary2}
                     />
                 </View>
             </Animatable.View>
@@ -48,7 +49,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#009387'
+        backgroundColor: colors.primary1
     },
     header: {
         flex: 2,
