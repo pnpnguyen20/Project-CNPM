@@ -120,7 +120,7 @@ const SignInScreen = ({navigation}) => {
                     size={20}
                 />
                 <TextInput 
-                    placeholder="Your Password"
+                    placeholder="Your password"
                     placeholderTextColor="#666666"
                     secureTextEntry={data.secureTextEntry ? true : false}
                     style={[styles.textInput, {
@@ -146,11 +146,7 @@ const SignInScreen = ({navigation}) => {
                     } 
                 </TouchableOpacity> 
             </View>
-            /*{ data.isValidPassword ? null : 
-            <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
-            </Animatable.View>
-            } */}
+            }
             
 
             <TouchableOpacity>
@@ -160,19 +156,12 @@ const SignInScreen = ({navigation}) => {
                 <TouchableOpacity style={[styles.signIn, {backgroundColor:'#528ae6'}]} onPress={() => {loginHandle( data.username, data.password )}}>
                 <Text style={[styles.textSign, {color: '#fff'}]}>Sign In</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUpScreen')}
-                    style={[styles.signIn, {
-                        borderColor: '#528ae6',
-                        borderWidth: 1,
-                        marginTop: 15
-                    }]}
-                >
-                    <Text style={[styles.textSign, {color: '#528ae6'}]}>Sign Up</Text>
-                </TouchableOpacity> 
                 
             </View>
+            <View style={styles.signupTextCont}>
+					<Text style={styles.signupText}>Do not have an account yet?</Text>
+					<TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}><Text style={[styles.textSign, {color: '#528ae6'}]}> Sign Up</Text></TouchableOpacity>
+			</View>
         </Animatable.View>
       </View>
     );
@@ -246,5 +235,21 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
-    }
+    },
+    signupText: {
+  	color: colors.placeholder,
+  	fontSize:16
+  },
+  signupButton: {
+  	color:'#ffffff',
+  	fontSize:16,
+  	fontWeight:'500'
+  },
+    signupTextCont : {
+  	flexGrow: 1,
+    alignItems:'flex-end',
+    justifyContent :'center',
+    paddingVertical:16,
+    flexDirection:'row'
+  },
   });

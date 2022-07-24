@@ -15,8 +15,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
 import { useTheme } from 'react-native-paper';
-
-import Users from '../components/users';
 export const AuthContext = React.createContext();
 const SignInScreen = ({navigation}) => {
 
@@ -186,24 +184,22 @@ const SignInScreen = ({navigation}) => {
                 </TouchableOpacity> 
             </View>
 
+            <View style={styles.textPrivate}>
+                <Text style={styles.color_textPrivate}>By signing up you agree to our</Text>
+                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Terms of service</Text>
+                <Text style={styles.color_textPrivate}>{" "}and</Text>
+                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Privacy policy</Text>
+            </View>
 
             <View style={styles.button}>
                 <TouchableOpacity style={[styles.signIn, {backgroundColor:'#528ae6'}]} onPress={() => {loginHandle( data.username, data.password )}}>
                 <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SignInScreen')}
-                    style={[styles.signIn, {
-                        borderColor: '#528ae6',
-                        borderWidth: 1,
-                        marginTop: 15
-                    }]}
-                >
-                    <Text style={[styles.textSign, {
-                        color: '#528ae6'
-                    }]}>Sign In</Text>
-                </TouchableOpacity> 
             </View>
+            <View style={styles.signinTextCont}>
+					<Text style={styles.signinText}>Have an account?</Text>
+					<TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}><Text style={[styles.textSign, {color: '#528ae6'}]}> Sign In</Text></TouchableOpacity>
+			</View>
         </Animatable.View>
       </View>
     );
@@ -277,5 +273,29 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
-    }
+    },
+    textPrivate: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginTop: 20
+    },
+    color_textPrivate: {
+        color: 'grey'
+    },
+    signinText: {
+  	color: colors.placeholder,
+  	fontSize:16
+  },
+  signinButton: {
+  	color:'#ffffff',
+  	fontSize:16,
+  	fontWeight:'500'
+  },
+    signinTextCont : {
+  	flexGrow: 1,
+    alignItems:'flex-end',
+    justifyContent :'center',
+    paddingVertical:16,
+    flexDirection:'row'
+  },
   });
