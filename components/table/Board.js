@@ -69,7 +69,6 @@ const Board = (props) => {
         backgroundColor: colors.primary3,
         width: 300,
         marginHorizontal: 10,
-        flexDirection: "column",
         borderRadius: 6,
       }}
     >
@@ -123,8 +122,6 @@ const Board = (props) => {
           id={props.id}
         />
       </View>
-
-
       <TaskModal
         isVisible={taskModalVisible}
         styles={{
@@ -141,8 +138,6 @@ const Board = (props) => {
         handleDeleteTask={handleDeleteTask}
         id={clickedID}
       />
-
-
       <FlatList
         ref={scrollRef}
         scrollEnabled
@@ -150,8 +145,6 @@ const Board = (props) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-
-
       {isSelectCreate ? (
         <TextInput
           style={{
@@ -193,6 +186,7 @@ const Board = (props) => {
           </Text>
         </TouchableOpacity>
       )}
+
     </KeyboardAvoidingView>
   );
 };

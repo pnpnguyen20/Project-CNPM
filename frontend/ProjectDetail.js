@@ -56,14 +56,17 @@ export default function ProjectDetail({ route, navigation }) {
   };
 
   const renderItem = ({ item, index }) => (
-    <Board
-      id={item.id}
-      projectName={projectName}
-      title={item.title}
-      handleDeleteBoard={handleDeleteBoard}
-      handleRenameBoard={handleRenameBoard}
-      tasks={route.params.boards[index] ? route.params.boards[index].tasks : []}
-    />
+    <View>
+      <Board
+        id={item.id}
+        projectName={projectName}
+        title={item.title}
+        handleDeleteBoard={handleDeleteBoard}
+        handleRenameBoard={handleRenameBoard}
+        tasks={route.params.boards[index] ? route.params.boards[index].tasks : []}
+      />
+      <View />
+    </View>
   );
 
   return (

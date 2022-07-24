@@ -25,8 +25,8 @@ export default function App(props) {
       </Stack.Navigator> */}
       {/* <Stack.Screen name={"BotTab"} component={BotTab} /> */}
       {/* <StatusBar barStyle='light-content' /> */}
-      <StartScreen/>
-      {/* <BotTab /> */}
+      {/* <StartScreen/> */}
+      <BotTab />
 
     </NavigationContainer>
   );
