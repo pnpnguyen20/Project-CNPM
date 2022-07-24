@@ -69,8 +69,7 @@ const Board = (props) => {
         backgroundColor: colors.primary3,
         width: 300,
         marginHorizontal: 10,
-        flexDirection: "co
-             mn",
+        flexDirection: "column",
         borderRadius: 6,
       }}
     >
