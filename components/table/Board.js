@@ -63,8 +63,9 @@ const Board = (props) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={130}
+      keyboardVerticalOffset={100}
       style={{
+        maxHeight: 500,
         marginTop: 18,
         backgroundColor: colors.primary3,
         width: 300,
@@ -83,7 +84,7 @@ const Board = (props) => {
             color: colors.textColor,
             fontSize: 18,
             marginStart: 15,
-            fontFamily: 'serif',
+            // fontFamily: 'system-ui',
           }}
         >
           {props.title}
@@ -156,7 +157,7 @@ const Board = (props) => {
             paddingLeft: 5,
           }}
           placeholder={"Issue summary"}
-          placeholderTextColor="#fff5"
+          placeholderTextColor={colors.textColor * 0.5}
           value={task.text}
           onChangeText={(newText) => setTask({ id: new Date().getTime() % 1e6, text: newText })}
           onSubmitEditing={() => {

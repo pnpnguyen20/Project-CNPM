@@ -56,6 +56,7 @@ export default function ProjectDetail({ route, navigation }) {
   };
 
   const renderItem = ({ item, index }) => (
+    <View>
       <Board
         id={item.id}
         projectName={projectName}
@@ -64,6 +65,7 @@ export default function ProjectDetail({ route, navigation }) {
         handleRenameBoard={handleRenameBoard}
         tasks={route.params.boards[index] ? route.params.boards[index].tasks : []}
       />
+    </View>
   );
 
   return (
@@ -162,7 +164,7 @@ export default function ProjectDetail({ route, navigation }) {
       <FlatList
         ref={scrollRef1}
         initialNumToRender={4}
-        style={{ maxHeight: 500, flexGrow: 0, marginLeft: 20 }}
+        style={{ flexGrow: 0, marginLeft: 20 }}
         horizontal
         scrollEnabled
         data={boards}

@@ -15,7 +15,6 @@ const tempData = [
         id: "368104",
         title: "ON GOING",
         tasks: [
-          { id: "253213", text: "this is a task" },
           { id: "433213", text: "project 1 's task" },
         ],
       }
