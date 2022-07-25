@@ -18,11 +18,8 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-<<<<<<< Updated upstream
     "nodemon": "^2.0.19",
     "prettier-plugin-prisma": "^4.1.0",
-=======
->>>>>>> Stashed changes
     "prisma": "^4.1.0"
   }
 }
