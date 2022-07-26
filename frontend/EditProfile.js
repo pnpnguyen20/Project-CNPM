@@ -42,21 +42,7 @@ const EditProfile = ({ navigation }) => {
             ]}
           />
         </View>
-        <View style={styles.action}>
-          <Feather name="phone" color={colors.inactive} size={20} />
-          <TextInput
-            placeholder="Phone"
-            placeholderTextColor="#dcdcdc"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: "white",
-              },
-            ]}
-          />
-        </View>
+
         <View style={styles.action}>
           <FontAwesome name="envelope-o" color={colors.inactive} size={20} />
           <TextInput
@@ -72,6 +58,23 @@ const EditProfile = ({ navigation }) => {
             ]}
           />
         </View>
+
+        <View style={styles.action}>
+          <Feather name="phone" color={colors.inactive} size={20} />
+          <TextInput
+            placeholder="Phone"
+            placeholderTextColor="#dcdcdc"
+            keyboardType="number-pad"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: "white",
+              },
+            ]}
+          />
+        </View>
+
         <View style={styles.action}>
           <FontAwesome name="calendar" color={colors.inactive} size={20} />
           <TextInput
@@ -86,6 +89,22 @@ const EditProfile = ({ navigation }) => {
             ]}
           />
         </View>
+
+        <View style={styles.action}>
+          <Icon name="human-male-female" color={colors.inactive} size={20} />
+          <TextInput
+            placeholder="Gender"
+            placeholderTextColor="#dcdcdc"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: "white",
+              },
+            ]}
+          />
+        </View>
+
         <View style={styles.action}>
           <Icon name="map-marker-outline" color={colors.inactive} size={20} />
           <TextInput
