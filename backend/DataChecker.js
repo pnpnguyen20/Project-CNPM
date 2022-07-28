@@ -4,10 +4,11 @@
 
     }
      username(input){
+        
         //not include the special character
         var myRegex=/\w+/
+
         if(input.length>0&&myRegex.exec(input)){
-           
             return myRegex.exec(input)[0].length==input.length
         }
         return false
@@ -37,6 +38,7 @@
      name(input){
         var myRegex=/[a-zA-Z\s]+/
         //only word and space
+        console.log(1)
         if(input.length>0&& myRegex.exec(input)){
             
             

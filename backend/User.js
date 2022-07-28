@@ -1,15 +1,119 @@
-
+// Token xử lí sau
+//chưa làm log out
 const {PrismaClient} =require('@prisma/client');
+const { json } = require('express');
 const prisma= new PrismaClient();
 const {DataChecker, Message}= require('./DataChecker')
 const checker=new DataChecker()
-class User {
-    constructor(user_id, user_info, user_authen) {
-        this.user_id = user_id
-        this.user_info = user_info
-        this.user_authen = user_authen
+class Access {
+    constructor(username,password) {
+        this.user_id = 0
+        this.username=username
+        this.password=password
+        this.token=""
+    }
+    createToken(){
+
+    }
+    async logIn(){
+        const account= await prisma.uSER_ACCOUNT.findFirst({
+            where:{
+                US_ACCOUNT: this.username,
+                US_PASSWORD: this.password,
+            }
+        })
+        if(!account){
+            return new Message(false,"Username or Password is not correct")
+        }
+        this.user_id=account.US_ID
+        return new Message(true,"Log in success")
+    }
+    async findNewID(){
+        const oldAccount=await prisma.uSER_ACCOUNT.aggregate({
+            _min:{
+                US_ID: true,
+            },
+            where:{
+                 US_ACCOUNT: "",
+                },
+            })    
+        if(oldAccount._min&&oldAccount._min.US_ID>0){
+                this.user_id=oldAccount._min.US_ID
+                await prisma.uSER_ACCOUNT.delete({
+                    where:{
+                        US_ID: this.user_id,
+                    },
+                })
+        }
+        else{
+            const newID= await prisma.uSER_ACCOUNT.aggregate({
+                _max:{
+                    US_ID: true
+                }
+            })
+            
+            this.user_id=newID._max.US_ID+1
+           
+        }
+    }
+    async signUp(){
+        
+        
+        if (!checker.username(this.username))
+            return new Message(false,"Username is not valid")
+        if (!checker.password(this.password))
+            return new Message(false,"Password is not valid")
+        const existed= await prisma.uSER_ACCOUNT.findFirst({
+            where:{
+                US_ACCOUNT: this.username
+            }
+        })
+        if(existed)
+            return new Message(false,"Username is existed") 
+        await this.findNewID()
+        await prisma.uSER_ACCOUNT.create({
+            data:{
+                US_ID:this.user_id,
+                US_ACCOUNT:this.username,
+                US_PASSWORD: this.password,
+            },
+        })
+        await prisma.uSER_INFO.create({
+            data:{
+                US_ID: this.user_id
+            }
+        })
+        return new Message(true,"Sign up succeed")
+        
+    }
+    async changePass(oldPass,newPass){
+        if(this.user_id==0)
+            return new Message(false,"User haven't logged in")
+        const acc= await prisma.uSER_ACCOUNT.findFirst({
+            where:{
+                US_ID: this.user_id
+            }
+        })
+        if(!acc)
+            return new Message(false,"User didn't exist")
+        if(acc.US_PASSWORD!=oldPass)
+            return new Message(false,"User input wrong old password")
+        if(!checker.password(newPass))
+            return new Message (false,"New password has invalid character")
+        this.password=newPass
+        await prisma.uSER_ACCOUNT.update({
+            data:{
+                US_PASSWORD: this.password
+            },
+            where:{
+                US_ID: this.user_id
+            }
+        })
+        return new Message(true,"Password is changed")
+
     }
 }
+
 class User_info {
     constructor() {
         this.id = 0
@@ -120,36 +224,65 @@ class User_info {
     }
 }
 
-class User_authenticator {
-    constructor(account, password, user_id, token) {
-        this.account = account
-        this.password = password
-        this.user_id = user_id
-        this.token = token
+class UserManager{
+    constructor(username,password){
+        this.acc=new Access(username,password)
+        this.info= new User_info()
     }
-}
-
-function load_UserList(params) {
-
+    async loadInfo(){
+        if(this.acc.user_id!=0)
+         await this.info.setID(this.acc.user_id)
+    }
+    async getInfo(){
+        if(this.acc.user_id!=0)
+            return await prisma.uSER_INFO.findFirst({
+                where:{
+                    US_ID:this.acc.user_id
+                }
+            })
+    }
+    async getListUser(){
+        return await prisma.uSER_INFO.findMany({})
+    }
 }
 const temp=new User_info()
 
 //console.log(temp.setName("Pham Minh Tai",true))
 async function test(){
     
-    const a=await temp.setID(1)
-    temp.setGender("0")
-    temp.setBirth("11/26/2001")
-    temp.setMail("pmtai20@clc.fitus.edu.vn")
-    temp.setName("Pham Minh Tai")
-    temp.setPhone("0938394323")
-    temp.setAddress(" duong abc pho xyz  tinh binh duong")
+    await prisma.pROJECT_INFO.create({
+        data:{
+            PJ_ID:1,
+            PJ_NAME:"TEAMS AND TASKS",
+            PJ_OWNER:"KHOA CNTT",
+            
+        },
+    })
+    //const account=new UserManager("taigavn113","123456")
+    //console.log(await account.acc.logIn())
+    //console.log(await account.acc.signUp())
+    //console.log(await account.acc.logIn())
 
-    console.log(temp)
-    const test= await temp.updateDatabase()
-    const a1=new User_info()
-    const data= await a1.setID(1)
-    console.log(a1)
+    //console.log( await account.loadInfo())
+    //console.log(account.info)
+    //console.log(account.info.setName("Pham Minh Tai"))
+    //console.log(account.info.setAddress("123,456 duong a/b"))
+    //await account.info.updateDatabase()
+    //console.log(account.info)
+    //console.log(await account.getListUser())
+    //const a=await temp.setID(1)
+    //temp.setGender("0")
+    //temp.setBirth("11/26/2001")
+    //temp.setMail("pmtai20@clc.fitus.edu.vn")
+    //temp.setName("Pham Minh Tai")
+    //temp.setPhone("0938394323")
+    //temp.setAddress(" duong abc pho xyz  tinh binh duong")
+
+    //console.log(temp)
+    //const test= await temp.updateDatabase()
+    //const a1=new User_info()
+    //const data= await a1.setID(1)
+    //console.log(a1)
     //console.log(data)
     //console.log(temp.setName("hello"))
     
@@ -161,4 +294,8 @@ async function test(){
 //const a=temp.setID(2)
 
 //test()
-test()
+//test()
+var today = new Date("2022/2/31");
+var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+console.log(date)
+console.log(JSON.stringify(today))
