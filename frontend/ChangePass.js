@@ -17,7 +17,7 @@ const ChangePass = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
-          <Text style={{ color: "white", fontSize: 20 }}>Change password</Text>
+          <Text style={{ color: "black", fontSize: 20 }}>Change password</Text>
         </TouchableOpacity>
 
         <TouchableOpacity>

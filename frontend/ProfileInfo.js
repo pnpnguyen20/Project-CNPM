@@ -35,13 +35,7 @@ const ProfileInfo = ({ navigation }) => {
             <Text style={{ color: colors.textColor, }}>àkajfjalf</Text>
           </View>
         </View>
-        <View style={styles.action}>
-          <Feather name="phone" color={colors.inactive} size={20} />
-          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Phone</Text>
-          <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>Tagadgag</Text>
-          </View>
-        </View>
+
         <View style={styles.action}>
           <FontAwesome name="envelope-o" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Email</Text>
@@ -49,6 +43,15 @@ const ProfileInfo = ({ navigation }) => {
             <Text style={{ color: colors.textColor, }}>agaewrqwfasf</Text>
           </View>
         </View>
+
+        <View style={styles.action}>
+          <Feather name="phone" color={colors.inactive} size={20} />
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Phone</Text>
+          <View style={{ marginLeft: "auto" }}>
+            <Text style={{ color: colors.textColor, }}>Tagadgag</Text>
+          </View>
+        </View>
+
         <View style={styles.action}>
           <FontAwesome name="calendar" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Birth date</Text>
@@ -56,6 +59,16 @@ const ProfileInfo = ({ navigation }) => {
             <Text style={{ color: colors.textColor, }}>ágadbvsdava</Text>
           </View>
         </View>
+
+
+        <View style={styles.action}>
+          <Icon name="human-male-female" color={colors.inactive} size={20} />
+          <Text style={{ color: colors.primary1, marginLeft: 10 }}>Gender</Text>
+          <View style={{ marginLeft: "auto" }}>
+            <Text style={{ color: colors.textColor, }}>ágadbvsdava</Text>
+          </View>
+        </View>
+
         <View style={styles.action}>
           <Icon name="map-marker-outline" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Address</Text>
