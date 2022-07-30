@@ -135,7 +135,7 @@ export default function ProjectDetail({ route, navigation }) {
             width: 350,
             borderRadius: 10,
             alignSelf: "center",
-            top: 100,
+            top: '16%',
 
             flexDirection: "column",
             shadowOpacity: 1,

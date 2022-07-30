@@ -549,7 +549,7 @@ const ProjectModal = (props) => {
                 />
               </View>
               <Text style={{
-                textColor: colors.textColor,
+                color: colors.textColor,
                 fontSize: 19,
                 marginTop: 20,
               }}>Description</Text>
@@ -600,14 +600,14 @@ const ProjectModal = (props) => {
                 />
 
                 <Text style={{
-                  textColor: colors.textColor,
+                  color: colors.textColor,
                   fontSize: 15,
                 }}>
                   10/10/2023
                 </Text>
               </View>
               <Text style={{
-                textColor: colors.textColor,
+                color: colors.textColor,
                 fontSize: 19,
                 marginBottom: 8,
                 marginTop: 15,
@@ -617,7 +617,7 @@ const ProjectModal = (props) => {
               <Image source={require("../assets/anya.png")} style={{ borderRadius: 50, width: 40, height: 40 }} />
 
               <Text style={{
-                textColor: colors.textColor,
+                color: colors.textColor,
                 fontSize: 19,
                 marginTop: 15,
                 marginBottom: 8,

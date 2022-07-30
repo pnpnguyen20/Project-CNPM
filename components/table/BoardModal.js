@@ -30,7 +30,6 @@ const BoardModal = (props) => {
         <Pressable
           style={{ flex: 1 }}
           onPress={() => {
-            alert(123)
             props.close();
 
           }}

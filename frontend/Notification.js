@@ -1,6 +1,7 @@
-import { View, Text, Image, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import colors from "../constants/colors";
+import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 
 const Notification = () => {
   const tempNotiData = [
@@ -53,15 +54,15 @@ const Notification = () => {
           }}>
           <Image source={item.src}
             style={{
-              width: 70,
-              height: 70,
+              width: 65,
+              height: 65,
               marginRight: 20,
               margin: 10,
               borderRadius: 50,
             }} />
           <View style={{ flex: 1 }}>
             <Text style={{
-              fontSize: 19,
+              fontSize: 17,
               color: colors.textColor,
               alignContent: 'center',
               margin: 5,
