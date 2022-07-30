@@ -30,7 +30,9 @@ const BoardModal = (props) => {
         <Pressable
           style={{ flex: 1 }}
           onPress={() => {
+            alert(123)
             props.close();
+
           }}
         >
           <View>
@@ -65,7 +67,7 @@ const BoardModal = (props) => {
                 <TouchableOpacity
                   style={{ marginVertical: 10, paddingLeft: 15 }}
                   onPress={() => {
-                    props.close();
+                    // props.close();
                   }}
                 >
                   <Text style={{ color: colors.textColor, fontSize: 15 }}>

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Pressable
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
@@ -14,6 +15,7 @@ import { Board, tempData } from "../components";
 import { PopUpModal, ProjectModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
+
 
 export default function ProjectDetail({ route, navigation }) {
   const [projectName, setProjectName] = useState(route.params.projectName);
@@ -125,6 +127,7 @@ export default function ProjectDetail({ route, navigation }) {
           />
         </TouchableOpacity>
 
+
         <ProjectModal
           isVisible={projectVisible}
           styles={{
@@ -143,6 +146,9 @@ export default function ProjectDetail({ route, navigation }) {
             setProjectVisible(false);
           }}
         />
+
+
+
 
         <TouchableOpacity
           onPress={() => {

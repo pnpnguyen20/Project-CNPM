@@ -20,14 +20,24 @@ const ProjectList = ({ navigation }) => {
         setFilteredData(filteredName);
     }
     return (
-        <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1, paddingVertical: 10, paddingHorizontal: 25 }}>
-            <View style={{ flexDirection: 'row', margin: 10, alignItems: 'center' }}>
-                <Text style={{ color: colors.textColor, fontSize: 30, fontWeight: 'bold', marginBottom: 12 }}>
+        <SafeAreaView style={{
+            backgroundColor: colors.mainBackground,
+            flex: 1,
+            paddingVertical: 10,
+            paddingHorizontal: 25
+
+        }}>
+            <View style={{
+                flexDirection: 'row',
+                margin: 10,
+                alignItems: 'center',
+                marginBottom: 35,
+            }}>
+                <Text style={{ color: colors.textColor, fontSize: 30, fontWeight: 'bold' }}>
                     Projects
                 </Text>
                 <TouchableOpacity style={{ right: 0, position: "absolute" }}>
-                    <Image source={require("../assets/anya.png")} style={{ borderRadius: 50, width: 50, height: 50 }} />
-
+                    <Image source={require("../assets/anya.png")} style={{ borderRadius: 50, width: 55, height: 55 }} />
                 </TouchableOpacity>
             </View>
 
@@ -70,11 +80,10 @@ const ProjectList = ({ navigation }) => {
 
             {filteredData.map((item, index) =>
                 <TouchableOpacity
-
                     key={index}
                     onPress={() => navigation.navigate("ProjectDetail", item)}
                     style={{
-                        height: 100,
+                        minHeight: 100,
                         width: "100%",
                         flexDirection: 'row',
                         alignItems: 'center'
@@ -88,8 +97,16 @@ const ProjectList = ({ navigation }) => {
                     }} />
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={{ fontSize: 20, color: colors.textColor, alignContent: 'center', margin: 4 }}>{item.projectName}</Text>
-                            <Text style={{ fontSize: 14, color: colors.textColor, alignContent: 'center', margin: 4 }}>Due date: 10/10/2000</Text>
+                            <Text style={{
+                                fontSize: 20,
+                                color: colors.textColor,
+                                alignContent: 'center',
+                                margin: 4,
+                            }}>{item.projectName}</Text>
+                            <Text style={{
+                                fontSize: 14, color: colors.textColor, alignContent: 'center', margin: 4,
+                                opacity: .75,
+                            }}>Due date: 10/10/2000</Text>
                         </View>
                     </View>
 
