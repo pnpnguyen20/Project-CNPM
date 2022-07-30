@@ -9,7 +9,11 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   TextInput,
+  Image
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { Entypo } from "@expo/vector-icons";
+
 import colors from "../constants/colors";
 
 const ModalInputBoardName = (props) => {
@@ -131,7 +135,7 @@ const InputModal = (props) => {
               paddingLeft: 5,
               width: "85%",
               alignSelf: "center",
-              backgroundColor: colors.mainBackground,
+              backgroundColor: colors.primary3,
               borderColor: colors.primary3,
               borderWidth: 1,
               borderRadius: 7,
@@ -198,7 +202,7 @@ const PopUpModal = (props) => {
     <View>
       <InputModal
         styles={{
-          backgroundColor: colors.primary3,
+          backgroundColor: colors.mainBackground,
           width: 250,
           borderRadius: 10,
           alignSelf: "center",
@@ -325,7 +329,12 @@ const TaskModal = (props) => {
         >
           <View>
             <View style={props.styles}>
-              <View style={{ flexDirection: "column" }}>
+              <View style={{
+                flexDirection: "column",
+                shadowOpacity: 0.5,
+                shadowRadius: 75,
+                shadowColor: colors.textColor
+              }}>
                 <Text
                   style={{
                     fontSize: 13,
@@ -495,4 +504,155 @@ const ProjectInputModal = (props) => {
   );
 };
 
-export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal };
+const ProjectModal = (props) => {
+  const [title, setTitle] = useState("");
+
+  return (
+    <View>
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <View style={props.styles}>
+          <View style={{ padding: 25, paddingVertical: 30 }}>
+            <View style={{ flexDirection: "row" }}>
+              <Entypo
+                name={"folder"}
+                style={{
+                  color: colors.textColor,
+                  fontSize: 25,
+                  marginRight: 15,
+                  alignSelf: 'center'
+                }}
+              />
+              <Text
+                style={{
+                  color: colors.textColor,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: 28,
+                }}
+              >
+                Project X
+              </Text>
+              <Entypo
+                name={"edit"}
+                style={{
+                  color: colors.textColor,
+                  fontSize: 23,
+                  position: "absolute",
+                  right: 15,
+                  alignSelf: "center",
+                }}
+              />
+            </View>
+            <Text style={{
+              textColor: colors.textColor,
+              fontSize: 19,
+              marginTop: 20,
+            }}>Description</Text>
+            <TextInput
+              autoFocus
+              placeholder="Add a detail description..."
+              value={title}
+              style={{
+                height: 75,
+                color: colors.textColor,
+                backgroundColor: colors.primary3,
+                paddingLeft: 5,
+                width: "100%",
+                borderColor: colors.primary3,
+                borderWidth: 1,
+                borderRadius: 7,
+                marginTop: 5,
+                marginBottom: 15,
+              }}
+              onChangeText={(text) => {
+                setTitle(text);
+              }}
+              onSubmitEditing={() => {
+                props.addBoard(title);
+                setTitle("");
+                props.close();
+              }}
+            />
+            <Text style={{
+              textColor: colors.textColor,
+              fontSize: 19,
+              marginBottom: 7,
+            }}>
+              Due Date
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Entypo
+                name={"calendar"}
+                style={{
+                  color: colors.textColor,
+                  fontSize: 19,
+                  alignSelf: "center",
+                  marginRight: 5
+                }}
+              />
+
+              <Text style={{
+                textColor: colors.textColor,
+                fontSize: 15,
+              }}>
+                10/10/2023
+              </Text>
+            </View>
+            <Text style={{
+              textColor: colors.textColor,
+              fontSize: 19,
+              marginBottom: 8,
+              marginTop: 15,
+            }}>
+              Team Leader
+            </Text>
+            <Image source={require("../assets/anya.png")} style={{ borderRadius: 50, width: 40, height: 40 }} />
+
+            <Text style={{
+              textColor: colors.textColor,
+              fontSize: 19,
+              marginTop: 15,
+              marginBottom: 8,
+            }}>
+              Team Members
+            </Text>
+            <View style={{ flexDirection: "row", alignItems: 'center' }}>
+              <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+              <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+              <Entypo
+                name="flickr-with-circle"
+                style={{ borderRadius: 50, fontSize: 44, color: colors.primary1 }} />
+            </View>
+
+
+          </View>
+
+
+          <View
+            style={{ backgroundColor: colors.textColor, height: .5, opacity: .3, width: "100%" }}
+          ></View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={{ paddingVertical: 10, paddingLeft: 15 }}
+              onPress={() => {
+                // props.handleDeleteTask(props.id);
+                props.close();
+              }}
+            >
+              <Text style={{ color: colors.warning, fontSize: 20, fontWeight: "bold", marginVertical: 5 }}>Delete project</Text>
+            </TouchableOpacity>
+          </View>
+
+        </View>
+      </Modal>
+    </View>
+  );
+};
+
+export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal };

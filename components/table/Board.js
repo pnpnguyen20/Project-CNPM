@@ -126,12 +126,13 @@ const Board = (props) => {
       <TaskModal
         isVisible={taskModalVisible}
         styles={{
-          backgroundColor: colors.primary3,
+          backgroundColor: colors.mainBackground,
           width: 230,
           position: "absolute",
           top: 145 + useSafeAreaInsets().top,
           right: "5%",
           borderRadius: 15,
+
         }}
         close={() => {
           setTaskModalVisible(!taskModalVisible);

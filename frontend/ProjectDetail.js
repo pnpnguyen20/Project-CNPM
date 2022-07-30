@@ -11,7 +11,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import { Board, tempData } from "../components";
 
-import { PopUpModal } from "../components/PopUpModal";
+import { PopUpModal, ProjectModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
@@ -22,6 +22,8 @@ export default function ProjectDetail({ route, navigation }) {
   const scrollRef1 = useRef();
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [projectVisible, setProjectVisible] = useState(false);
+
 
   const [boards, setBoards] = useState(route.params.boards);
   const handleAddBoard = (title) => {
@@ -105,6 +107,9 @@ export default function ProjectDetail({ route, navigation }) {
             flex: 1,
             marginHorizontal: 30,
           }}
+          onPress={() => {
+            setProjectVisible(!projectVisible)
+          }}
         >
           <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
             {projectName}
@@ -119,6 +124,26 @@ export default function ProjectDetail({ route, navigation }) {
             }}
           />
         </TouchableOpacity>
+
+        <ProjectModal
+          isVisible={projectVisible}
+          styles={{
+            backgroundColor: colors.mainBackground,
+            width: 350,
+            borderRadius: 10,
+            alignSelf: "center",
+            top: 100,
+
+            flexDirection: "column",
+            shadowOpacity: 1,
+            shadowRadius: 300,
+          }}
+
+          close={() => {
+            setProjectVisible(false);
+          }}
+        />
+
         <TouchableOpacity
           onPress={() => {
             setModalVisible(!modalVisible);
