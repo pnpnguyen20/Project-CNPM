@@ -80,9 +80,11 @@ const SignInScreen = ({navigation}) => {
                 backgroundColor: colors.background
             }]}
         >
+        
             <Text style={[styles.text_footer, {
                 color: colors.text
-            }]}>Email</Text>
+            }]}>Username</Text>
+
             {<View style={styles.action}>
                 <FontAwesome 
                     name="user-o"
@@ -90,7 +92,7 @@ const SignInScreen = ({navigation}) => {
                     size={20}
                 />
                 <TextInput 
-                    placeholder="Your email"
+                    placeholder="Your username"
                     placeholderTextColor="#666666"
                     style={[styles.textInput, {
                         color: colors.text
@@ -147,7 +149,7 @@ const SignInScreen = ({navigation}) => {
                 </TouchableOpacity> 
             </View>
             }
-            
+        
 
             <TouchableOpacity>
                 <Text style={{color: '#388fdd', marginTop:15}}>Forgot password?</Text>
@@ -200,8 +202,9 @@ const styles = StyleSheet.create({
     action: {
         flexDirection: 'row',
         marginTop: 10,
+        marginBottom: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#f2f2f2',
+        borderBottomColor: '#05375a',
         paddingBottom: 5
     },
     actionError: {
