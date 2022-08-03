@@ -36,9 +36,9 @@
         return false
     }
      name(input){
-        var myRegex=/[a-zA-Z\s]+/
+        var myRegex=/[a-zA-Z0-9\s]+/
         //only word and space
-        console.log(1)
+
         if(input.length>0&& myRegex.exec(input)){
             
             

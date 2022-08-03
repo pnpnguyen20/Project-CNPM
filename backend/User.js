@@ -250,25 +250,25 @@ const temp=new User_info()
 //console.log(temp.setName("Pham Minh Tai",true))
 async function test(){
     
-    await prisma.pROJECT_INFO.create({
-        data:{
-            PJ_ID:1,
-            PJ_NAME:"TEAMS AND TASKS",
-            PJ_OWNER:"KHOA CNTT",
+    //await prisma.pROJECT_INFO.create({
+    //    data:{
+    //        PJ_ID:1,
+    //        PJ_NAME:"TEAMS AND TASKS",
+    //        PJ_OWNER:"KHOA CNTT",
             
-        },
-    })
-    //const account=new UserManager("taigavn113","123456")
-    //console.log(await account.acc.logIn())
-    //console.log(await account.acc.signUp())
-    //console.log(await account.acc.logIn())
+    //    },
+    //})
+    const account=new UserManager("taigavn113","123456")
+    console.log(await account.acc.logIn())
+    console.log(await account.acc.signUp())
+    console.log(await account.acc.logIn())
 
-    //console.log( await account.loadInfo())
-    //console.log(account.info)
-    //console.log(account.info.setName("Pham Minh Tai"))
-    //console.log(account.info.setAddress("123,456 duong a/b"))
-    //await account.info.updateDatabase()
-    //console.log(account.info)
+    console.log( await account.loadInfo())
+    console.log(account.info)
+    console.log(account.info.setName("Pham Minh Tai"))
+    console.log(account.info.setAddress("123,456 duong a/b"))
+    await account.info.updateDatabase()
+    console.log(account.info)
     //console.log(await account.getListUser())
     //const a=await temp.setID(1)
     //temp.setGender("0")
@@ -294,8 +294,8 @@ async function test(){
 //const a=temp.setID(2)
 
 //test()
-//test()
-var today = new Date("2022/2/31");
-var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-console.log(date)
-console.log(JSON.stringify(today))
+test()
+//var today = new Date("2022/2/31");
+//var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+//console.log(date)
+//console.log(JSON.stringify(today))
