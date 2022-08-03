@@ -76,13 +76,19 @@ class Access {
                 US_ID:this.user_id,
                 US_ACCOUNT:this.username,
                 US_PASSWORD: this.password,
+                USER_INFO:{
+                    create:{}
+                
+
             },
+            },
+            
         })
-        await prisma.uSER_INFO.create({
-            data:{
-                US_ID: this.user_id
-            }
-        })
+        //await prisma.uSER_INFO.create({
+        //    data:{
+        //        US_ID: this.user_id
+        //    }
+        //})
         return new Message(true,"Sign up succeed")
         
     }
@@ -250,25 +256,58 @@ const temp=new User_info()
 //console.log(temp.setName("Pham Minh Tai",true))
 async function test(){
     
-    //await prisma.pROJECT_INFO.create({
-    //    data:{
-    //        PJ_ID:1,
-    //        PJ_NAME:"TEAMS AND TASKS",
-    //        PJ_OWNER:"KHOA CNTT",
-            
-    //    },
-    //})
-    const account=new UserManager("taigavn113","123456")
-    console.log(await account.acc.logIn())
-    console.log(await account.acc.signUp())
-    console.log(await account.acc.logIn())
+    console.log(await prisma.pROJECT_INFO.findMany({
+        where:{
+            PJ_ID:5,
 
-    console.log( await account.loadInfo())
-    console.log(account.info)
-    console.log(account.info.setName("Pham Minh Tai"))
-    console.log(account.info.setAddress("123,456 duong a/b"))
-    await account.info.updateDatabase()
-    console.log(account.info)
+            
+        },
+        include:{
+            ADMIN: {
+                include:{
+                USER_INFO: true
+                
+                }
+            },
+            
+            _count:true ,
+            PROJECT_MEMBERS:true,
+     
+        }
+    })
+    )
+    console.log(await prisma.pROJECT_MEMBER.findMany({
+        where:{
+            PJ_ID:5
+        },
+        include:{
+            //USER_INFO:true,
+            //PROJECT_INFO:true,
+            PROJECTS:{
+            
+            }
+        }
+    }))
+    //console.log(JSON.stringify(await prisma.uSER_INFO.findMany({
+    //    where:{
+    //        US_ID:1
+    //    },
+    //    include:{
+    //        USER_ACCOUNT:true,
+    //        PROJECT_MEMBER:true
+    //    }
+    //})))
+    const account=new UserManager("pmtai4","123456")
+    //console.log(await account.acc.logIn())
+    console.log(await account.acc.signUp())
+    //console.log(await account.acc.logIn())
+
+    //console.log( await account.loadInfo())
+    //console.log(account.info)
+    //console.log(account.info.setName("Pham Minh Tai"))
+    //console.log(account.info.setAddress("123,456 duong a/b"))
+    //await account.info.updateDatabase()
+    //console.log(account.info)
     //console.log(await account.getListUser())
     //const a=await temp.setID(1)
     //temp.setGender("0")

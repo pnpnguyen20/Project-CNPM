@@ -1,5 +1,7 @@
 // Project ko có Description
 // cần 1 function ở Project Manager để updata projectInfo
+// chưa delete project
+// chưa delete member
 const {PrismaClient} =require('@prisma/client');
 const { json } = require('express');
 const prisma= new PrismaClient();
@@ -148,7 +150,7 @@ class Access{
         this.US_POS=0
     }
     async connect(projectID){
-        var data= await prisma.pROJECT_MEMBER.findFirst({
+        const data= await prisma.pROJECT_MEMBER.findFirst({
             where:{
                 PJ_ID: projectID,
                 MEM_ID:this.US_ID,
@@ -156,6 +158,7 @@ class Access{
         })
         if(data){
             this.US_POS=data.MEM_POS
+            this.PJ_ID=data.PJ_ID
             return new Message(true,"Connect Success")
         }
         else
@@ -189,27 +192,33 @@ class Project_Member{
         })
         if( exist)
         {
-        var accessibility=await this.member.getProjectAccessibility()
+        const accessibility=await this.member.getProjectAccessibility()
         if(accessibility.EDIT_MEM=="1")
         {
-            var exist= await prisma.pROJECT_MEMBER.findFirst({
+            const memexist= await prisma.pROJECT_MEMBER.findFirst({
                 where:{
                     PJ_ID:this.member.PJ_ID,
                     MEM_ID:memID
-                }
+                },
             })
-            if(!exist){
-                await prisma.pROJECT_MEMBER.create({
-                    data:{
-                        PJ_ID:this.member.PJ_ID,
-                        MEM_ID:memID,
-                        MEM_POS:0
-                    }
-                })
-                return new Message(true,"Success")
+            console.log(memexist)
+            if(memexist){
+                return new Message(false,"Member has already been Project")
+               
             }
             else    
-                return new Message(false,"Member has already been Project")
+                {
+                    
+                    await prisma.pROJECT_MEMBER.create({
+                        data:{
+                            
+                            PJ_ID:this.member.PJ_ID,
+                            MEM_ID:memID,
+                            MEM_POS:2,
+                        }
+                    })
+                    return new Message(true,"Success")
+                }
         }
         else
             return new Message(false,"Member are not allow to add member")
@@ -217,6 +226,75 @@ class Project_Member{
     else
         return new Message(false,"User is not exist")
     }
+    async edit_pos(memID,pos){
+        const accessibility=await this.member.getProjectAccessibility()
+        if (accessibility.EDIT_MEM_POS=="1")
+        {
+            const exist =await prisma.pROJECT_MEMBER.findFirst({
+                where:{
+                    PJ_ID: this.member.PJ_ID,
+                    MEM_ID: memID,
+                }
+            })
+            if (exist){
+                console.log(exist)
+                if (pos==1||pos==2){
+                    await prisma.pROJECT_MEMBER.update({
+
+                        data:{
+                            MEM_POS:pos
+                        }   
+                        ,where:{
+                            PJ_ID_MEM_ID:  {
+                            PJ_ID: this.member.PJ_ID,
+                            MEM_ID: memID
+                            }
+                            //MEM_POS: exist.POS
+                        }
+                    })
+                    return new Message(true,"success")
+                }
+                else
+                    return new Message(false,"Invalid position")
+
+            }
+            else
+                return new Message(false,"Member hasn't exist")
+        }
+        else
+            return new Message(false,"User is Not Allow to edit member position")
+        
+    }
+}
+class Project_Manager{
+    constructor(){
+        this.member=null
+        this.project_member=null
+        this.project_info=null
+    }
+    reset(){
+        this.member=null
+        this.project_member=null
+        this.project_info=null
+    }
+    async connect(US_ID,PJ_ID){
+        var user=new Access(US_ID)
+        const message=await user.connect(PJ_ID)
+        if(message.success){
+            this.member=user
+            return message
+        }
+        else
+            return message
+    }
+    async getInfo(){
+        return await prisma.pROJECT_INFO({
+            where:{
+                PJ_ID:this.member.PJ_ID
+            }
+        })
+    }
+
 }
 async function test(){
     //var pj=new Project_info()
@@ -225,7 +303,7 @@ async function test(){
     var user= new Access(1)
     await user.connect(5)
     var pj_mem=new Project_Member(user)
-    await pj_mem.addMember(2)
+    console.log(await pj_mem.edit_pos(2,1))
     //console.log(await user.getProjectAccessibility())
     //console.log(await user.getTaskAccessibility())
     //await pj.create(user)

@@ -15,14 +15,15 @@ function toJson(data) {
 }
 app.get('/', async (req, res, next) => {
   
-  const data= await prisma.uSER_ACCOUNT.findMany(
-    {
-      where:{
-        US_ID:1
-      }
+  const data =(await prisma.uSER_INFO.findFirst({
+    where:{
+      US_ID:1
+  },
+    include:{
+        USER_ACCOUNT:true,
+        PROJECT_MEMBER:true
     }
-  )
-
+}))
  
   console.log(data)
   
