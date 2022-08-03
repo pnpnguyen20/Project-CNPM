@@ -8,7 +8,7 @@ datasource db {
 }
 
 model USER_ACCOUNT {
-  US_ID       Int     @id @default(0)
+  US_ID       Int        @id @default(0)
   US_ACCOUNT  String     @db.VarChar(50)
   US_PASSWORD String     @db.VarChar(50)
   TOKEN       String?    @db.VarChar(10)
@@ -16,7 +16,7 @@ model USER_ACCOUNT {
 }
 
 model USER_INFO {
-  US_ID          Int           @id @default(0)
+  US_ID          Int              @id @default(0)
   US_NAME        String?          @db.VarChar(50)
   US_MAIL        String?          @db.VarChar(50)
   US_PHONE       String?          @db.VarChar(10)
@@ -28,7 +28,7 @@ model USER_INFO {
 }
 
 model PROJECT_ACCESSIBILITY {
-  MEM_POS            Int           @id
+  MEM_POS            Int              @id
   DEL_PJ             String?          @db.Bit(1)
   EDIT_MEM_POS       String?          @db.Bit(1)
   EDIT_MEM           String?          @db.Bit(1)
@@ -38,34 +38,35 @@ model PROJECT_ACCESSIBILITY {
 }
 
 model PROJECT_INFO {
-  PJ_ID                                                      Int           @id
-  PJ_NAME                                                    String?          @db.VarChar(50)
-  PJ_CREATEDAY                                               DateTime?        @db.Date
-  PJ_DEADLINE                                                DateTime?        @db.Date
-  PJ_STATUS                                                  String?          @db.Bit(1)
-  PJ_ADMIN                                                   Int?
-  PJ_OWNER                                                   String?          @db.VarChar(50)
-  PROJECT_MEMBER_PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER PROJECT_MEMBER?  @relation("PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER", fields: [PJ_ID, PJ_ADMIN], references: [PJ_ID, MEM_ID], onDelete: NoAction, onUpdate: NoAction)
-  PROJECT_MEMBER_PROJECT_INFOToPROJECT_MEMBER_PJ_ID          PROJECT_MEMBER[] @relation("PROJECT_INFOToPROJECT_MEMBER_PJ_ID")
-  TASK_INFO                                                  TASK_INFO[]
+  PJ_ID           Int              @id
+  PJ_NAME         String?          @db.VarChar(50)
+  PJ_CREATEDAY    DateTime?        @db.Date
+  PJ_DEADLINE     DateTime?        @db.Date
+  PJ_STATUS       String?          @db.Bit(1)
+  PJ_ADMIN        Int?
+  PJ_OWNER        String?          @db.VarChar(50)
+  ADMIN           PROJECT_MEMBER?  @relation("PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER", fields: [PJ_ID, PJ_ADMIN], references: [PJ_ID, MEM_ID], onDelete: NoAction, onUpdate: NoAction)
+  PROJECT_MEMBERS PROJECT_MEMBER[] @relation("PROJECT_INFOToPROJECT_MEMBER_PJ_ID")
+  TASK_INFO       TASK_INFO[]
 }
 
 model PROJECT_MEMBER {
-  PJ_ID                                                    Int
-  MEM_ID                                                   Int
-  MEM_POS                                                  Int?
-  USER_INFO                                                USER_INFO              @relation(fields: [MEM_ID], references: [US_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_USER")
-  PROJECT_ACCESSIBILITY                                    PROJECT_ACCESSIBILITY? @relation(fields: [MEM_POS], references: [MEM_POS], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_PJ_ACCESS")
-  TASK_ACCESSIBILITY                                       TASK_ACCESSIBILITY?    @relation(fields: [MEM_POS], references: [MEM_POS], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_TASK_ACCESS")
-  PROJECT_INFO_PROJECT_INFOToPROJECT_MEMBER_PJ_ID          PROJECT_INFO           @relation("PROJECT_INFOToPROJECT_MEMBER_PJ_ID", fields: [PJ_ID], references: [PJ_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_PJ")
-  PROJECT_INFO_PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER PROJECT_INFO[]         @relation("PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER")
-  TASK_INFO                                                TASK_INFO[]
-  TASK_RESPONDSIPLE                                        TASK_RESPONDSIPLE[]
+  PJ_ID                 Int
+  MEM_ID                Int
+  MEM_POS               Int?
+  USER_INFO             USER_INFO              @relation(fields: [MEM_ID], references: [US_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_USER")
+  PROJECT_ACCESSIBILITY PROJECT_ACCESSIBILITY? @relation(fields: [MEM_POS], references: [MEM_POS], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_PJ_ACCESS")
+  TASK_ACCESSIBILITY    TASK_ACCESSIBILITY?    @relation(fields: [MEM_POS], references: [MEM_POS], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_TASK_ACCESS")
+  PROJECT_INFO          PROJECT_INFO           @relation("PROJECT_INFOToPROJECT_MEMBER_PJ_ID", fields: [PJ_ID], references: [PJ_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_PJ")
+  PROJECTS              PROJECT_INFO[]         @relation("PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER")
+  TASK_INFO             TASK_INFO[]
+  TASK_RESPONDSIPLE     TASK_RESPONDSIPLE[]
+
   @@id([PJ_ID, MEM_ID])
 }
 
 model TASK_ACCESSIBILITY {
-  MEM_POS          Int           @id
+  MEM_POS          Int              @id
   EDIT_MEM         String?          @db.Bit(1)
   ADD_TASK         String?          @db.Bit(1)
   DEL_TASK         String?          @db.Bit(1)
@@ -88,6 +89,7 @@ model TASK_INFO {
   PROJECT_INFO      PROJECT_INFO        @relation(fields: [PJ_ID], references: [PJ_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_TASK_PJ")
   PROJECT_MEMBER    PROJECT_MEMBER?     @relation(fields: [PJ_ID, TASK_CREATOR], references: [PJ_ID, MEM_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_TASK_CREATOR")
   TASK_RESPONDSIPLE TASK_RESPONDSIPLE[]
+
   @@id([PJ_ID, TASK_ID], map: "PK_TASK_INFO")
 }
 
@@ -97,5 +99,6 @@ model TASK_RESPONDSIPLE {
   MEM_ID         Int
   PROJECT_MEMBER PROJECT_MEMBER @relation(fields: [PJ_ID, MEM_ID], references: [PJ_ID, MEM_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_MEM_RES")
   TASK_INFO      TASK_INFO      @relation(fields: [PJ_ID, TASK_ID], references: [PJ_ID, TASK_ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_TASK_INFO")
+
   @@id([PJ_ID, TASK_ID, MEM_ID])
 }
