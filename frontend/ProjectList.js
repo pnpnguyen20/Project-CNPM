@@ -75,7 +75,7 @@ const ProjectList = ({ navigation }) => {
                 />
             </View>
 
-            <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15, fontWeight: 'bold' }}>All projects</Text>
+            <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15, fontWeight: 'bold', marginBottom: 10 }}>All projects</Text>
 
 
             {filteredData.map((item, index) =>
@@ -84,16 +84,24 @@ const ProjectList = ({ navigation }) => {
                     onPress={() => navigation.navigate("ProjectDetail", item)}
                     style={{
                         minHeight: 100,
-                        width: "100%",
+                        // width: "100%",
                         flexDirection: 'row',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        backgroundColor: colors.primary3,
+                        borderRadius: 15,
+                        marginBottom: 10,
                     }}>
-                    <Image source={require("../assets/prj_icon.png")} style={{
-                        width: 50,
-                        height: 50,
+                    <Image source={require("../assets/project.png")} style={{
+                        width: 55,
+                        height: 55,
                         marginRight: 20,
                         margin: 10,
-                        borderRadius: 10,
+                        borderRadius: 6,
+                        shadowColor: '#000000',
+                        shadowOffset: { width: 1, height: 3 },
+                        shadowOpacity:  0.9,
+                        shadowRadius: 3,
+                        elevation: 5,
                     }} />
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
@@ -111,7 +119,7 @@ const ProjectList = ({ navigation }) => {
                     </View>
 
 
-                    <View style={{ width: "100%", height: .1, opacity: .25, backgroundColor: colors.textColor, position: "absolute", bottom: 0, }} />
+                    {/* <View style={{ width: "100%", height: .1, opacity: .25, backgroundColor: colors.textColor, position: "absolute", bottom: 0, }} /> */}
 
                 </TouchableOpacity>)
             }
