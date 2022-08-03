@@ -51,26 +51,33 @@ const tempData = [
   },
 
 ];
-//SERVER SENDBACK 1 object from this ARRAY AFTER LOGIN
-// PROJECT_MEMBER is the project list that the member join
-[{"US_ID":1,
-  "US_NAME":"Pham Minh Tai",
-  "US_MAIL":null,
-  "US_PHONE":null,
-  "US_BIRTH":"1970-01-01T00:00:00.000Z",
-  "US_GENDER":null,
-  "US_ADDRESS":"123,456 duong a/b",
-  "USER_ACCOUNT":{
-                  "US_ID":1,
+SIGN UP
+// To log in
+{
+                  "US_ID":null,
                   "US_ACCOUNT":"taigavn113",
                   "US_PASSWORD":"123456",
                   "TOKEN":null
-                  },
-  "PROJECT_MEMBER":[
-                   {"PJ_ID":5,
-                    "MEM_ID":1,
-                    "MEM_POS":0}]},
- {"US_ID":2,
+                  }
+SERVER RESPOND
+{
+  "success":true // if sign up success
+  "message":"SOME MESSAGE IF ERROR"
+}
+UPDATE INFOMATION
+APP SEND
+LOGIN
+// To log in
+{
+                  "US_ID":null,
+                  "US_ACCOUNT":"taigavn113",
+                  "US_PASSWORD":"123456",
+                  "TOKEN":null
+ }
+
+//SERVER SENDBACK 1 object from this ARRAY AFTER LOGIN
+// PROJECT_MEMBER is the project list that the member join
+{"US_ID":1,
   "US_NAME":"Pham Minh Tai",
   "US_MAIL":null,
   "US_PHONE":null,
@@ -78,12 +85,10 @@ const tempData = [
   "US_GENDER":null,
   "US_ADDRESS":"123,456 duong a/b",
   "USER_ACCOUNT":
-                {"US_ID":2,
-                 "US_ACCOUNT":"pmt",
+                {"US_ID":1,
+                 "US_ACCOUNT":"taigavn113",
                  "US_PASSWORD":"123456",
                  "TOKEN":null},
-  "PROJECT_MEMBER":[{
-                    "PJ_ID":5,
-                    "MEM_ID":2,
-                    "MEM_POS":1}]}]
+  "PROJECT_MEMBER":[{"PJ_ID":5,"MEM_ID":1,"MEM_POS":0}]}
+END LOGIN
 export default tempData;
