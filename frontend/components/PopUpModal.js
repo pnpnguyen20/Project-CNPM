@@ -276,11 +276,6 @@ const PopUpModal = (props) => {
                     opacity: 0.5,
                   }}
                 />
-                <TouchableOpacity
-                  style={{ paddingVertical: 10, paddingLeft: 15 }}
-                >
-                  <Text style={{ color: colors.textColor, fontSize: 15 }}>Project Details</Text>
-                </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
