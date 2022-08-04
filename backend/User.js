@@ -338,3 +338,5 @@ test()
 //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 //console.log(date)
 //console.log(JSON.stringify(today))
+
+module.exports={UserManager,Access,User_info}
