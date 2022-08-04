@@ -35,7 +35,7 @@ const ChangePass = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -49,7 +49,7 @@ const ChangePass = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -63,13 +63,17 @@ const ChangePass = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
         </View>
 
-        <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
+        <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
+            <Text style={styles.panelButtonTitle}>Confirm</Text>
+        </TouchableOpacity>
+
+        {/* <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
           <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
             <Text style={styles.panelButtonTitle}>Confirm</Text>
           </TouchableOpacity>
@@ -77,7 +81,7 @@ const ChangePass = ({ navigation }) => {
           <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
             <Text style={styles.panelButtonTitle}>Cancel</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
       </View>
     </SafeAreaView>
@@ -91,13 +95,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mainBackground
   },
   commandButton: {
-    marginHorizontal: 30,
-    paddingHorizontal: 100,
+    marginHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 10,
     backgroundColor: colors.primary1,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 20,
   },
   panelButtonTitle: {
     fontSize: 17,

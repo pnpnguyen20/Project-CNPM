@@ -19,11 +19,11 @@ const EditProfile = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center", flex: 1, marginHorizontal: 40, }}>
-          <Text style={{ color: "white", fontSize: 20 }}>Edit profile</Text>
+          <Text style={{ color: colors.Text, fontSize: 20 }}>Edit profile</Text>
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Feather name={"edit"} style={{ color: "black", fontSize: 20, marginLeft: 50, marginHorizontal: 22, }} />
+          <Feather name={"edit"} style={{ color: colors.mainBackground, fontSize: 20, marginLeft: 50, marginHorizontal: 22, }} />
         </TouchableOpacity>
       </View>
 
@@ -37,7 +37,7 @@ const EditProfile = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -53,7 +53,7 @@ const EditProfile = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -69,7 +69,7 @@ const EditProfile = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -84,7 +84,7 @@ const EditProfile = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -99,7 +99,7 @@ const EditProfile = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
@@ -114,12 +114,17 @@ const EditProfile = ({ navigation }) => {
             style={[
               styles.textInput,
               {
-                color: "white",
+                color: colors.Text,
               },
             ]}
           />
         </View>
-        <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
+
+        <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
+            <Text style={styles.panelButtonTitle}>Confirm</Text>
+        </TouchableOpacity>
+
+        {/* <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
           <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
             <Text style={styles.panelButtonTitle}>Confirm</Text>
           </TouchableOpacity>
@@ -127,7 +132,7 @@ const EditProfile = ({ navigation }) => {
           <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
             <Text style={styles.panelButtonTitle}>Cancel</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
       </View>
     </SafeAreaView>
@@ -147,7 +152,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: colors.primary1,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 20,
   },
   panelButtonTitle: {
     fontSize: 17,
