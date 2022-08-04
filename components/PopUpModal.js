@@ -14,6 +14,8 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
+import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import colors from "../constants/colors";
 
@@ -628,9 +630,9 @@ const ProjectModal = (props) => {
                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
                 <TouchableOpacity>
-                  <Entypo
-                    name="flickr-with-circle"
-                    style={{ borderRadius: 50, fontSize: 44, color: colors.primary1 }} />
+                  <Ionicons
+                    name="ios-ellipsis-horizontal-circle-sharp"
+                    style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
                 </TouchableOpacity>
               </View>
 

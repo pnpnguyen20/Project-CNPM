@@ -12,7 +12,7 @@ const Account = ({ navigation }) => {
         contentContainerStyle={{ paddingBottom: 30 }}>
         <View style={{ backgroundColor: colors.primary1, paddingTop: 60, paddingBottom: 30, borderBottomEndRadius: 20 }}>
           <View style={{ marginTop: 30, paddingHorizontal: 29, flexDirection: "row" }}>
-            <Image style={styles.profile_pic} source={{ uri: "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png" }} />
+            <Image style={styles.profile_pic} source={require("../assets/anya.png")}/>
 
             <View style={{ marginLeft: 30 }}>
               <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>Trần Quang Thịnh </Text>
@@ -46,8 +46,8 @@ const Account = ({ navigation }) => {
 
           <TouchableOpacity onPress={() => { }}>
             <View style={styles.menuItem}>
-              <Icon name="log-out" color={colors.textColor} size={20} />
-              <Text style={styles.menuItemText}>Log out</Text>
+              <Icon name="log-out" color={'red'} size={20} />
+              <Text style={styles.menuItemTextLogout}>Log out</Text>
             </View>
           </TouchableOpacity>
 
@@ -75,6 +75,13 @@ const styles = StyleSheet.create({
   },
   menuItemText: {
     color: colors.textColor,
+    marginLeft: 20,
+    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 26,
+  },
+  menuItemTextLogout: {
+    color: 'red',
     marginLeft: 20,
     fontWeight: '600',
     fontSize: 16,
