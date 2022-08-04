@@ -1,12 +1,9 @@
 // Project ko có Description
 // cần 1 function ở Project Manager để updata projectInfo
-<<<<<<< HEAD
-const { PrismaClient } = require('@prisma/client');
-=======
 // chưa delete project
-// chưa delete member
+// chưa delete member 
 const {PrismaClient} =require('@prisma/client');
->>>>>>> f70322af3b9727be6ff3296887fa37639f32f6ee
+
 const { json } = require('express');
 const prisma = new PrismaClient();
 const { DataChecker, Message } = require('./DataChecker')
@@ -61,7 +58,7 @@ class Project_info {
                 return new Message(true, "Not permitted to delete Project")
         }
     }
-<<<<<<< HEAD
+
     async create(user) {
         if (this.PJ_ID == 0) {
             await this.findNewID()
@@ -92,7 +89,8 @@ class Project_info {
                     PJ_ADMIN: user.US_ID,
                 }
             })
-=======
+        }
+    }
     setName(name){
         if(checker.name(name))
         {
@@ -124,6 +122,7 @@ class Project_info {
         return new Message(true,"Success")
     }
 }
+
 class Access{
     constructor(US_ID){
         this.US_ID=US_ID
@@ -161,6 +160,7 @@ class Access{
         })
     }
 }
+
 class Project_Member{
     constructor(user){
         this.member=user
@@ -200,7 +200,7 @@ class Project_Member{
                     })
                     return new Message(true,"Success")
                 }
->>>>>>> f70322af3b9727be6ff3296887fa37639f32f6ee
+
         }
     }
     async loadInfo(user) {
@@ -222,34 +222,8 @@ class Project_Member{
         } else
             return new Message(false, "Project Haven't Exist")
     }
-    setName(name) {
-        if (checker.name(name)) {
-            this.PJ_NAME = name
-            return new Message(true, "Success")
-        } else
-            return new Message(false, "Project Name is invalid")
-    }
-    setDeadline(day) {
-        if (!checker.day(day))
-            return new Message(false, "Day is invalid")
-        var deadline = new Date(day)
-        if (deadline < this.PJ_CREATEDAY)
-            return new Message(false, "Deadline can be before the CreateDay")
-        this.PJ_DEADLINE = deadline
-        return new Message(true, "Success")
-    }
-    setOwner(owner) {
-        if (!checker.name(owner))
-            return new Message(false, "Owner include invalid character")
-        this.PJ_OWNER = owner
-        return new Message(true, "Success")
-    }
-    setStatus(stt) {
-        if ((stt != "0") || (stt != "1"))
-            return new Message(false, "Unknown status")
-        this.PJ_STATUS = stt
-        return new Message(true, "Success")
-    }
+
+
     async edit_pos(memID,pos){
         const accessibility=await this.member.getProjectAccessibility()
         if (accessibility.EDIT_MEM_POS=="1")
@@ -290,6 +264,7 @@ class Project_Member{
         
     }
 }
+
 class Project_Manager{
     constructor(){
         this.member=null
@@ -320,84 +295,14 @@ class Project_Manager{
     }
 
 }
-class Access {
-    constructor(US_ID) {
-        this.US_ID = US_ID
-        this.PJ_ID = 0
-        this.US_POS = 0
-    }
-    async connect(projectID) {
-        var data = await prisma.pROJECT_MEMBER.findFirst({
-            where: {
-                PJ_ID: projectID,
-                MEM_ID: this.US_ID,
-            }
-        })
-        if (data) {
-            this.US_POS = data.MEM_POS
-            return new Message(true, "Connect Success")
-        } else
-            return new Message(false, "Can't connect to this project")
 
-    }
-    async getProjectAccessibility() {
-        return await prisma.pROJECT_ACCESSIBILITY.findFirst({
-            where: {
-                MEM_POS: this.US_POS
-            }
-        })
-    }
-    async getTaskAccessibility() {
-        return await prisma.tASK_ACCESSIBILITY.findFirst({
-            where: {
-                MEM_POS: this.US_POS,
-            }
-        })
-    }
-}
-class Project_Member {
-    constructor(user) {
-        this.member = user
-    }
-    async addMember(memID) {
-        var exist = await prisma.uSER_INFO.findFirst({
-            where: {
-                US_ID: memID
-            }
-        })
-        if (exist) {
-            var accessibility = await this.member.getProjectAccessibility()
-            if (accessibility.EDIT_MEM == "1") {
-                var exist = await prisma.pROJECT_MEMBER.findFirst({
-                    where: {
-                        PJ_ID: this.member.PJ_ID,
-                        MEM_ID: memID
-                    }
-                })
-                if (!exist) {
-                    await prisma.pROJECT_MEMBER.create({
-                        data: {
-                            PJ_ID: this.member.PJ_ID,
-                            MEM_ID: memID,
-                            MEM_POS: 0
-                        }
-                    })
-                    return new Message(true, "Success")
-                } else
-                    return new Message(false, "Member has already been Project")
-            } else
-                return new Message(false, "Member are not allow to add member")
-        } else
-            return new Message(false, "User is not exist")
-    }
-}
 async function test() {
     //var pj=new Project_info()
     //console.log(pj.setName("Software Engineer 3"))
     //pj.setOwner("Khoa CNTT")
     var user = new Access(1)
     await user.connect(5)
-<<<<<<< HEAD
+
     var pj_mem = new Project_Member(user)
     await pj_mem.addMember(2)
         //console.log(await user.getProjectAccessibility())
@@ -405,7 +310,7 @@ async function test() {
         //await pj.create(user)
         //var data= await prisma.pROJECT_INFO.findMany({
 
-=======
+
     var pj_mem=new Project_Member(user)
     console.log(await pj_mem.edit_pos(2,1))
     //console.log(await user.getProjectAccessibility())
@@ -413,7 +318,7 @@ async function test() {
     //await pj.create(user)
     //var data= await prisma.pROJECT_INFO.findMany({
         
->>>>>>> f70322af3b9727be6ff3296887fa37639f32f6ee
+
     //    }
     //)
     //console.log(data)
