@@ -203,6 +203,7 @@ class Project_Member{
 
         }
     }
+}
     async loadInfo(user) {
         var project = await prisma.pROJECT_INFO.findFirst({
             where: {
