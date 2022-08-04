@@ -10,9 +10,9 @@ const Account = ({ navigation }) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 30 }}>
-        <View style={{ backgroundColor: colors.primary1, paddingTop: 60, paddingBottom: 30, borderBottomEndRadius: 20 }}>
+        <View style={{ backgroundColor: colors.textColor, paddingTop: 60, paddingBottom: 30, borderBottomEndRadius: 20 }}>
           <View style={{ marginTop: 30, paddingHorizontal: 29, flexDirection: "row" }}>
-            <Image style={styles.profile_pic} source={require("../assets/anya.png")}/>
+            <Image style={styles.profile_pic} source={require("../assets/anya.png")} />
 
             <View style={{ marginLeft: 30 }}>
               <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>Trần Quang Thịnh </Text>
