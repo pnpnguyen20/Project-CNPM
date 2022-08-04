@@ -12,6 +12,7 @@ class Access {
         this.password=password
         this.token=""
     }
+
     createToken(){
 
     }
@@ -333,7 +334,7 @@ async function test(){
 //const a=temp.setID(2)
 
 //test()
-test()
+//test()
 //var today = new Date("2022/2/31");
 //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 //console.log(date)

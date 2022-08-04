@@ -1,10 +1,23 @@
+PATCH   http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "ACCESS": {
+    "US_ID":5,
+    "US_ACCOUNT":"taigavn113",
+    "US_PASSWORD":"123456",
+    "TOKEN":null
+},
+  "US_NEWPASS": "passchanged"
+}
+
 ### this is login
 GET  http://localhost:3000/login
 Content-Type: application/json
 
 {
     "US_ID":null,
-    "US_ACCOUNT":"PhamMinhTai",
+    "US_ACCOUNT":"taigavn113",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }

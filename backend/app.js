@@ -4,6 +4,7 @@ const UserService=require('./User')
 const morgan = require('morgan');
 const {PrismaClient} =require('@prisma/client');
 const { json } = require('express');
+const { Message } = require('./DataChecker');
 require('dotenv').config();
 const prisma= new PrismaClient();
 
@@ -18,7 +19,16 @@ function toJson(data) {
 app.post('/login', async (req, res, next) => {
   
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
-  res.json(await us_service.acc.signUp())
+  const US_NEWPASS=""
+  
+  res.json( {acce:await us_service.acc.signUp(),US_NEWPASS})
+});
+app.patch('/login', async (req, res, next) => {
+  
+  const us_service=new UserService.UserManager(req.body["ACCESS"]["US_ACCOUNT"],req.body["ACCESS"]["US_PASSWORD"])
+  us_service.acc.user_id=req.body["ACCESS"]["US_ID"]
+  us_service.acc.token=req.body["ACCESS"]["US_TOKEN"]
+  res.json(await us_service.acc.changePass(req.body["ACCESS"]["US_PASSWORD"],req.body["US_NEWPASS"]))
 });
 app.get('/login', async (req, res, next) => {
   
@@ -26,28 +36,35 @@ app.get('/login', async (req, res, next) => {
 
   //console.log(req.body)
   //console.log(req.body["US_ACCOUNT"])
-  const data =(await prisma.uSER_ACCOUNT.findFirst({
-    where:{
-      US_ACCOUNT:req.body["US_ACCOUNT"],
-      US_PASSWORD:req.body["US_PASSWORD"]
-  },
-    include:{
-        USER_INFO:{
+  const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
+  const message=await us_service.acc.logIn()
+  if(message.success)
+  {
+        const data =(await prisma.uSER_ACCOUNT.findFirst({
+          where:{
+            US_ACCOUNT:req.body["US_ACCOUNT"],
+            US_PASSWORD:req.body["US_PASSWORD"]
+        },
           include:{
-            PROJECT_MEMBER:{
-              include:{
-                PROJECT_INFO:true
+              USER_INFO:{
+                include:{
+                  PROJECT_MEMBER:{
+                    include:{
+                      PROJECT_INFO:true
+                    }
+                  }
+                }
               }
-            }
+              
           }
-        }
-        
-    }
-}))
+      }))
  
 
   
-  res.json(data)
+      res.json({data,message})
+  }
+  else
+    res.json({data:{},message})
 });
 
 app.use('/api', require('./routes/api.route'));
