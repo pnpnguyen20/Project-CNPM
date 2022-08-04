@@ -13,19 +13,32 @@ app.use(morgan('dev'));
 function toJson(data) {
   return JSON.stringify(data, (_, v) => typeof v === 'bigint' ? v.toString() : v);
 }
-app.get('/', async (req, res, next) => {
+app.get('/login', async (req, res, next) => {
   
-  const data =(await prisma.uSER_INFO.findFirst({
+  
+
+  console.log(req.body)
+  console.log(req.body["US_ACCOUNT"])
+  const data =(await prisma.uSER_ACCOUNT.findFirst({
     where:{
-      US_ID:1
+      US_ACCOUNT:req.body["US_ACCOUNT"],
+      US_PASSWORD:req.body["US_PASSWORD"]
   },
     include:{
-        USER_ACCOUNT:true,
-        PROJECT_MEMBER:true
+        USER_INFO:{
+          include:{
+            PROJECT_MEMBER:{
+              include:{
+                PROJECT_INFO:true
+              }
+            }
+          }
+        }
+        
     }
 }))
  
-  console.log(data)
+  //console.log(data)
   
   res.json(data)
   //res.send( toJson(data) );
