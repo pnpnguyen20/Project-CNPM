@@ -194,14 +194,17 @@ app.get('/project', async (req, res, next) => {
         MEM_ID:project.member.US_ID,
       },
       include:{
-        PROJECT_INFO:true,
-        PROJECT_ACCESSIBILITY:true,
-        TASK_INFO:true,
-        TASK_RESPONDSIPLE:{
+        PROJECT_INFO:{
           include:{
-            TASK_INFO:true
+            LABELS:{
+              include:{
+                TASK_INFO:true,
+              }
+            }
           }
-        }
+        },
+        PROJECT_ACCESSIBILITY:true,
+        
         
       }
     })
@@ -212,7 +215,7 @@ app.get('/project', async (req, res, next) => {
 });
 app.post('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  console.log(1)
+ 
   const user=new UserService.Access(req.body["access"]["US_ACCOUNT"],req.body["access"]["US_PASSWORD"])
   await user.logIn()
   if(user.user_id==req.body["access"]["US_ID"])
@@ -249,6 +252,46 @@ app.post('/project', async (req, res, next) => {
   }  
   else
   res.json({data:{},message: new Message(false,"Unknown user")})
+});
+app.patch('/project', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  
+  const project=new ProjectService.Project_Manager()
+  const message=await project.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success)
+  {
+  message.message=""
+  const accessibility=await project.member.getProjectAccessibility()
+  
+  var temp=project.setName(req.body["data"]["PJ_NAME"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  temp=project.setDeadline(req.body["data"]["PJ_DEADLINE"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  temp=project.setStatus(req.body["data"]["PJ_STATUS"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  temp=project.setOwner(req.body["data"]["PJ_OWNER"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  await project.create(user_project)
+  res.json({data:{},message})
+  }  
+  else
+  res.json({data:{},message})
 });
 app.use('/api', require('./routes/api.route'));
 

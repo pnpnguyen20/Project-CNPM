@@ -45,6 +45,7 @@ model PROJECT_INFO {
   PJ_STATUS       String?
   PJ_ADMIN        Int?
   PJ_OWNER        String?
+  LABELS          LABEL[]           
   ADMIN           PROJECT_MEMBER?  @relation("PROJECT_INFO_PJ_ID_PJ_ADMINToPROJECT_MEMBER", fields: [PJ_ID, PJ_ADMIN], references: [PJ_ID, MEM_ID])
   PROJECT_MEMBERS PROJECT_MEMBER[] @relation("PROJECT_INFOToPROJECT_MEMBER_PJ_ID")
   TASK_INFO       TASK_INFO[]
@@ -76,7 +77,14 @@ model TASK_ACCESSIBILITY {
   EDIT_DESCRIPTION String?
   PROJECT_MEMBER   PROJECT_MEMBER[]
 }
-
+model LABEL{
+  PJ_ID Int
+  LB_ID Int
+  LB_NAME String
+  PROJECT_INFO      PROJECT_INFO        @relation(fields: [PJ_ID], references: [PJ_ID])
+  TASK_INFO TASK_INFO[]
+   @@id([PJ_ID, LB_ID])
+}
 model TASK_INFO {
   PJ_ID             Int
   TASK_ID           Int
@@ -86,6 +94,8 @@ model TASK_INFO {
   TASK_CREATEDAY    DateTime?
   TASK_DEADLINE     DateTime?
   TASK_CREATOR      Int?
+  TASK_LABEL        Int
+  LABELS            LABEL               @relation(fields:[PJ_ID,TASK_LABEL],references: [PJ_ID, LB_ID])
   PROJECT_INFO      PROJECT_INFO        @relation(fields: [PJ_ID], references: [PJ_ID])
   PROJECT_MEMBER    PROJECT_MEMBER?     @relation(fields: [PJ_ID, TASK_CREATOR], references: [PJ_ID, MEM_ID])
   TASK_RESPONDSIPLE TASK_RESPONDSIPLE[]

@@ -77,6 +77,7 @@ Content-Type: application/json
 //các thuộc tính được cmt bắt buộc phải thay đổi giá trị với mỗi user
 //còn lại thì không cần điền
 //PJ_ID,PJ_CREATEDAY,PJ_ADMIN sẽ được tự động cập nhật
+
 {
   "access": {
     "US_ID":3,
@@ -84,6 +85,28 @@ Content-Type: application/json
     "US_PASSWORD":"123456",
     "TOKEN":null
 },
+  "data":{
+      "PJ_ID": 0,
+      "PJ_NAME": "Software Engineer 3",
+      "PJ_CREATEDAY": "2022-08-05T14:03:50.911Z",
+      "PJ_DEADLINE": "09/09/2022",
+      "PJ_STATUS": "0",
+      "PJ_ADMIN": 1,
+      "PJ_OWNER": "Khoa CNTT"
+  }
+}
+### update project info
+POST http://localhost:3000/project
+Content-Type: application/json
+//các thuộc tính được cmt bắt buộc phải thay đổi giá trị với mỗi user
+//còn lại thì không cần điền
+//PJ_ID,PJ_CREATEDAY,PJ_ADMIN sẽ được tự động cập nhật
+{
+  "access": {
+     "PJ_ID":5
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
   "data":{
       "PJ_ID": 0,
       "PJ_NAME": "Software Engineer 3",
