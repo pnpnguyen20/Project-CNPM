@@ -2,7 +2,7 @@ PATCH   http://localhost:3000/login
 Content-Type: application/json
 
 {
-  "ACCESS": {
+  "access": {
     "US_ID":1,
     "US_ACCOUNT":"taigavn113",
     "US_PASSWORD":"123456",
@@ -12,22 +12,55 @@ Content-Type: application/json
 }
 
 ### this is login
-GET   https://tasksandteams.herokuapp.com/
+GET   http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "US_ID":null,
-    "US_ACCOUNT":"taigavn113",
-    "US_PASSWORD":"passchanged",
+    "US_ID":3,
+    "US_ACCOUNT":"PhamMinhTai1",
+    "US_PASSWORD":"123456",
     "TOKEN":null
 }
+
 ### this is Sign up
 POST   http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "US_ID":null,
-    "US_ACCOUNT":"PhamMinhTai",
+    "US_ID":1,
+    "US_ACCOUNT":"PhamMinhTai1",
     "US_PASSWORD":"123456",
     "TOKEN":null
+}
+
+### this how to get personal info
+GET   http://localhost:3000/info
+Content-Type: application/json
+
+{
+    "US_ID":3,
+    "US_ACCOUNT":"PhamMinhTai1",
+    "US_PASSWORD":"123456",
+    "TOKEN":null
+}
+### this is form to update personal info
+POST   http://localhost:3000/info
+Content-Type: application/json
+
+{
+"access":{
+    "US_ID":3,
+    "US_ACCOUNT":"PhamMinhTai1",
+    "US_PASSWORD":"123456",
+    "TOKEN":null
+        },
+"data":{   
+    "US_ID": 3,
+    "US_NAME": "Pham Minh Tai3",
+    "US_MAIL": "pmt@clc.fitus.edu.vn",
+    "US_PHONE": "0123456789",
+    "US_BIRTH": "11/11/2002",
+    "US_GENDER": null,
+    "US_ADDRESS": null
+    }
 }
