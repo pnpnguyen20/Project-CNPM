@@ -102,7 +102,7 @@ app.post('/info', async (req, res, next) => {
   //us_service.acc.user_id=req.body["US_ID"]
   us_service.acc.token=req.body["access"]["US_TOKEN"]
   const message=await us_service.acc.logIn()
-  if(req.body["data"]["US_ID"]==us_service.acc.user_id)
+  if(req.body["access"]["US_ID"]==us_service.acc.user_id)
   {
   await us_service.info.setID(req.body["data"]["US_ID"])
   message.message="Information Update success"

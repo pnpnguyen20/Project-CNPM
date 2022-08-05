@@ -49,7 +49,7 @@ Content-Type: application/json
 
 {
 "access":{
-    "US_ID":3,
+    "US_ID":2,
     "US_ACCOUNT":"PhamMinhTai1",
     "US_PASSWORD":"123456",
     "TOKEN":null
@@ -59,8 +59,8 @@ Content-Type: application/json
     "US_NAME": "Pham Minh Tai3",
     "US_MAIL": "pmt@clc.fitus.edu.vn",
     "US_PHONE": "0123456789",
-    "US_BIRTH": "11/11/2002",
-    "US_GENDER": null,
-    "US_ADDRESS": null
+    "US_BIRTH": "11/21/2002",
+    "US_GENDER": "0",
+    "US_ADDRESS": "HCM city3, Vietnam"
     }
 }
