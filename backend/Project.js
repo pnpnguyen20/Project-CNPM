@@ -123,6 +123,40 @@ class Project_info {
         this.PJ_STATUS=stt
         return new Message(true,"Success")
     }
+    async loadInfo(user) {
+        var project = await prisma.pROJECT_INFO.findFirst({
+            where: {
+                PJ_ID: user.PJ_ID
+            }
+
+        })
+        if (project) {
+            this.PJ_ID = project.PJ_ID
+            this.PJ_NAME = project.PJ_NAME
+            this.PJ_CREATEDAY = project.PJ_CREATEDAY
+            this.PJ_DEADLINE = project.PJ_DEADLINE
+            this.PJ_ADMIN = project.PJ_ADMIN
+            this.PJ_OWNER = project.PJ_OWNER
+            this.PJ_STATUS = project.PJ_STATUS
+            return new Message(true, "Success")
+        } else
+            return new Message(false, "Project Haven't Exist")
+    }
+    async update(){
+        await prisma.pROJECT_INFO.update({
+            where:{
+                PJ_ID:this.PJ_ID
+            },
+            data:{
+                PJ_NAME:this.PJ_NAME ,
+                
+                PJ_DEADLINE : this.PJ_DEADLINE,
+            
+                PJ_OWNER : this.PJ_OWNER,
+                PJ_STATUS : this.PJ_STATUS,
+            }
+        })
+    }
 }
 
 class Access{
@@ -161,6 +195,7 @@ class Access{
             }
         })
     }
+    
 }
 
 class Project_Member{
@@ -206,25 +241,6 @@ class Project_Member{
         }
     }
 }
-    async loadInfo(user) {
-        var project = await prisma.pROJECT_INFO.findFirst({
-            where: {
-                PJ_ID: user.PJ_ID
-            }
-
-        })
-        if (project) {
-            this.PJ_ID = project.PJ_ID
-            this.PJ_NAME = project.PJ_NAME
-            this.PJ_CREATEDAY = project.PJ_CREATEDAY
-            this.PJ_DEADLINE = project.PJ_DEADLINE
-            this.PJ_ADMIN = project.PJ_ADMIN
-            this.PJ_OWNER = project.PJ_OWNER
-            this.PJ_STATUS = project.PJ_STATUS
-            return new Message(true, "Success")
-        } else
-            return new Message(false, "Project Haven't Exist")
-    }
 
 
     async edit_pos(memID,pos){

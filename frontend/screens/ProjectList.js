@@ -1,11 +1,14 @@
-import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, TextInput } from "react-native";
-import { React, useState } from "react";
+import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, TextInput, Button } from "react-native";
+import { React, useEffect, useState } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { tempData } from "../components";
 import { ProjectInputModal } from "../components/PopUpModal";
+
+import axios from 'axios'
+
 
 const ProjectList = ({ navigation }) => {
     const [text, setText] = useState('');
@@ -15,10 +18,22 @@ const ProjectList = ({ navigation }) => {
     const searchProject = (e) => {
         let text = e.toLowerCase()
         let filteredName = tempData.filter((item) => {
-            return item.projectName.toLowerCase().includes(text)
+            return item.PJ_NAME.toLowerCase().includes(text)
         })
         setFilteredData(filteredName);
     }
+
+    const [projects, setProjects] = useState([])
+
+    useEffect(() => {
+        const fetchproducts = async () => {
+            const { data } = await axios.get('http://localhost:3000/project')
+            setProjects(data.data.PROJECT_INFO)
+        }
+        fetchproducts();
+    }, [])
+
+
     return (
         <SafeAreaView style={{
             backgroundColor: colors.mainBackground,
@@ -27,6 +42,9 @@ const ProjectList = ({ navigation }) => {
             paddingHorizontal: 25
 
         }}>
+            <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
+                console.log(projects, tempData[0].PJ_NAME)
+            }} />
             <View style={{
                 flexDirection: 'row',
                 margin: 10,
@@ -99,7 +117,7 @@ const ProjectList = ({ navigation }) => {
                         borderRadius: 6,
                         shadowColor: '#000000',
                         shadowOffset: { width: 1, height: 3 },
-                        shadowOpacity:  0.9,
+                        shadowOpacity: 0.9,
                         shadowRadius: 3,
                         elevation: 5,
                     }} />
@@ -110,7 +128,7 @@ const ProjectList = ({ navigation }) => {
                                 color: colors.textColor,
                                 alignContent: 'center',
                                 margin: 4,
-                            }}>{item.projectName}</Text>
+                            }}>{projects.PJ_NAME}</Text>
                             <Text style={{
                                 fontSize: 14, color: colors.textColor, alignContent: 'center', margin: 4,
                                 opacity: .75,

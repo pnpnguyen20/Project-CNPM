@@ -18,7 +18,7 @@ import colors from "../constants/colors";
 
 
 export default function ProjectDetail({ route, navigation }) {
-  const [projectName, setProjectName] = useState(route.params.projectName);
+  const [PJ_NAME, setPJ_NAME] = useState(route.params.PJ_NAME);
   const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
 
   const scrollRef1 = useRef();
@@ -27,13 +27,13 @@ export default function ProjectDetail({ route, navigation }) {
   const [projectVisible, setProjectVisible] = useState(false);
 
 
-  const [boards, setBoards] = useState(route.params.boards);
+  const [LABELS, setLABELS] = useState(route.params.LABELS);
   const handleAddBoard = (title) => {
-    setBoards([
-      ...boards,
+    setLABELS([
+      ...LABELS,
       {
         id: new Date().getTime() % 1e6,
-        projectName: "",
+        PJ_NAME: "",
         title: title ? title.toUpperCase() : "NEW COLUMN",
         tasks: [{ id: new Date().getTime() % 1e6, text: "this is a task" }],
       },
@@ -45,29 +45,29 @@ export default function ProjectDetail({ route, navigation }) {
   };
 
   const handleRenameBoard = (id, newName) => {
-    const temp = [...boards];
+    const temp = [...LABELS];
     temp.forEach((b) => {
       if (b.id == id)
         b.title = newName
     });
 
-    setBoards(temp)
+    setLABELS(temp)
   };
 
   const handleDeleteBoard = (id) => {
-    const filteredData = boards.filter((item) => item.id !== id);
-    setBoards(filteredData);
+    const filteredData = LABELS.filter((item) => item.id !== id);
+    setLABELS(filteredData);
   };
 
   const renderItem = ({ item, index }) => (
     <View>
       <Board
         id={item.id}
-        projectName={projectName}
+        PJ_NAME={PJ_NAME}
         title={item.title}
         handleDeleteBoard={handleDeleteBoard}
         handleRenameBoard={handleRenameBoard}
-        tasks={route.params.boards[index] ? route.params.boards[index].tasks : []}
+        tasks={route.params.LABELS[index] ? route.params.LABELS[index].tasks : []}
       />
     </View>
   );
@@ -114,7 +114,7 @@ export default function ProjectDetail({ route, navigation }) {
           }}
         >
           <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
-            {projectName}
+            {PJ_NAME}
           </Text>
           <Icon
             name={"caret-down"}
@@ -198,7 +198,7 @@ export default function ProjectDetail({ route, navigation }) {
         style={{ flexGrow: 0, marginLeft: 20 }}
         horizontal
         scrollEnabled
-        data={boards}
+        data={LABELS}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />

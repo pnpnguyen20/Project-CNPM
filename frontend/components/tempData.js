@@ -1,8 +1,8 @@
 const tempData = [
   {
-    projectName: "Project 1",
+    PJ_NAME: "Project 1",
     id: "128104",
-    boards: [
+    LABELS: [
       {
         id: "338104",
         title: "TO DO",
@@ -22,9 +22,9 @@ const tempData = [
 
   },
   {
-    projectName: "Project 2",
+    PJ_NAME: "Project 2",
     id: "128122",
-    boards: [
+    LABELS: [
       {
         id: "448122",
         title: "TO DO",
@@ -36,9 +36,9 @@ const tempData = [
 
   },
   {
-    projectName: "Anya Forger",
+    PJ_NAME: "Anya Forger",
     id: "158122",
-    boards: [
+    LABELS: [
       {
         id: "428122",
         title: "TO DO",

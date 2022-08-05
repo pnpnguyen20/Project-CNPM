@@ -256,39 +256,43 @@ app.post('/project', async (req, res, next) => {
 app.patch('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
   
-  const project=new ProjectService.Project_Manager()
-  const message=await project.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  const project_service=new ProjectService.Project_Manager()
+  const message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success)
   {
   message.message=""
-  const accessibility=await project.member.getProjectAccessibility()
-  
-  var temp=project.setName(req.body["data"]["PJ_NAME"])
-  if(!temp.success)
+  if(project_service.member.US_POS==0)
   {
-      message.success=false
-      message.message+="\n"+temp.message
-  } 
-  temp=project.setDeadline(req.body["data"]["PJ_DEADLINE"])
-  if(!temp.success)
-  {
-      message.success=false
-      message.message+="\n"+temp.message
-  } 
-  temp=project.setStatus(req.body["data"]["PJ_STATUS"])
-  if(!temp.success)
-  {
-      message.success=false
-      message.message+="\n"+temp.message
-  } 
-  temp=project.setOwner(req.body["data"]["PJ_OWNER"])
-  if(!temp.success)
-  {
-      message.success=false
-      message.message+="\n"+temp.message
-  } 
-  await project.create(user_project)
-  res.json({data:{},message})
+        const project=new ProjectService.Project_info()
+        await project.loadInfo(project_service.member)
+        var temp=project.setName(req.body["data"]["PJ_NAME"])
+        if(!temp.success)
+        {
+            message.success=false
+            message.message+="\n"+temp.message
+        } 
+        temp=project.setDeadline(req.body["data"]["PJ_DEADLINE"])
+        if(!temp.success)
+        {
+            message.success=false
+            message.message+="\n"+temp.message
+        } 
+        temp=project.setStatus(req.body["data"]["PJ_STATUS"])
+        if(!temp.success)
+        {
+            message.success=false
+            message.message+="\n"+temp.message
+        } 
+        temp=project.setOwner(req.body["data"]["PJ_OWNER"])
+        if(!temp.success)
+        {
+            message.success=false
+            message.message+="\n"+temp.message
+        } 
+        await project.update()
+        
+        res.json({data:{},message})
+      }
   }  
   else
   res.json({data:{},message})
