@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "ACCESS": {
-    "US_ID":5,
+    "US_ID":1,
     "US_ACCOUNT":"taigavn113",
     "US_PASSWORD":"123456",
     "TOKEN":null
@@ -18,7 +18,7 @@ Content-Type: application/json
 {
     "US_ID":null,
     "US_ACCOUNT":"taigavn113",
-    "US_PASSWORD":"123456",
+    "US_PASSWORD":"passchanged",
     "TOKEN":null
 }
 ### this is Sign up
