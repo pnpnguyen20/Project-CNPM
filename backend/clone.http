@@ -68,7 +68,7 @@ Content-Type: application/json
 GET   http://localhost:3000/project
 Content-Type: application/json
 
-{"PJ_ID":5
+{"PJ_ID":1
 ,"MEM_ID":1
 ,"MEM_POS":0}
 ###this is how to create project
@@ -80,8 +80,8 @@ Content-Type: application/json
 
 {
   "access": {
-    "US_ID":3,
-    "US_ACCOUNT":"PhamMinhTai1",
+    "US_ID":1,
+    "US_ACCOUNT":"PhamMinhTai123",
     "US_PASSWORD":"123456",
     "TOKEN":null
 },
@@ -96,24 +96,25 @@ Content-Type: application/json
   }
 }
 ### update project info
-POST http://localhost:3000/project
+PATCH http://localhost:3000/project
 Content-Type: application/json
 //các thuộc tính được cmt bắt buộc phải thay đổi giá trị với mỗi user
 //còn lại thì không cần điền
 //PJ_ID,PJ_CREATEDAY,PJ_ADMIN sẽ được tự động cập nhật
+
 {
   "access": {
-     "PJ_ID":5
+     "PJ_ID":1
     ,"MEM_ID":1
     ,"MEM_POS":0
   },
   "data":{
       "PJ_ID": 0,
-      "PJ_NAME": "Software Engineer 3",
+      "PJ_NAME": "Project 3",
       "PJ_CREATEDAY": "2022-08-05T14:03:50.911Z",
       "PJ_DEADLINE": "09/09/2022",
       "PJ_STATUS": "0",
       "PJ_ADMIN": 1,
-      "PJ_OWNER": "Khoa CNTT"
+      "PJ_OWNER": "SIMPLE"
   }
 }
