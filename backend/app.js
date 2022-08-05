@@ -17,14 +17,14 @@ function toJson(data) {
   return JSON.stringify(data, (_, v) => typeof v === 'bigint' ? v.toString() : v);
 }
 app.post('/login', async (req, res, next) => {
-  
+  res.header("Access-Control-Allow-Origin", "*")
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const US_NEWPASS=""
   
   res.json( {acce:await us_service.acc.signUp(),US_NEWPASS})
 });
 app.patch('/login', async (req, res, next) => {
-  
+  res.header("Access-Control-Allow-Origin", "*");
   const us_service=new UserService.UserManager(req.body["ACCESS"]["US_ACCOUNT"],req.body["ACCESS"]["US_PASSWORD"])
   us_service.acc.user_id=req.body["ACCESS"]["US_ID"]
   us_service.acc.token=req.body["ACCESS"]["US_TOKEN"]
@@ -33,7 +33,7 @@ app.patch('/login', async (req, res, next) => {
 app.get('/login', async (req, res, next) => {
   
   
-
+  res.header("Access-Control-Allow-Origin", "*");
   //console.log(req.body)
   //console.log(req.body["US_ACCOUNT"])
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
@@ -70,10 +70,12 @@ app.get('/login', async (req, res, next) => {
 app.use('/api', require('./routes/api.route'));
 
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   next(createError.NotFound());
 });
 
 app.use((err, req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res.status(err.status || 500);
   res.send({
     status: err.status || 500,
