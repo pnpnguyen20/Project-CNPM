@@ -1,7 +1,15 @@
-
-const data=prisma.uSER_ACCOUNT.findMany({
-    where:{
-        US_ID:1,
-    },
+await prisma.pROJECT_MEMBER.create({
+    data: {
+        PJ_ID: this.PJ_ID,
+        MEM_ID: user.US_ID,
+        MEM_POS: 0,
+    }
 })
-console.log(data)
+await prisma.pROJECT_INFO.update({
+    where: {
+        PJ_ID: this.PJ_ID,
+    },
+    data: {
+        PJ_ADMIN: user.US_ID,
+    }
+})

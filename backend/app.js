@@ -1,6 +1,7 @@
 const express = require('express');
 const createError = require('http-errors');
 const UserService=require('./User')
+const ProjectService=require('./Project')
 const morgan = require('morgan');
 const {PrismaClient} =require('@prisma/client');
 const { json } = require('express');
@@ -10,7 +11,7 @@ const prisma= new PrismaClient();
 const checker=require('./DataChecker');
 const { use } = require('./routes/api.route');
 const app = express();
-const app2= express()
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
@@ -23,7 +24,7 @@ app.post('/login', async (req, res, next) => {
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const US_NEWPASS=""
   
-  res.json( {acce:await us_service.acc.signUp(),US_NEWPASS})
+  res.json( {data:{},message:await us_service.acc.signUp()})
 });
 app.patch('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -177,6 +178,77 @@ app.post('/info', async (req, res, next) => {
   }
   else
   res.json({data:{},message:new Message(false,"User is not log in")})
+});
+app.get('/project', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  
+  const project=new ProjectService.Project_Manager()
+ 
+  const message= await project.connect(req.body["MEM_ID"],req.body["PJ_ID"])
+  if(message.success)
+  {
+      
+    const data=await prisma.pROJECT_MEMBER.findFirst({
+      where:{
+        PJ_ID:project.member.PJ_ID,
+        MEM_ID:project.member.US_ID,
+      },
+      include:{
+        PROJECT_INFO:true,
+        PROJECT_ACCESSIBILITY:true,
+        TASK_INFO:true,
+        TASK_RESPONDSIPLE:{
+          include:{
+            TASK_INFO:true
+          }
+        }
+        
+      }
+    })
+    res.json( {data,message})
+  }
+  else
+  res.json( {data:{},message})
+});
+app.post('/project', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  console.log(1)
+  const user=new UserService.Access(req.body["access"]["US_ACCOUNT"],req.body["access"]["US_PASSWORD"])
+  await user.logIn()
+  if(user.user_id==req.body["access"]["US_ID"])
+  {
+  const user_project=new ProjectService.Access(user.user_id)
+  const project=new ProjectService.Project_info()
+  const message=new Message(true,"")
+  var temp=project.setName(req.body["data"]["PJ_NAME"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  temp=project.setDeadline(req.body["data"]["PJ_DEADLINE"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  temp=project.setStatus(req.body["data"]["PJ_STATUS"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  temp=project.setOwner(req.body["data"]["PJ_OWNER"])
+  if(!temp.success)
+  {
+      message.success=false
+      message.message+="\n"+temp.message
+  } 
+  await project.create(user_project)
+  res.json({data:{},message})
+  }  
+  else
+  res.json({data:{},message: new Message(false,"Unknown user")})
 });
 app.use('/api', require('./routes/api.route'));
 

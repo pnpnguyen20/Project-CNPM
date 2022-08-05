@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
     "US_ID":3,
-    "US_ACCOUNT":"PhamMinhTai1",
+    "US_ACCOUNT":"PhamMinhTai123",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "US_ID":1,
-    "US_ACCOUNT":"PhamMinhTai1",
+    "US_ACCOUNT":"PhamMinhTai123",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -49,18 +49,48 @@ Content-Type: application/json
 
 {
 "access":{
-    "US_ID":2,
+    "US_ID":3,
     "US_ACCOUNT":"PhamMinhTai1",
     "US_PASSWORD":"123456",
     "TOKEN":null
         },
 "data":{   
     "US_ID": 3,
-    "US_NAME": "Pham Minh Tai3",
+    "US_NAME": "Pham Minh Tai",
     "US_MAIL": "pmt@clc.fitus.edu.vn",
     "US_PHONE": "0123456789",
     "US_BIRTH": "11/21/2002",
     "US_GENDER": "0",
     "US_ADDRESS": "HCM city3, Vietnam"
     }
+}
+### this is how to connect Project
+GET   http://localhost:3000/project
+Content-Type: application/json
+
+{"PJ_ID":5
+,"MEM_ID":1
+,"MEM_POS":0}
+###this is how to create project
+POST http://localhost:3000/project
+Content-Type: application/json
+//các thuộc tính được cmt bắt buộc phải thay đổi giá trị với mỗi user
+//còn lại thì không cần điền
+
+{
+  "access": {
+    "US_ID":3,
+    "US_ACCOUNT":"PhamMinhTai1",
+    "US_PASSWORD":"123456",
+    "TOKEN":null
+},
+  "data":{
+      "PJ_ID": 0,
+      "PJ_NAME": "Software Engineer 3",
+      "PJ_CREATEDAY": "2022-08-05T14:03:50.911Z",
+      "PJ_DEADLINE": null,
+      "PJ_STATUS": "0",
+      "PJ_ADMIN": 1,
+      "PJ_OWNER": "Khoa CNTT"
+  }
 }
