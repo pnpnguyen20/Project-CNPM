@@ -210,37 +210,39 @@ class Project_Member{
         })
         if( exist)
         {
-        const accessibility=await this.member.getProjectAccessibility()
-        if(accessibility.EDIT_MEM=="1")
-        {
-            const memexist= await prisma.pROJECT_MEMBER.findFirst({
-                where:{
-                    PJ_ID:this.member.PJ_ID,
-                    MEM_ID:memID
-                },
-            })
-            console.log(memexist)
-            if(memexist){
-                return new Message(false,"Member has already been Project")
-               
-            }
-            else    
-                {
-                    
-                    await prisma.pROJECT_MEMBER.create({
-                        data:{
-                            
-                            PJ_ID:this.member.PJ_ID,
-                            MEM_ID:memID,
-                            MEM_POS:2,
-                        }
-                    })
-                    return new Message(true,"Success")
+            const accessibility=await this.member.getProjectAccessibility()
+            if(accessibility.EDIT_MEM=="1")
+            {
+                const memexist= await prisma.pROJECT_MEMBER.findFirst({
+                    where:{
+                        PJ_ID:this.member.PJ_ID,
+                        MEM_ID:memID
+                    },
+                })
+                console.log(memexist)
+                if(memexist){
+                    return new Message(false,"Member has already been Project")
+                
                 }
+                else    
+                    {
+                        
+                        await prisma.pROJECT_MEMBER.create({
+                            data:{
+                                
+                                PJ_ID:this.member.PJ_ID,
+                                MEM_ID:memID,
+                                MEM_POS:2,
+                            }
+                        })
+                        return new Message(true,"Success")
+                    }
 
+            }
+        else 
+            return new Message(false,"Not permit to add member")
         }
     }
-}
 
 
     async edit_pos(memID,pos){

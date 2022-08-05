@@ -297,6 +297,52 @@ app.patch('/project', async (req, res, next) => {
   else
   res.json({data:{},message})
 });
+app.post('/member', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success){
+    project_service.project_member=new ProjectService.Project_Member(project_service.member)
+    message=await project_service.project_member.addMember(req.body["data"]["US_ID"])
+    
+    res.json({data:{},message})
+  }
+  else
+  res.json({data:{},message})
+})
+app.delete('/member', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success&&project_service.member.US_ID<2){
+    const member=new ProjectService.Project_Manager()
+    message=await member.connect(req.body["data"]["MEM_ID"],req.body["data"]["PJ_ID"])
+    if(message.success)
+    {
+      await prisma.tASK_RESPONDSIPLE.deleteMany({
+        where:{
+          
+            MEM_ID:member.member.US_ID,
+            PJ_ID:member.member.PJ_ID
+            
+        }
+      })
+      await prisma.pROJECT_MEMBER.delete({
+        where:{
+          PJ_ID_MEM_ID:{
+          MEM_ID:member.member.US_ID,
+          PJ_ID:member.member.PJ_ID
+          }
+        }
+      })
+    }
+    else
+    message.message="Member don't exist in the project"
+    res.json({data:{},message})
+  }
+  else
+  res.json({data:{},message})
+})
 app.use('/api', require('./routes/api.route'));
 
 app.use((req, res, next) => {

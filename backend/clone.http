@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "US_ID":1,
-    "US_ACCOUNT":"PhamMinhTai123",
+    "US_ACCOUNT":"account1",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -116,5 +116,41 @@ Content-Type: application/json
       "PJ_STATUS": "0",
       "PJ_ADMIN": 1,
       "PJ_OWNER": "SIMPLE"
+  }
+}
+### add member to project
+POST  http://localhost:3000/member
+Content-Type: application/json
+
+{
+  "access": {
+     "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "US_ID": 2,
+    "US_NAME": "Pham Minh Tai",
+    "US_MAIL": "pmt@clc.fitus.edu.vn",
+    "US_PHONE": "0123456789",
+    "US_BIRTH": "11/21/2002",
+    "US_GENDER": "0",
+    "US_ADDRESS": "HCM city3, Vietnam"
+  }
+}
+### delete a member
+DELETE   http://localhost:3000/member
+Content-Type: application/json
+
+{
+  "access": {
+     "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+     "PJ_ID":1
+    ,"MEM_ID":2
+    ,"MEM_POS":0
   }
 }
