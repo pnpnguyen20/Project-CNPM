@@ -33,6 +33,7 @@ model PROJECT_ACCESSIBILITY {
   EDIT_MEM_POS       String?
   EDIT_MEM           String?
   EDIT_STATUS        String?
+  EDIT_LABEL         String
   CREATE_ANNOUNC_MNT String?          @map("CREATE_ANNOUNCÊMNT")
   PROJECT_MEMBER     PROJECT_MEMBER[]
 }
