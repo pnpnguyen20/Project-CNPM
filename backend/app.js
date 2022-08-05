@@ -253,6 +253,47 @@ app.post('/project', async (req, res, next) => {
   else
   res.json({data:{},message: new Message(false,"Unknown user")})
 });
+app.delete('/project',async(req,res,next)=>{
+  const project_service=new ProjectService.Project_Manager()
+  const message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success){
+    if(project_service.member.US_POS==0){
+      await prisma.tASK_RESPONDSIPLE.deleteMany({
+        where:{
+          PJ_ID: project_service.member.PJ_ID
+        }
+      })
+      await prisma.tASK_INFO.deleteMany({
+        where:{
+          PJ_ID: project_service.member.PJ_ID
+        }
+      })
+      await prisma.lABEL.deleteMany({
+        where:{
+          PJ_ID: project_service.member.PJ_ID
+        }
+      })
+      await prisma.pROJECT_INFO.update({
+        where:{
+          PJ_ID: project_service.member.PJ_ID
+        },
+        data:{
+          PJ_NAME:"",
+          PJ_ADMIN:null
+        }
+      })
+      await prisma.pROJECT_MEMBER.deleteMany({
+      where:{
+        PJ_ID: project_service.member.PJ_ID
+      }})
+      res.json({data:{},message: new Message(true,"success")})
+    }
+    else
+    res.json({data:{},message: new Message(false,"not allow to delete project")})
+  }
+  else
+  res.json({data:{},message})
+})
 app.patch('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
   
@@ -338,6 +379,23 @@ app.delete('/member', async (req, res, next) => {
     }
     else
     message.message="Member don't exist in the project"
+    res.json({data:{},message})
+  }
+  else
+  {
+  if(!message.success)
+  res.json({data:{},message})
+  else
+  res.json({data:{},message: new Message(false,"Not permit to delete member")})
+  }
+})
+app.patch('/member', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success){
+    project_service.project_member=new ProjectService.Project_Member(project_service.member)
+    message =await project_service.project_member.edit_pos(req.body["data"]["MEM_ID"],req.body["data"]["MEM_POS"])
     res.json({data:{},message})
   }
   else

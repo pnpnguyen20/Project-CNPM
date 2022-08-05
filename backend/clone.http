@@ -95,6 +95,16 @@ Content-Type: application/json
       "PJ_OWNER": "Khoa CNTT"
   }
 }
+### delete Project
+DELETE  http://localhost:3000/project
+Content-Type: application/json
+{
+  "access": {
+    "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+}}
+
 ### update project info
 PATCH http://localhost:3000/project
 Content-Type: application/json
@@ -145,12 +155,29 @@ Content-Type: application/json
 {
   "access": {
      "PJ_ID":1
-    ,"MEM_ID":1
+    ,"MEM_ID":2
     ,"MEM_POS":0
   },
   "data":{
      "PJ_ID":1
     ,"MEM_ID":2
     ,"MEM_POS":0
+  }
+}
+
+### change position
+PATCH    http://localhost:3000/member
+Content-Type: application/json
+
+{
+  "access": {
+     "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+     "PJ_ID":1
+    ,"MEM_ID":2
+    ,"MEM_POS":2
   }
 }
