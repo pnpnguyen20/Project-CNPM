@@ -18,6 +18,7 @@ function toJson(data) {
 }
 app.post('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const US_NEWPASS=""
   
@@ -25,6 +26,7 @@ app.post('/login', async (req, res, next) => {
 });
 app.patch('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   const us_service=new UserService.UserManager(req.body["ACCESS"]["US_ACCOUNT"],req.body["ACCESS"]["US_PASSWORD"])
   us_service.acc.user_id=req.body["ACCESS"]["US_ID"]
   us_service.acc.token=req.body["ACCESS"]["US_TOKEN"]
@@ -34,6 +36,7 @@ app.get('/login', async (req, res, next) => {
   
   
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   //console.log(req.body)
   //console.log(req.body["US_ACCOUNT"])
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
@@ -84,4 +87,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(process.env.PORT , () => console.log(`🚀 @ http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
