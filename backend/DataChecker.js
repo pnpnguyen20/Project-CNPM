@@ -61,7 +61,7 @@
      day(input){
         //month/day/year
         var myRegex=/\d\d\/\d\d\/\d+/
-        if(input.length>0&&myRegex.exec(input)&&myRegex.exec(input)[0].length==input.length){
+        if(input&&input.length>0&&myRegex.exec(input)&&myRegex.exec(input)[0].length==input.length){
             if((new Date(input)).getDate()>0)
                 return true         
             else
