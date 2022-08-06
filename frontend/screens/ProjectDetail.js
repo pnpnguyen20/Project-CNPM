@@ -1,4 +1,4 @@
-import { React, useCallback, useRef, useState } from "react";
+import { React, useCallback, useEffect, useRef, useState } from "react";
 import {
   Text,
   View,
@@ -13,14 +13,34 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Board, tempData } from "../components";
 
-import { PopUpModal, ProjectModal, MemberModal, AddMemberModal} from "../components/PopUpModal";
+import { PopUpModal, ProjectModal, MemberModal, AddMemberModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
+import axios from "../components/axios";
 
 
 export default function ProjectDetail({ route, navigation }) {
-  const [PJ_NAME, setPJ_NAME] = useState(route.params.PJ_NAME);
-  const [selectedBoard, setSelectedBoard] = useState([true, false, false]);
+
+  const [project, setProject] = useState([])
+  const [PJ_NAME, setPJ_NAME] = useState(project.PJ_NAME);
+  const [LABELS, setLABELS] = useState([]);
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/project',
+        {
+          params: {
+            "PJ_ID": 1
+            , "MEM_ID": 1
+            , "MEM_POS": 0
+          }
+        })
+      const temp = data.data.PROJECT_INFO
+
+      setProject(temp)
+    }
+    fetchproducts();
+
+  }, [])
 
   const scrollRef1 = useRef();
 
@@ -29,7 +49,7 @@ export default function ProjectDetail({ route, navigation }) {
   const [memnerVisible, setMemberVisible] = useState(false);
 
 
-  const [LABELS, setLABELS] = useState(route.params.LABELS);
+
   const handleAddBoard = (title) => {
     setLABELS([
       ...LABELS,
@@ -64,12 +84,12 @@ export default function ProjectDetail({ route, navigation }) {
   const renderItem = ({ item, index }) => (
     <View>
       <Board
-        id={item.id}
-        PJ_NAME={PJ_NAME}
-        title={item.title}
+        id={item.LB_ID}
+        PJ_NAME={project.PJ_NAME}
+        title={item.LB_NAME}
         handleDeleteBoard={handleDeleteBoard}
         handleRenameBoard={handleRenameBoard}
-        tasks={route.params.LABELS[index] ? route.params.LABELS[index].tasks : []}
+        tasks={project.LABELS[index] ? project.LABELS[index].TASK_INFO : []}
       />
     </View>
   );
@@ -83,6 +103,11 @@ export default function ProjectDetail({ route, navigation }) {
         paddingTop: 10
       }}
     >
+      <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
+        console.log(project.LABELS[0])
+        setLABELS(project.LABELS[0])
+        console.log(LABELS)
+      }} />
       <View
         style={{
           flexDirection: "row",
@@ -116,7 +141,7 @@ export default function ProjectDetail({ route, navigation }) {
           }}
         >
           <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
-            {PJ_NAME}
+            {project.PJ_NAME}
           </Text>
           <Icon
             name={"caret-down"}
@@ -199,7 +224,7 @@ export default function ProjectDetail({ route, navigation }) {
         scrollEnabled
         data={LABELS}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.LB_ID}
       />
 
     </SafeAreaView>

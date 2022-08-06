@@ -12,12 +12,12 @@ Content-Type: application/json
 }
 
 ### this is login
-GET   http://localhost:9696/login
+PUT   http://localhost:9696/login
 Content-Type: application/json
 
 {
-    "US_ID":2,
-    "US_ACCOUNT":"Pha3MinhTai123",
+    "US_ID":1,
+    "US_ACCOUNT":"goporo",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "US_ID":1,
-    "US_ACCOUNT":"account2",
+    "US_ACCOUNT":"goporo",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -80,14 +80,14 @@ Content-Type: application/json
 
 {
   "access": {
-    "US_ID":1,
-    "US_ACCOUNT":"PhamMinhTai123",
-    "US_PASSWORD":"passchanged",
+    "US_ID":4,
+    "US_ACCOUNT":"goporo",
+    "US_PASSWORD":"123456",
     "TOKEN":null
 },
   "data":{
       "PJ_ID": 0,
-      "PJ_NAME": "Software Engineer 3",
+      "PJ_NAME": "PRJ TEST",
       "PJ_CREATEDAY": "2022-08-05T14:03:50.911Z",
       "PJ_DEADLINE": "09/09/2022",
       "PJ_STATUS": "0",
