@@ -16,7 +16,7 @@ PUT   http://localhost:9696/login
 Content-Type: application/json
 
 {
-    "US_ID":1,
+    "US_ID":4,
     "US_ACCOUNT":"goporo",
     "US_PASSWORD":"123456",
     "TOKEN":null
@@ -27,7 +27,7 @@ POST   http://localhost:9696/login
 Content-Type: application/json
 
 {
-    "US_ID":1,
+    "US_ID":4,
     "US_ACCOUNT":"goporo",
     "US_PASSWORD":"123456",
     "TOKEN":null
@@ -65,11 +65,11 @@ Content-Type: application/json
     }
 }
 ### this is how to connect Project
-GET   http://localhost:9696/project
+PUT   http://localhost:9696/project
 Content-Type: application/json
 
-{"PJ_ID":1
-,"MEM_ID":1
+{"PJ_ID":3
+,"MEM_ID":4
 ,"MEM_POS":0}
 ###this is how to create project
 POST http://localhost:9696/project
@@ -189,8 +189,8 @@ Content-Type: application/json
 
 {
     "access": {
-     "PJ_ID":1
-    ,"MEM_ID":1
+     "PJ_ID":3
+    ,"MEM_ID":4
     ,"MEM_POS":0
   }
 }
@@ -200,14 +200,14 @@ Content-Type: application/json
 
 {
     "access": {
-     "PJ_ID":1
-    ,"MEM_ID":1
+     "PJ_ID":3
+    ,"MEM_ID":4
     ,"MEM_POS":0
   },
   "data":{
-    "PJ_ID":1,
-    "LB_ID":0,
-    "LB_NAME": "To do"
+    "PJ_ID":3,
+    "LB_ID":3,
+    "LB_NAME": "on going"
   }
 }
 ### change label name
@@ -248,15 +248,15 @@ Content-Type: application/json
 
 {
     "access": {
-     "PJ_ID":1 
-    ,"MEM_ID":1
+     "PJ_ID":3 
+    ,"MEM_ID":4
     ,"MEM_POS":0
   },
   "data":{
-    "PJ_ID": 1,
+    "PJ_ID": 3,
     "TASK_ID": 2,
     "TASK_STATUS": "0",
-    "TASK_NAME": "success",
+    "TASK_NAME": "label 2 task ",
     "TASK_DESCRIPTION": "bcd",
     "TASK_CREATEDAY": null,
     "TASK_DEADLINE": null,

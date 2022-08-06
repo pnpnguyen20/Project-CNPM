@@ -24,7 +24,9 @@ export default function ProjectDetail({ route, navigation }) {
   const [project, setProject] = useState([])
   const [PJ_NAME, setPJ_NAME] = useState(project.PJ_NAME);
   const [LABELS, setLABELS] = useState([]);
+  const [needRefresh, setNeedRefresh] = useState(false)
 
+  //get
   useEffect(() => {
     const fetchproducts = async () => {
 
@@ -36,7 +38,7 @@ export default function ProjectDetail({ route, navigation }) {
         })
       const message = data.message
       if (message.success) {
-        console.log(data.data)
+        // console.log(data.data)
         setProject(data.data.PROJECT_INFO)
         setLABELS(data.data.PROJECT_INFO.LABELS)
       }
@@ -44,7 +46,51 @@ export default function ProjectDetail({ route, navigation }) {
         console.log(message)
     }
     fetchproducts();
-  }, [])
+  }, [needRefresh])
+
+  //post new board
+
+  const postBoard = (LB_ID, LB_NAME) => {
+
+    axios.post('/label', {
+      "access": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID,
+        "LB_ID": LB_ID,
+        "LB_NAME": LB_NAME
+      }
+    })
+
+    setNeedRefresh(!needRefresh)
+  }
+
+
+  //delete board
+
+  // useEffect(() => {
+  //   axios.post('/label', {
+  //     "access": {
+  //       "PJ_ID": 3
+  //       , "MEM_ID": 4
+  //       , "MEM_POS": 0
+  //     },
+  //     "data": {
+  //       "PJ_ID": 3,
+  //       "LB_ID": 3,
+  //       "LB_NAME": "To do"
+  //     }
+  //   })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, [])
 
   const scrollRef1 = useRef();
 
@@ -55,15 +101,16 @@ export default function ProjectDetail({ route, navigation }) {
 
 
   const handleAddBoard = (title) => {
-    setLABELS([
-      ...LABELS,
-      {
-        id: new Date().getTime() % 1e6,
-        PJ_NAME: "",
-        title: title ? title.toUpperCase() : "NEW COLUMN",
-        tasks: [{ id: new Date().getTime() % 1e6, text: "this is a task" }],
-      },
-    ]);
+    // setLABELS([
+    //   ...LABELS,
+    //   {
+    //     id: new Date().getTime() % 1e6,
+    //     title: title ? title.toUpperCase() : "NEW COLUMN",
+    //     tasks: [{ id: new Date().getTime() % 1e6, text: "this is a task" }],
+    //   },
+    // ]);
+
+    postBoard(3, title)
 
     setTimeout(() => {
       scrollRef1.current.scrollToEnd({ animated: true });
@@ -107,7 +154,10 @@ export default function ProjectDetail({ route, navigation }) {
         paddingTop: 10
       }}
     >
-
+      {/* nut reload */}
+      {/* <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
+        setNeedRefresh(!needRefresh)
+      }} /> */}
       <View
         style={{
           flexDirection: "row",
@@ -224,7 +274,7 @@ export default function ProjectDetail({ route, navigation }) {
         scrollEnabled
         data={LABELS}
         renderItem={renderItem}
-        keyExtractor={(item) => item.LB_ID}
+        keyExtractor={(item) => item.LB_NAME}
       />
 
     </SafeAreaView>

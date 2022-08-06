@@ -145,7 +145,7 @@ const Board = (props) => {
         scrollEnabled
         data={taskItems}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.TASK_ID}
       />
       {isSelectCreate ? (
         <TextInput
