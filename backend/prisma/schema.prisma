@@ -91,7 +91,7 @@ model TASK_INFO {
   TASK_ID           Int
   TASK_STATUS       String?
   TASK_NAME         String?
-  TASK_DESCRIPTON   String?
+  TASK_DESCRIPTION   String?
   TASK_CREATEDAY    DateTime?
   TASK_DEADLINE     DateTime?
   TASK_CREATOR      Int?

@@ -210,6 +210,22 @@ Content-Type: application/json
     "LB_NAME": "To do"
   }
 }
+### change label name
+PATCH http://localhost:9696/label
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID":1,
+    "LB_ID":1,
+    "LB_NAME": "Is CHanged"
+  }
+}
 ### delete label
 DELETE  http://localhost:9696/label
 Content-Type: application/json
@@ -222,7 +238,73 @@ Content-Type: application/json
   },
   "data":{
     "PJ_ID":1,
-    "LB_ID":1,
+    "LB_ID":2,
     "LB_NAME": "To do"
+  }
+}
+### create task
+POST  http://localhost:9696/task
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1 
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID": 1,
+    "TASK_ID": 2,
+    "TASK_STATUS": "0",
+    "TASK_NAME": "success",
+    "TASK_DESCRIPTION": "bcd",
+    "TASK_CREATEDAY": null,
+    "TASK_DEADLINE": null,
+    "TASK_CREATOR": 1,
+    "TASK_LABEL": 2
+  }
+}
+### delete task
+DELETE  http://localhost:9696/task
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1 
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID": 1,
+    "TASK_ID": 3,
+    "TASK_STATUS": "0",
+    "TASK_NAME": "success",
+    "TASK_DESCRIPTION": "bcd",
+    "TASK_CREATEDAY": null,
+    "TASK_DEADLINE": null,
+    "TASK_CREATOR": 1,
+    "TASK_LABEL": 2
+  }
+}
+### update task
+PATCH  http://localhost:9696/task
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1 
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID": 1,
+    "TASK_ID": 3,
+    "TASK_STATUS": "0",
+    "TASK_NAME": "success",
+    "TASK_DESCRIPTION": "bcd",
+    "TASK_CREATEDAY": null,
+    "TASK_DEADLINE": null,
+    "TASK_CREATOR": 1,
+    "TASK_LABEL": 2
   }
 }

@@ -559,6 +559,204 @@ app.delete('/label', async (req, res, next) => {
   }
  
 })
+app.patch('/label', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " PATCH");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success &&project_service.member.US_POS<2){
+
+      
+      if ( await prisma.lABEL.findFirst({
+        where:{
+         
+          PJ_ID:req.body["access"]["PJ_ID"],
+          LB_ID:req.body["data"]["LB_ID"]}
+        
+      }))
+      {
+      await prisma.lABEL.update({
+        where:{
+          PJ_ID_LB_ID:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          LB_ID:req.body["data"]["LB_ID"]}
+        },
+        data:{
+          LB_NAME:req.body["data"]["LB_NAME"]
+        }
+      })
+      
+      res.json({data:{},message})
+    }
+    else
+    res.json({data:{},message: new Message(false,"Label didn't exist")})
+  }
+  else
+  {
+    if (message.success)
+    res.json({data:{},message: new Message(false,"Not permit to create Label")})
+    else
+    res.json({data:{},message})
+  }
+ 
+})
+app.post('/task', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success &&project_service.member.US_POS<2){
+    const old= await prisma.tASK_INFO.aggregate({
+      _max:{
+        TASK_ID:true
+      },
+      where:{
+        PJ_ID:req.body["access"]["PJ_ID"]
+      }
+    })
+    if(old){
+      const newTask_ID=old._max.TASK_ID+1
+      await prisma.tASK_INFO.create({
+        data:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_ID: newTask_ID,
+          TASK_STATUS: '0',
+          TASK_NAME: req.body["data"]["TASK_NAME"],
+          TASK_DESCRIPTION: req.body["data"]["TASK_DESCRIPTION"],
+          TASK_CREATEDAY: new Date (req.body["data"]["TASK_CREATEDAY"]),
+          TASK_DEADLINE: new Date(req.body["data"]["TASK_DEADLINE"]),
+          TASK_CREATOR: req.body["access"]["MEM_ID"],
+          TASK_LABEL: req.body["data"]["TASK_LABEL"]
+        }
+      })
+      res.json({data:{},message})}
+    
+    else{
+      await prisma.tASK_INFO.create({
+        data:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_ID: 1,
+          TASK_STATUS: req.body["data"]["TASK_STATUS"],
+          TASK_NAME: req.body["data"]["TASK_NAME"],
+          TASK_DESCRIPTION: req.body["data"]["TASK_DESCRIPTION"],
+          TASK_CREATEDAY: new Date (req.body["data"]["TASK_CREATEDAY"]),
+          TASK_DEADLINE: new Date(req.body["data"]["TASK_DEADLINE"]),
+          TASK_CREATOR: req.body["access"]["MEM_ID"],
+          TASK_LABEL: req.body["data"]["TASK_LABEL"]
+        }
+      })
+      res.json({data:{},message})}
+  }
+  else
+  {
+    if (message.success)
+    res.json({data:{},message: new Message(false,"Not permit to create Task")})
+    else
+    res.json({data:{},message})
+  }
+ 
+})
+app.delete('/task', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success &&project_service.member.US_POS<2){
+    if (await prisma.tASK_RESPONDSIPLE.findMany({
+      where:{
+        PJ_ID:req.body["access"]["PJ_ID"],
+        TASK_ID:req.body["data"]["TASK_ID"]
+      }
+    }))
+    await prisma.tASK_RESPONDSIPLE.deleteMany({
+      where:{
+        PJ_ID:req.body["access"]["PJ_ID"],
+        TASK_ID:req.body["data"]["TASK_ID"]
+      }
+    })
+    if( await prisma.tASK_INFO.findMany({
+      where:{
+        PJ_ID:req.body["access"]["PJ_ID"],
+        TASK_ID:req.body["data"]["TASK_ID"]
+      }
+    }))
+    {
+    
+    await prisma.tASK_INFO.deleteMany({
+      where:{
+        PJ_ID:req.body["access"]["PJ_ID"],
+        TASK_ID:req.body["data"]["TASK_ID"]
+      }
+    })
+    res.json({data:{},message: new Message(true,"success")})
+  }
+    else
+    res.json({data:{},message: new Message(false,"Task is not exist")})
+    
+  }
+  else
+  {
+    if (message.success)
+    res.json({data:{},message: new Message(false,"Not permit to delete Task")})
+    else
+    res.json({data:{},message})
+  }
+ 
+})
+app.patch('/task', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+  
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success &&project_service.member.US_POS<2){
+    
+    const task= await prisma.tASK_INFO.findFirst({
+      where:
+      {
+      PJ_ID:req.body["access"]["PJ_ID"],
+      TASK_ID:req.body["data"]["TASK_ID"]
+    }}) 
+    if (task){
+      await prisma.tASK_INFO.updateMany({
+        where:{
+         
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_ID:req.body["data"]["TASK_ID"],
+          
+        },
+        data:{
+        
+          TASK_STATUS: req.body["data"]["TASK_STATUS"],
+          TASK_NAME: req.body["data"]["TASK_NAME"],
+          TASK_DESCRIPTION: req.body["data"]["TASK_DESCRIPTION"],
+          TASK_CREATEDAY: new Date (req.body["data"]["TASK_CREATEDAY"]),
+          TASK_DEADLINE: new Date(req.body["data"]["TASK_DEADLINE"]),
+          TASK_CREATOR: req.body["access"]["MEM_ID"],
+          TASK_LABEL: req.body["data"]["TASK_LABEL"]
+        }
+      })
+      res.json({data:{},message: new Message(true,"success")})
+    }
+    else
+    res.json({data:{},message: new Message(false,"Task is not exist")})
+  }
+  else
+  {
+    if (message.success)
+    res.json({data:{},message: new Message(false,"Not permit to create Task")})
+    else
+    res.json({data:{},message})
+  }
+ 
+})
 app.use('/api', require('./routes/api.route'));
 
 app.use((req, res, next) => {
@@ -574,6 +772,22 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+app.use('/api', require('./routes/api.route'));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next(createError.NotFound());
+});
+
+app.use((err, req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.status(err.status || 500);
+  res.send({
+    status: err.status || 500,
+    message: err.message,
+  });
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
