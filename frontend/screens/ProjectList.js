@@ -95,7 +95,7 @@ const ProjectList = ({ navigation }) => {
 
             <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15, fontWeight: 'bold', marginBottom: 10 }}>All projects</Text>
 
-
+            <ScrollView>
             {filteredData.map((item, index) =>
                 <TouchableOpacity
                     key={index}
@@ -141,6 +141,8 @@ const ProjectList = ({ navigation }) => {
 
                 </TouchableOpacity>)
             }
+            </ScrollView>
+            
 
             <TouchableOpacity
                 onPress={() => { setInputModalVisible(true) }}

@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
-  Keyboard
+  Keyboard,
+  ScrollView
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
@@ -201,6 +202,7 @@ const InputModal = (props) => {
 
 const PopUpModal = (props) => {
   const [inputModalVisible, setInputModalVisible] = useState(false);
+  const [ProjectVisible, setProjectVisible] = useState(false);
   return (
     <View>
       <InputModal
@@ -276,6 +278,20 @@ const PopUpModal = (props) => {
                     opacity: 0.5,
                   }}
                 />
+                <TouchableOpacity
+                  style={{
+                    paddingVertical: 10,
+                    paddingLeft: 15,
+                  }}
+                  onPress={() => {
+                    setProjectVisible(true);
+                    props.close();
+                  }}
+                >
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
+                    Project Detail
+                  </Text>
+                </TouchableOpacity>
                 <View
                   style={{
                     height: 0.5,
@@ -700,39 +716,46 @@ const MemberModal = (props) => {
         >
           <Pressable style={props.styles}>
             <View style={{ padding: 25, paddingVertical: 30 }}>
-              <View style={{ flexDirection: "row" }}>
-                <Ionicons
-                  name={"arrow-back"}
-                  style={{
-                    color: colors.primary1,
-                    fontSize: 25,
-                    marginRight: 15,
-                    alignSelf: 'center'
-                  }}
-                />
+              <View style={{ flexDirection: "row", paddingBottom: 15}}>
+                
+                <TouchableOpacity>
+                  <Ionicons
+                    name={"arrow-back"}
+                    style={{
+                      color: colors.primary1,
+                      fontSize: 25,
+                      marginRight: 15,
+                      alignSelf: 'center'
+                    }}
+                  />
+                </TouchableOpacity>
+                
+                <TouchableOpacity>
                 <Text
                   style={{
                     color: colors.textColor,
                     textAlign: "center",
                     fontWeight: "bold",
-                    fontSize: 28,
+                    fontSize: 20,
                   }}
-                >
-                  Member
-                </Text>
+                >Member</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{position: "absolute", right: 15,}}>
                 <Ionicons
                   name={"add-circle-outline"}
                   style={{
                     color: colors.primary1,
                     fontSize: 23,
-                    position: "absolute",
-                    right: 15,
-                    alignSelf: "center",
+                    //marginLeft: 60,
+                    
                   }}
                 />
+                </TouchableOpacity>
+
 
               </View>
-              
+              <ScrollView>
               {tempMember.map((item, index) =>
               <TouchableOpacity
                 key={index}
@@ -741,14 +764,13 @@ const MemberModal = (props) => {
 
                 alignItems: 'center',
                 borderRadius: 15,
-                marginBottom: 10,
+                paddingBottom: 10,
               }}>
               <Image source={item.src}
                 style={{
                   width: 40,
                   height: 40,
-                  marginRight: 20,
-                  margin: 10,
+                  marginRight: 10,
                   borderRadius: 50,
               }} />
 
@@ -757,29 +779,35 @@ const MemberModal = (props) => {
                   color: colors.textColor,
                   alignContent: 'center',
                   margin: 5,
+                  fontWeight: "700"
                 }}>
                   {item.name}
                 </Text>
 
+
+                <TouchableOpacity style={{position: "absolute", right: 45,}}>
                 <Ionicons
                   name={item.lead ? "flag" : "flag-outline"}
                   style={{
                     color: colors.primary1,
                     fontSize: 25,
-                    marginRight: 15,
+                    marginRight: 10,
                     alignSelf: 'center',
                     marginLeft: 20
                   }}/>
+                </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity style={{position: "absolute", right: 15,}}>
                   <Entypo
                     name="dots-three-horizontal"
-                    style={{ borderRadius: 50, fontSize: 50, color: colors.primary1, marginLeft: 10 }} />
+                    style={{fontSize: 20, color: colors.textColor, marginLeft: 5 }} />
                 </TouchableOpacity>
               
 
-          </TouchableOpacity>)
-        }
+          </TouchableOpacity>
+          )}
+                
+              </ScrollView>
             </View>
 
           </Pressable>
@@ -790,7 +818,8 @@ const MemberModal = (props) => {
 };
 
 
-const addMemberModal = (props) => {
+const AddMemberModal = (props) => {
+  const [text, setText] = useState('');
   const [title, setTitle] = useState("");
   
   const tempMember = [
@@ -806,6 +835,14 @@ const addMemberModal = (props) => {
     }
   ]
 
+  const searchMember = (e) => {
+    let text = e.toLowerCase()
+    let filteredName = tempMember.filter((item) => {
+        return item.name.toLowerCase().includes(text)
+    })
+    setFilteredData(filteredName);
+  }
+
   return (
     <View >
       <Modal animationType="none" transparent={true} visible={props.isVisible}>
@@ -815,69 +852,112 @@ const addMemberModal = (props) => {
         >
           <Pressable style={props.styles}>
             <View style={{ padding: 25, paddingVertical: 30 }}>
-              <View style={{ flexDirection: "row" }}>
-                <Ionicons
-                  name={"arrow-back"}
-                  style={{
-                    color: colors.primary1,
-                    fontSize: 25,
-                    marginRight: 15,
-                    alignSelf: 'center'
-                  }}
-                />
+            <View style={{ flexDirection: "row", paddingBottom: 10}}>
+                
+                <TouchableOpacity>
+                  <Ionicons
+                    name={"arrow-back"}
+                    style={{
+                      color: colors.primary1,
+                      fontSize: 25,
+                      marginRight: 15,
+                      alignSelf: 'center'
+                    }}
+                  />
+                </TouchableOpacity>
+                
+                <TouchableOpacity>
                 <Text
                   style={{
                     color: colors.textColor,
                     textAlign: "center",
                     fontWeight: "bold",
-                    fontSize: 28,
+                    fontSize: 20,
                   }}
-                >
-                  Member
-                </Text>
+                >Add member</Text>
+                </TouchableOpacity>
+
               </View>
-              
-              {tempMember.map((item, index) =>
+
+              <View style={{
+                flexDirection: 'row',
+                backgroundColor: colors.primary3,
+                opacity: .75,
+                borderRadius: 10,
+            }}>
+                <Entypo
+                    name={"magnifying-glass"}
+                    style={{
+                        color: colors.textColor,
+                        fontSize: 22,
+                        alignSelf: 'center',
+                        margin: 5,
+                        marginHorizontal: 10,
+                    }}
+                />
+                <TextInput
+                    style={{
+                        flex: 1,
+                        height: 30,
+                        alignSelf: 'center',
+                        color: colors.textColor,
+                        fontSize: 17,
+                    }}
+                    placeholder={"Search members"}
+                    placeholderTextColor={colors.textColor}
+                    value={text}
+                    onChangeText={(text) => { searchMember(text), setText(text) }}
+                />
+            </View>
+            <ScrollView style = {{paddingTop: 15}}>
+            {tempMember.map((item, index) =>
               <TouchableOpacity
                 key={index}
                 style={{
                 flexDirection: 'row',
 
                 alignItems: 'center',
-                backgroundColor: colors.primary3,
                 borderRadius: 15,
-                marginBottom: 10,
+                paddingBottom: 15,
               }}>
-              <Image source={item.src}
-                style={{
-                  width: 40,
-                  height: 40,
-                  marginRight: 20,
-                  margin: 10,
-                  borderRadius: 50,
-              }} />
+            <Image source={item.src}
+              style={{
+                width: 40,
+                height: 40,
+                marginRight: 10,
+                borderRadius: 50,
+            }} />
 
-                <Text style={{
-                  fontSize: 17,
-                  color: colors.textColor,
-                  alignContent: 'center',
-                  margin: 5,
-                }}>
-                  {item.name}
-                </Text>
+              <Text style={{
+                fontSize: 17,
+                color: colors.textColor,
+                alignContent: 'center',
+                margin: 5,
+                fontWeight: "700"
+              }}>
+                {item.name}
+              </Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity 
+                //onPress={() => {item.added(!item.added)}}
+                style={{position: "absolute", right: 0}}
+                >
                   <Ionicons
-                  name={item.added ? "add-circle-outline": "checkmark-circle"}
+                  name={item.added ? "checkmark-circle": "add-circle-outline"}
                   style={{
-                    color: colors.primary1,
-                    fontSize: 25,
-                    marginRight: 15,
-                    alignSelf: 'center'
+                    fontSize: 30, color: colors.primary1, marginLeft: 5
                   }}/>
                 </TouchableOpacity>
-          </TouchableOpacity>)
-        }
+          </TouchableOpacity>
+
+          )}
+
+            </ScrollView>
+             
+
+        <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
+            <Text style={styles.panelButtonTitle}>Confirm</Text>
+        </TouchableOpacity>
             </View>
 
           </Pressable>
@@ -887,4 +967,20 @@ const addMemberModal = (props) => {
   );
 };
 
-export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, addMemberModal };
+export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, AddMemberModal};
+
+const styles = StyleSheet.create({
+  commandButton: {
+    paddingHorizontal: 100,
+    paddingVertical: 15,
+    borderRadius: 10,
+    backgroundColor: colors.primary1,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  panelButtonTitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white',
+  }
+});

@@ -9,10 +9,11 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Board, tempData } from "../components";
 
-import { PopUpModal, ProjectModal } from "../components/PopUpModal";
+import { PopUpModal, ProjectModal, MemberModal, AddMemberModal} from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 
@@ -25,6 +26,7 @@ export default function ProjectDetail({ route, navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [projectVisible, setProjectVisible] = useState(false);
+  const [memnerVisible, setMemberVisible] = useState(false);
 
 
   const [LABELS, setLABELS] = useState(route.params.LABELS);
@@ -91,8 +93,8 @@ export default function ProjectDetail({ route, navigation }) {
         <TouchableOpacity onPress={() => {
           navigation.navigate("ProjectList")
         }}>
-          <Entypo
-            name={"arrow-long-left"}
+          <Ionicons
+            name={"arrow-back"}
             style={{
               color: colors.primary1,
               fontSize: 25,
@@ -128,7 +130,7 @@ export default function ProjectDetail({ route, navigation }) {
         </TouchableOpacity>
 
 
-        <ProjectModal
+        <AddMemberModal
           isVisible={projectVisible}
           styles={{
             backgroundColor: colors.mainBackground,
@@ -146,9 +148,6 @@ export default function ProjectDetail({ route, navigation }) {
             setProjectVisible(false);
           }}
         />
-
-
-
 
         <TouchableOpacity
           onPress={() => {
