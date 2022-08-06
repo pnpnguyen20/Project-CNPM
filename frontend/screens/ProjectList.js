@@ -27,8 +27,8 @@ const ProjectList = ({ navigation }) => {
 
 
     useEffect(() => {
-        const fetchproducts = async () => {
-            console.log(1)
+        const fetchproducts =await ( async function () {
+            
             const { data } = await axios.get('/login',
                 {
                     params: {
@@ -40,7 +40,7 @@ const ProjectList = ({ navigation }) => {
             console.log(temp[0].PROJECT_INFO)
             setProjects(temp)
             setFilteredData(temp)
-        }
+        })()
         fetchproducts();
     }, [])
 
