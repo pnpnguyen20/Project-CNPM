@@ -29,7 +29,8 @@ app.post('/login', async (req, res, next) => {
 });
 app.patch('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
- 
+  res.header("Access-Control-Allow-Methods", " PATCH");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const us_service=new UserService.UserManager(req.body["access"]["US_ACCOUNT"],req.body["access"]["US_PASSWORD"])
   us_service.acc.user_id=req.body["access"]["US_ID"]
   us_service.acc.token=req.body["access"]["US_TOKEN"]
@@ -39,7 +40,8 @@ app.get('/login', async (req, res, next) => {
   
   
   res.header("Access-Control-Allow-Origin", "*");
- 
+  res.header("Access-Control-Allow-Methods", " GET");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   //console.log(req.body)
   //console.log(req.body["US_ACCOUNT"])
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
@@ -75,6 +77,8 @@ app.get('/login', async (req, res, next) => {
 
 app.get('/info', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", " GET");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   //us_service.acc.user_id=req.body["US_ID"]
   us_service.acc.token=req.body["US_TOKEN"]
@@ -100,6 +104,8 @@ app.get('/info', async (req, res, next) => {
 });
 app.post('/info', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const us_service=new UserService.UserManager(req.body["access"]["US_ACCOUNT"],req.body["access"]["US_PASSWORD"])
   //us_service.acc.user_id=req.body["US_ID"]
   us_service.acc.token=req.body["access"]["US_TOKEN"]
@@ -182,6 +188,8 @@ app.post('/info', async (req, res, next) => {
 });
 app.get('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", " GET");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   
   const project=new ProjectService.Project_Manager()
  
@@ -216,7 +224,8 @@ app.get('/project', async (req, res, next) => {
 });
 app.post('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
- 
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const user=new UserService.Access(req.body["access"]["US_ACCOUNT"],req.body["access"]["US_PASSWORD"])
   await user.logIn()
   if(user.user_id==req.body["access"]["US_ID"])
@@ -255,6 +264,9 @@ app.post('/project', async (req, res, next) => {
   res.json({data:{},message: new Message(false,"Unknown user")})
 });
 app.delete('/project',async(req,res,next)=>{
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", " DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   const message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success){
@@ -297,7 +309,8 @@ app.delete('/project',async(req,res,next)=>{
 })
 app.patch('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  
+  res.header("Access-Control-Allow-Methods", " PATCH");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   const message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success)
@@ -341,6 +354,8 @@ app.patch('/project', async (req, res, next) => {
 });
 app.post('/member', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success){
@@ -354,6 +369,8 @@ app.post('/member', async (req, res, next) => {
 })
 app.delete('/member', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", " DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success&&project_service.member.US_ID<2){
@@ -391,7 +408,10 @@ app.delete('/member', async (req, res, next) => {
   }
 })
 app.patch('/member', async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " PATCH");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
   const project_service=new ProjectService.Project_Manager()
   var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success){
