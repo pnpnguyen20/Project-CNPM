@@ -757,6 +757,108 @@ app.patch('/task', async (req, res, next) => {
   }
  
 })
+app.post('/taskmember', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+  const admin=new ProjectService.Project_Manager()
+  var message=await admin.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success&&admin.member.US_POS<2){
+    const member =new ProjectService.Project_Manager()
+    message=await member.connect(req.body["member"]["MEM_ID"],req.body["member"]["PJ_ID"])
+    if(message){
+      const task=await prisma.tASK_INFO.findFirst({
+        where:{
+        PJ_ID:req.body["access"]["PJ_ID"],
+        TASK_ID:req.body["data"]["TASK_ID"]
+        }
+      })
+      if(task){
+        const exist=await prisma.tASK_RESPONDSIPLE.findFirst({
+          where:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_ID:req.body["data"]["TASK_ID"],
+          MEM_ID:req.body["member"]["MEM_ID"]
+        }
+        })
+        if(!exist)
+        {
+          await prisma.tASK_RESPONDSIPLE.create({
+            data:{
+              PJ_ID:req.body["access"]["PJ_ID"],
+              TASK_ID:req.body["data"]["TASK_ID"],
+              MEM_ID:req.body["member"]["MEM_ID"]
+            }
+          })
+          res.json({data:{},message: new Message(true,"assigned success")})
+        }
+        else{
+          res.json({data:{},message: new Message(false,"member has been assigned to task")})
+        }
+      }
+      else
+      res.json({data:{},message: new Message(false,"task doesn't exist")})
+    }
+    else
+    res.json({data:{},message: new Message(false,"member doesn't exist")})
+  }
+  else
+  if(message.success)
+  res.json({data:{},message: new Message(false,"not allow to assign task")})
+  else
+  res.json({data:{},message})
+})
+app.delete('/taskmember', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+  const admin=new ProjectService.Project_Manager()
+  var message=await admin.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success&&admin.member.US_POS<2){
+    const member =new ProjectService.Project_Manager()
+    message=await member.connect(req.body["member"]["MEM_ID"],req.body["member"]["PJ_ID"])
+    if(message){
+      const task=await prisma.tASK_INFO.findFirst({
+        where:{
+        PJ_ID:req.body["access"]["PJ_ID"],
+        TASK_ID:req.body["data"]["TASK_ID"]
+        }
+      })
+      if(task){
+        const exist=await prisma.tASK_RESPONDSIPLE.findFirst({
+          where:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_ID:req.body["data"]["TASK_ID"],
+          MEM_ID:req.body["member"]["MEM_ID"]
+        }
+        })
+        if(exist)
+        {
+          await prisma.tASK_RESPONDSIPLE.deleteMany({
+            where:{
+              PJ_ID:req.body["access"]["PJ_ID"],
+              TASK_ID:req.body["data"]["TASK_ID"],
+              MEM_ID:req.body["member"]["MEM_ID"]
+            }
+          })
+          res.json({data:{},message: new Message(true,"unassign success")})
+        }
+        else{
+          res.json({data:{},message: new Message(false,"member hasn't been assigned to task")})
+        }
+      }
+      else
+      res.json({data:{},message: new Message(false,"task doesn't exist")})
+    }
+    else
+    res.json({data:{},message: new Message(false,"member doesn't exist")})
+  }
+  else
+  if(message.success)
+  res.json({data:{},message: new Message(false,"not allow to unassign task")})
+  else
+  res.json({data:{},message})
+})
 app.use('/api', require('./routes/api.route'));
 
 app.use((req, res, next) => {

@@ -298,13 +298,67 @@ Content-Type: application/json
   },
   "data":{
     "PJ_ID": 1,
-    "TASK_ID": 3,
-    "TASK_STATUS": "0",
+    "TASK_ID": 4,
+    "TASK_STATUS": "1",
     "TASK_NAME": "success",
-    "TASK_DESCRIPTION": "bcd",
+    "TASK_DESCRIPTION": "da cap nhat",
     "TASK_CREATEDAY": null,
     "TASK_DEADLINE": null,
     "TASK_CREATOR": 1,
     "TASK_LABEL": 2
+  }
+}
+### assign member to  task
+POST  http://localhost:9696/taskmember
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1 
+    ,"MEM_ID":2
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID": 1,
+    "TASK_ID": 4,
+    "TASK_STATUS": "1",
+    "TASK_NAME": "success",
+    "TASK_DESCRIPTION": "da cap nhat",
+    "TASK_CREATEDAY": null,
+    "TASK_DEADLINE": null,
+    "TASK_CREATOR": 1,
+    "TASK_LABEL": 2
+  },
+    "member": {
+     "PJ_ID":1 
+    ,"MEM_ID":3
+    ,"MEM_POS":0
+  }
+}
+### unassign member to  task
+DELETE  http://localhost:9696/taskmember
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1 
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID": 1,
+    "TASK_ID": 4,
+    "TASK_STATUS": "1",
+    "TASK_NAME": "success",
+    "TASK_DESCRIPTION": "da cap nhat",
+    "TASK_CREATEDAY": null,
+    "TASK_DEADLINE": null,
+    "TASK_CREATOR": 1,
+    "TASK_LABEL": 2
+  },
+    "member": {
+     "PJ_ID":1 
+    ,"MEM_ID":2
+    ,"MEM_POS":0
   }
 }
