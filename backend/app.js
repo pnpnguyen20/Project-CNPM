@@ -20,7 +20,8 @@ function toJson(data) {
 }
 app.post('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const US_NEWPASS=""
   
@@ -55,7 +56,7 @@ app.get('/login', async (req, res, next) => {
                 include:{
                   PROJECT_MEMBER:{
                     include:{
-                      PROJECT_INFO:true
+                      PROJECT_INFO:{}
                     }
                   }
                 }

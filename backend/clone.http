@@ -98,6 +98,7 @@ Content-Type: application/json
 ### delete Project
 DELETE  http://localhost:3000/project
 Content-Type: application/json
+
 {
   "access": {
     "PJ_ID":1

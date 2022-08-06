@@ -83,7 +83,7 @@ model LABEL{
   LB_ID Int
   LB_NAME String
   PROJECT_INFO      PROJECT_INFO        @relation(fields: [PJ_ID], references: [PJ_ID])
-  TASK_INFO TASK_INFO[]
+  TASK_INFO         TASK_INFO[]
    @@id([PJ_ID, LB_ID])
 }
 model TASK_INFO {
