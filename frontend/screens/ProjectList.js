@@ -31,15 +31,21 @@ const ProjectList = ({ navigation }) => {
             
             const { data } = await axios.put('/login',
                 {
-                    data: {
-                        US_ACCOUNT: 'goporo',
-                        US_PASSWORD: '123456',
-                    } 
+                     
+                        "US_ACCOUNT": 'goporo',
+                        "US_PASSWORD": '123456',
+                    
                 })
+            const message=data.message
+            if(message.success)
+            {
             const temp = data.data.USER_INFO.PROJECT_MEMBER
             console.log(temp[0].PROJECT_INFO)
             setProjects(temp)
             setFilteredData(temp)
+            }
+            else
+            console.log(message)
         }
         fetchproducts();
     }, [])

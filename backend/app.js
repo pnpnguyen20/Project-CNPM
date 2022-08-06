@@ -44,9 +44,9 @@ app.put('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
-  console.log(req)
-  //console.log(req.body["US_ACCOUNT"])
- 
+  
+  console.log(req.body)
+ console.log(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const message=await us_service.acc.logIn()
   if(message.success)
@@ -83,7 +83,7 @@ app.put('/info', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
-  
+  console.log(req.body)
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   //us_service.acc.user_id=req.body["US_ID"]
   us_service.acc.token=req.body["US_TOKEN"]
