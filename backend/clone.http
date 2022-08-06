@@ -1,4 +1,4 @@
-PATCH   http://localhost:3000/login
+PATCH   http://localhost:9696/login
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### this is login
-GET   http://localhost:3000/login
+GET   http://localhost:9696/login
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### this is Sign up
-POST   http://localhost:3000/login
+POST   http://localhost:9696/login
 Content-Type: application/json
 
 {
@@ -34,7 +34,7 @@ Content-Type: application/json
 }
 
 ### this how to get personal info
-GET   http://localhost:3000/info
+GET   http://localhost:9696/info
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
     "TOKEN":null
 }
 ### this is form to update personal info
-POST   http://localhost:3000/info
+POST   http://localhost:9696/info
 Content-Type: application/json
 
 {
@@ -65,14 +65,14 @@ Content-Type: application/json
     }
 }
 ### this is how to connect Project
-GET   http://localhost:3000/project
+GET   http://localhost:9696/project
 Content-Type: application/json
 
 {"PJ_ID":1
 ,"MEM_ID":1
 ,"MEM_POS":0}
 ###this is how to create project
-POST http://localhost:3000/project
+POST http://localhost:9696/project
 Content-Type: application/json
 //các thuộc tính được cmt bắt buộc phải thay đổi giá trị với mỗi user
 //còn lại thì không cần điền
@@ -82,7 +82,7 @@ Content-Type: application/json
   "access": {
     "US_ID":1,
     "US_ACCOUNT":"PhamMinhTai123",
-    "US_PASSWORD":"123456",
+    "US_PASSWORD":"passchanged",
     "TOKEN":null
 },
   "data":{
@@ -96,7 +96,7 @@ Content-Type: application/json
   }
 }
 ### delete Project
-DELETE  http://localhost:3000/project
+DELETE  http://localhost:9696/project
 Content-Type: application/json
 
 {
@@ -107,7 +107,7 @@ Content-Type: application/json
 }}
 
 ### update project info
-PATCH http://localhost:3000/project
+PATCH http://localhost:9696/project
 Content-Type: application/json
 //các thuộc tính được cmt bắt buộc phải thay đổi giá trị với mỗi user
 //còn lại thì không cần điền
@@ -130,7 +130,7 @@ Content-Type: application/json
   }
 }
 ### add member to project
-POST  http://localhost:3000/member
+POST  http://localhost:9696/member
 Content-Type: application/json
 
 {
@@ -150,7 +150,7 @@ Content-Type: application/json
   }
 }
 ### delete a member
-DELETE   http://localhost:3000/member
+DELETE   http://localhost:9696/member
 Content-Type: application/json
 
 {
@@ -167,7 +167,7 @@ Content-Type: application/json
 }
 
 ### change position
-PATCH    http://localhost:3000/member
+PATCH    http://localhost:9696/member
 Content-Type: application/json
 
 {
@@ -183,8 +183,19 @@ Content-Type: application/json
   }
 }
 
-### create task
-POST http://localhost:9696/member
+### get labels
+POST http://localhost:9696/label
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  }
+}
+### create label
+POST http://localhost:9696/label
 Content-Type: application/json
 
 {
@@ -196,6 +207,22 @@ Content-Type: application/json
   "data":{
     "PJ_ID":1,
     "LB_ID":0,
+    "LB_NAME": "To do"
+  }
+}
+### delete label
+DELETE  http://localhost:9696/label
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1 
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID":1,
+    "LB_ID":1,
     "LB_NAME": "To do"
   }
 }

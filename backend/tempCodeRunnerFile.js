@@ -1,15 +1,14 @@
-await prisma.pROJECT_MEMBER.create({
-    data: {
-        PJ_ID: this.PJ_ID,
-        MEM_ID: user.US_ID,
-        MEM_POS: 0,
+if ( await prisma.lABEL.findFirst({
+    where:{
+     
+      PJ_ID:req.body["access"]["PJ_ID"],
+      LB_ID:req.body["data"]["LB_ID"]}
+    
+  }))
+  await prisma.lABEL.delete({
+    where:{
+      PJ_ID_LB_ID:{
+      PJ_ID:req.body["access"]["PJ_ID"],
+      LB_ID:req.body["data"]["LB_ID"]}
     }
-})
-await prisma.pROJECT_INFO.update({
-    where: {
-        PJ_ID: this.PJ_ID,
-    },
-    data: {
-        PJ_ADMIN: user.US_ID,
-    }
-})
+  })

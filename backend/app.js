@@ -470,6 +470,95 @@ app.post('/label', async (req, res, next) => {
   }
  
 })
+app.get('/label', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success ){
+      const data= await prisma.lABEL.findMany({
+        where:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+        },
+        include:{
+          TASK_INFO:true,
+        }
+      })
+      res.json({data,message})
+    
+
+     
+  }
+  else
+  {
+    
+    res.json({data:{},message})
+  }
+ 
+})
+app.delete('/label', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success &&project_service.member.US_POS<2){
+
+      const task=await prisma.tASK_INFO.findMany({
+        where:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_LABEL:req.body["data"]["LB_ID"],
+        },
+        select:{
+          TASK_ID:true
+        }
+      })
+      console.log(task.slice(0).TASK_ID)
+      if (task.length>0){
+      for (i=0;i<task.length;i++)
+      await prisma.tASK_RESPONDSIPLE.deleteMany({
+        where:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_ID:task[i].TASK_ID
+        }
+      })
+
+      await prisma.tASK_INFO.deleteMany({
+        where:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          TASK_LABEL:req.body["data"]["LB_ID"],
+        }
+
+      })}
+      if ( await prisma.lABEL.findFirst({
+        where:{
+         
+          PJ_ID:req.body["access"]["PJ_ID"],
+          LB_ID:req.body["data"]["LB_ID"]}
+        
+      }))
+      await prisma.lABEL.delete({
+        where:{
+          PJ_ID_LB_ID:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          LB_ID:req.body["data"]["LB_ID"]}
+        }
+      })
+      
+      res.json({data:{},message})
+  }
+  else
+  {
+    if (message.success)
+    res.json({data:{},message: new Message(false,"Not permit to create Label")})
+    else
+    res.json({data:{},message})
+  }
+ 
+})
 app.use('/api', require('./routes/api.route'));
 
 app.use((req, res, next) => {
