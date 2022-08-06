@@ -15,6 +15,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
+app.use(cors())
+app.options('*', cors())
 function toJson(data) {
   return JSON.stringify(data, (_, v) => typeof v === 'bigint' ? v.toString() : v);
 }
