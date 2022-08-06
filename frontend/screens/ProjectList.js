@@ -7,33 +7,43 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { tempData } from "../components";
 import { ProjectInputModal } from "../components/PopUpModal";
 
-import axios from 'axios'
+import axios from "../components/axios";
 
 
 const ProjectList = ({ navigation }) => {
     const [text, setText] = useState('');
     const [inputModalVisible, setInputModalVisible] = useState(false);
-    const [filteredData, setFilteredData] = useState(tempData);
+    const [projects, setProjects] = useState([])
+    const [filteredData, setFilteredData] = useState([]);
 
     const searchProject = (e) => {
         let text = e.toLowerCase()
-        let filteredName = tempData.filter((item) => {
+        let filteredName = projects.filter((item) => {
             return item.PJ_NAME.toLowerCase().includes(text)
         })
         setFilteredData(filteredName);
     }
 
-    const [projects, setProjects] = useState([])
+
 
     useEffect(() => {
         const fetchproducts = async () => {
-            const { data } = await axios.get('http://localhost:3000/project')
-            setProjects(data.data.PROJECT_INFO)
+            const { data } = await axios.get('/login',
+                {
+                    params: {
+                        "US_ACCOUNT": "goporo",
+                        "US_PASSWORD": "123456",
+                    }
+                })
+            const temp = data.data.USER_INFO.PROJECT_MEMBER
+            console.log(temp[0].PROJECT_INFO)
+            setProjects(temp)
+            setFilteredData(temp)
         }
         fetchproducts();
     }, [])
 
-
+    const { PJ_ID, PJ_NAME, a1, a2, a3, a4, a5, LABELS } = projects
     return (
         <SafeAreaView style={{
             backgroundColor: colors.mainBackground,
@@ -42,9 +52,7 @@ const ProjectList = ({ navigation }) => {
             paddingHorizontal: 25
 
         }}>
-            <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
-                console.log(projects, tempData[0].PJ_NAME)
-            }} />
+
             <View style={{
                 flexDirection: 'row',
                 margin: 10,
@@ -95,7 +103,7 @@ const ProjectList = ({ navigation }) => {
 
             <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15, fontWeight: 'bold', marginBottom: 10 }}>All projects</Text>
 
-            <ScrollView>
+
             {filteredData.map((item, index) =>
                 <TouchableOpacity
                     key={index}
@@ -128,7 +136,7 @@ const ProjectList = ({ navigation }) => {
                                 color: colors.textColor,
                                 alignContent: 'center',
                                 margin: 4,
-                            }}>{projects.PJ_NAME}</Text>
+                            }}>{item.PROJECT_INFO.PJ_NAME}</Text>
                             <Text style={{
                                 fontSize: 14, color: colors.textColor, alignContent: 'center', margin: 4,
                                 opacity: .75,
@@ -141,8 +149,6 @@ const ProjectList = ({ navigation }) => {
 
                 </TouchableOpacity>)
             }
-            </ScrollView>
-            
 
             <TouchableOpacity
                 onPress={() => { setInputModalVisible(true) }}
