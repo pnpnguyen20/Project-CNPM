@@ -35,8 +35,8 @@ const Board = (props) => {
         setTaskModalVisible(true)
       }}>
       <Task
-        text={item.text}
-        memberName={"Nguyen Van An"}
+        text={item.TASK_NAME}
+        memberName={"Nguyen Anh"}
       />
     </TouchableOpacity>
 

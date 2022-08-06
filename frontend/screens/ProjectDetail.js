@@ -24,22 +24,26 @@ export default function ProjectDetail({ route, navigation }) {
   const [project, setProject] = useState([])
   const [PJ_NAME, setPJ_NAME] = useState(project.PJ_NAME);
   const [LABELS, setLABELS] = useState([]);
+
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/project',
-        {
-          params: {
-            "PJ_ID": 1
-            , "MEM_ID": 1
-            , "MEM_POS": 0
-          }
-        })
-      const temp = data.data.PROJECT_INFO
 
-      setProject(temp)
+      const { data } = await axios.put('/project',
+        {
+          "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+          , "MEM_ID": route.params.MEM_ID
+          , "MEM_POS": 0
+        })
+      const message = data.message
+      if (message.success) {
+        console.log(data.data)
+        setProject(data.data.PROJECT_INFO)
+        setLABELS(data.data.PROJECT_INFO.LABELS)
+      }
+      else
+        console.log(message)
     }
     fetchproducts();
-
   }, [])
 
   const scrollRef1 = useRef();
@@ -103,11 +107,7 @@ export default function ProjectDetail({ route, navigation }) {
         paddingTop: 10
       }}
     >
-      <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
-        console.log(project.LABELS[0])
-        setLABELS(project.LABELS[0])
-        console.log(LABELS)
-      }} />
+
       <View
         style={{
           flexDirection: "row",
@@ -141,7 +141,7 @@ export default function ProjectDetail({ route, navigation }) {
           }}
         >
           <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
-            {project.PJ_NAME}
+            {route.params.PROJECT_INFO.PJ_NAME}
           </Text>
           <Icon
             name={"caret-down"}
