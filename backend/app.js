@@ -46,6 +46,8 @@ app.get('/login', async (req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type")
   //console.log(req.body)
   //console.log(req.body["US_ACCOUNT"])
+  if(res.body)
+  {
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const message=await us_service.acc.logIn()
   if(message.success)
@@ -75,12 +77,15 @@ app.get('/login', async (req, res, next) => {
   }
   else
     res.json({data:{},message})
+}
+res.json({data:{},message: new Message(false,"undifined")})
 });
 
 app.get('/info', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", " GET");
   res.header("Access-Control-Allow-Headers", "Content-Type")
+  
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   //us_service.acc.user_id=req.body["US_ID"]
   us_service.acc.token=req.body["US_TOKEN"]

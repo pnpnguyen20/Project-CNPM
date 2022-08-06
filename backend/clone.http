@@ -16,8 +16,8 @@ GET   http://localhost:9696/login
 Content-Type: application/json
 
 {
-    "US_ID":3,
-    "US_ACCOUNT":"PhamMinhTai123",
+    "US_ID":2,
+    "US_ACCOUNT":"Pha3MinhTai123",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }

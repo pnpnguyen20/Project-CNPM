@@ -28,6 +28,7 @@ const ProjectList = ({ navigation }) => {
 
     useEffect(() => {
         const fetchproducts = async () => {
+            console.log(1)
             const { data } = await axios.get('/login',
                 {
                     params: {
