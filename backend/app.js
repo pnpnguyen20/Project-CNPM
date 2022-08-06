@@ -38,16 +38,15 @@ app.patch('/login', async (req, res, next) => {
   us_service.acc.token=req.body["access"]["US_TOKEN"]
   res.json(await us_service.acc.changePass(req.body["access"]["US_PASSWORD"],req.body["US_NEWPASS"]))
 });
-app.get('/login', async (req, res, next) => {
+app.put('/login', async (req, res, next) => {
   
   
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", " GET");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
-  //console.log(req.body)
+  console.log(req)
   //console.log(req.body["US_ACCOUNT"])
-  if(res.body)
-  {
+ 
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
   const message=await us_service.acc.logIn()
   if(message.success)
@@ -78,12 +77,11 @@ app.get('/login', async (req, res, next) => {
   else
     res.json({data:{},message})
 }
-res.json({data:{},message: new Message(false,"undifined")})
-});
+);
 
-app.get('/info', async (req, res, next) => {
+app.put('/info', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", " GET");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
   
   const us_service=new UserService.UserManager(req.body["US_ACCOUNT"],req.body["US_PASSWORD"])
@@ -193,9 +191,9 @@ app.post('/info', async (req, res, next) => {
   else
   res.json({data:{},message:new Message(false,"User is not log in")})
 });
-app.get('/project', async (req, res, next) => {
+app.put('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", " GET");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
   
   const project=new ProjectService.Project_Manager()
@@ -475,7 +473,7 @@ app.post('/label', async (req, res, next) => {
   }
  
 })
-app.get('/label', async (req, res, next) => {
+app.put('/label', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")  
   res.header("Access-Control-Allow-Methods", " POST");
   res.header("Access-Control-Allow-Headers", "Content-Type")

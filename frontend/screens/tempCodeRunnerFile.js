@@ -1,11 +1,11 @@
- const fetchproducts = async () => {
-            console.log(1)
+ const fetchproducts = async  () =>{
+            
             const { data } = await axios.get('/login',
                 {
-                    params: {
-                        "US_ACCOUNT": "goporo",
-                        "US_PASSWORD": "123456",
-                    }
+                    data: {
+                        US_ACCOUNT: 'goporo',
+                        US_PASSWORD: '123456',
+                    } 
                 })
             const temp = data.data.USER_INFO.PROJECT_MEMBER
             console.log(temp[0].PROJECT_INFO)

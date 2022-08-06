@@ -27,20 +27,20 @@ const ProjectList = ({ navigation }) => {
 
 
     useEffect(() => {
-        const fetchproducts =await ( async function () {
+        const fetchproducts = async  () =>{
             
-            const { data } = await axios.get('/login',
+            const { data } = await axios.put('/login',
                 {
-                    params: {
-                        "US_ACCOUNT": "goporo",
-                        "US_PASSWORD": "123456",
-                    }
+                    data: {
+                        US_ACCOUNT: 'goporo',
+                        US_PASSWORD: '123456',
+                    } 
                 })
             const temp = data.data.USER_INFO.PROJECT_MEMBER
             console.log(temp[0].PROJECT_INFO)
             setProjects(temp)
             setFilteredData(temp)
-        })()
+        }
         fetchproducts();
     }, [])
 
