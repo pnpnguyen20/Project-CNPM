@@ -674,4 +674,217 @@ const ProjectModal = (props) => {
   );
 };
 
-export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal };
+
+const MemberModal = (props) => {
+  const [title, setTitle] = useState("");
+  
+  const tempMember = [
+    {
+      src: require("../assets/prj_icon.png"),
+      name: "Minh Tài",
+      lead: true,
+    },
+    {
+      src: require("../assets/prj_icon.png"),
+      name: "Hữu Niên",
+      lead: false,
+    }
+  ]
+
+  return (
+    <View >
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => props.close()}
+        >
+          <Pressable style={props.styles}>
+            <View style={{ padding: 25, paddingVertical: 30 }}>
+              <View style={{ flexDirection: "row" }}>
+                <Ionicons
+                  name={"arrow-back"}
+                  style={{
+                    color: colors.primary1,
+                    fontSize: 25,
+                    marginRight: 15,
+                    alignSelf: 'center'
+                  }}
+                />
+                <Text
+                  style={{
+                    color: colors.textColor,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 28,
+                  }}
+                >
+                  Member
+                </Text>
+                <Ionicons
+                  name={"add-circle-outline"}
+                  style={{
+                    color: colors.primary1,
+                    fontSize: 23,
+                    position: "absolute",
+                    right: 15,
+                    alignSelf: "center",
+                  }}
+                />
+
+              </View>
+              
+              {tempMember.map((item, index) =>
+              <TouchableOpacity
+                key={index}
+                style={{
+                flexDirection: 'row',
+
+                alignItems: 'center',
+                borderRadius: 15,
+                marginBottom: 10,
+              }}>
+              <Image source={item.src}
+                style={{
+                  width: 40,
+                  height: 40,
+                  marginRight: 20,
+                  margin: 10,
+                  borderRadius: 50,
+              }} />
+
+                <Text style={{
+                  fontSize: 17,
+                  color: colors.textColor,
+                  alignContent: 'center',
+                  margin: 5,
+                }}>
+                  {item.name}
+                </Text>
+
+                <Ionicons
+                  name={item.lead ? "flag" : "flag-outline"}
+                  style={{
+                    color: colors.primary1,
+                    fontSize: 25,
+                    marginRight: 15,
+                    alignSelf: 'center',
+                    marginLeft: 20
+                  }}/>
+
+                <TouchableOpacity>
+                  <Entypo
+                    name="dots-three-horizontal"
+                    style={{ borderRadius: 50, fontSize: 50, color: colors.primary1, marginLeft: 10 }} />
+                </TouchableOpacity>
+              
+
+          </TouchableOpacity>)
+        }
+            </View>
+
+          </Pressable>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
+
+
+const addMemberModal = (props) => {
+  const [title, setTitle] = useState("");
+  
+  const tempMember = [
+    {
+      src: require("../assets/prj_icon.png"),
+      name: "Quang",
+      added: true,
+    },
+    {
+      src: require("../assets/prj_icon.png"),
+      name: "Toàn",
+      added: false,
+    }
+  ]
+
+  return (
+    <View >
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => props.close()}
+        >
+          <Pressable style={props.styles}>
+            <View style={{ padding: 25, paddingVertical: 30 }}>
+              <View style={{ flexDirection: "row" }}>
+                <Ionicons
+                  name={"arrow-back"}
+                  style={{
+                    color: colors.primary1,
+                    fontSize: 25,
+                    marginRight: 15,
+                    alignSelf: 'center'
+                  }}
+                />
+                <Text
+                  style={{
+                    color: colors.textColor,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 28,
+                  }}
+                >
+                  Member
+                </Text>
+              </View>
+              
+              {tempMember.map((item, index) =>
+              <TouchableOpacity
+                key={index}
+                style={{
+                flexDirection: 'row',
+
+                alignItems: 'center',
+                backgroundColor: colors.primary3,
+                borderRadius: 15,
+                marginBottom: 10,
+              }}>
+              <Image source={item.src}
+                style={{
+                  width: 40,
+                  height: 40,
+                  marginRight: 20,
+                  margin: 10,
+                  borderRadius: 50,
+              }} />
+
+                <Text style={{
+                  fontSize: 17,
+                  color: colors.textColor,
+                  alignContent: 'center',
+                  margin: 5,
+                }}>
+                  {item.name}
+                </Text>
+
+                <TouchableOpacity>
+                  <Ionicons
+                  name={item.added ? "add-circle-outline": "checkmark-circle"}
+                  style={{
+                    color: colors.primary1,
+                    fontSize: 25,
+                    marginRight: 15,
+                    alignSelf: 'center'
+                  }}/>
+                </TouchableOpacity>
+          </TouchableOpacity>)
+        }
+            </View>
+
+          </Pressable>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
+
+export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, addMemberModal };
