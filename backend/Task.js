@@ -246,3 +246,6 @@ class Task_Manager {
         })
     }
 }
+async function test(){
+    
+}

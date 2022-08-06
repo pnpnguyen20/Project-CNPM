@@ -11,7 +11,7 @@ const prisma= new PrismaClient();
 const checker=require('./DataChecker');
 const { use } = require('./routes/api.route');
 const app = express();
-
+var cors = require('cors')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));

@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "US_ID":1,
-    "US_ACCOUNT":"account1",
+    "US_ACCOUNT":"account2",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
