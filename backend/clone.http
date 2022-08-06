@@ -182,3 +182,20 @@ Content-Type: application/json
     ,"MEM_POS":2
   }
 }
+
+### create task
+POST http://localhost:9696/member
+Content-Type: application/json
+
+{
+    "access": {
+     "PJ_ID":1
+    ,"MEM_ID":1
+    ,"MEM_POS":0
+  },
+  "data":{
+    "PJ_ID":1,
+    "LB_ID":0,
+    "LB_NAME": "To do"
+  }
+}

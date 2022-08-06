@@ -375,7 +375,7 @@ app.delete('/member', async (req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
-  if(message.success&&project_service.member.US_ID<2){
+  if(message.success&&project_service.member.US_POS<2){
     const member=new ProjectService.Project_Manager()
     message=await member.connect(req.body["data"]["MEM_ID"],req.body["data"]["PJ_ID"])
     if(message.success)
@@ -423,6 +423,52 @@ app.patch('/member', async (req, res, next) => {
   }
   else
   res.json({data:{},message})
+})
+app.post('/label', async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")  
+  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+
+  const project_service=new ProjectService.Project_Manager()
+  var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
+  if(message.success &&project_service.member.US_POS<2){
+    const old= await prisma.lABEL.aggregate({
+      _max:{
+        LB_ID:true
+      },
+      where:{
+        PJ_ID:req.body["access"]["PJ_ID"]
+      }
+    })
+    if(old){
+      const newLB_ID=old._max.LB_ID+1
+      await prisma.lABEL.create({
+        data:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          LB_ID: newLB_ID,
+          LB_NAME:req.body["data"]["LB_NAME"]
+        }
+      })
+      res.json({data:{},message})}
+    
+    else{
+      await prisma.lABEL.create({
+        data:{
+          PJ_ID:req.body["access"]["PJ_ID"],
+          LB_ID:1,
+          LB_NAME:req.body["data"]["LB_NAME"]
+        }
+      })
+      res.json({data:{},message})}
+  }
+  else
+  {
+    if (message.success)
+    res.json({data:{},message: new Message(false,"Not permit to create Label")})
+    else
+    res.json({data:{},message})
+  }
+ 
 })
 app.use('/api', require('./routes/api.route'));
 

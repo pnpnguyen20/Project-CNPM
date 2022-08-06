@@ -5,17 +5,17 @@ const { DataChecker, Message } = require('./DataChecker')
 const checker = new DataChecker()
 
 class Task_info {
-    constructor(proj_id, task_id, task_name, task_status, task_description, task_createday, task_deadline, task_last_edit_time, task_last_editor, task_creator, task_emp) {
-        this.proj_id = proj_id
-        this.task_id = task_id
-        this.task_name = task_name
-        this.task_status = task_status
-        this.task_description = task_description
-        this.task_createday = task_createday
-        this.task_deadline = task_deadline
+    constructor() {
+        this.proj_id =0
+        this.task_id = 0
+        this.task_name = ""
+        this.task_status = "0"
+        this.task_description = ""
+        this.task_createday = new Date()
+        this.task_deadline = new Date()
             // this.task_last_edit_time = task_last_edit_time
             // this.task_last_editor = task_last_editor
-        this.task_creator = task_creator
+        this.task_creator = 0
             //this.task_emp = task_emp
     }
 
@@ -77,25 +77,11 @@ class Task_info {
                     TASK_NAME: this.task_name,
                     TASK_CREATEDAY: this.task_createday,
                     TASK_DEADLINE: this.task_deadline,
+                    TASK_CREATOR: user.MEM_ID,
                 }
             })
-            await prisma.TASK_RESPONDSIPLE.create({
-                data: {
-                    PJ_ID: this.proj_id,
-                    TASK_ID: this.task_id,
-                    MEM_ID: user.US_ID,
-                    MEM_POS: 0
-                }
-            })
-            await prisma.TASK_INFO.update({
-                where: {
-                    PJ_ID: this.PJ_ID,
-                    TASK_ID: this.task_id
-                },
-                data: {
-                    TASK_CREATOR: user.US_ID
-                }
-            })
+
+
         }
     }
     async loadInfo(user) {
@@ -247,5 +233,9 @@ class Task_Manager {
     }
 }
 async function test(){
-    
+    const temp= new Task_info()
+    await temp.findNewID()
+    console.log(temp)
+    console.log(await prisma.tASK_INFO.findMany({}))
 }
+test()
