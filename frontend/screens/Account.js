@@ -5,6 +5,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Feather";
 
 const Account = ({ navigation }) => {
+  const handleLogOut = () => {
+    navigation.navigate("StartScreen")
+  }
+
   return (
     <SafeAreaView style={{ backgroundColor: colors.mainBackground, flex: 1 }}>
       <ScrollView
@@ -44,7 +48,7 @@ const Account = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => { }}>
+          <TouchableOpacity onPress={() => { handleLogOut() }}>
             <View style={styles.menuItem}>
               <Icon name="log-out" color={'red'} size={20} />
               <Text style={styles.menuItemTextLogout}>Log out</Text>

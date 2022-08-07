@@ -12,6 +12,7 @@ import ProfileInfo from "../screens/ProfileInfo";
 
 import colors from "../constants/colors";
 import ProjectList from "../screens/ProjectList";
+import { useEffect } from "react";
 
 
 const Stack = createNativeStackNavigator();
@@ -31,7 +32,8 @@ const AccountStackNavigator = () => {
 const ProjectStackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="ProjectList" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={"ProjectList"} component={ProjectList} />
+      <Stack.Screen name={"ProjectList"}
+        component={ProjectList} />
       <Stack.Screen name={"ProjectDetail"} component={ProjectDetail} />
     </Stack.Navigator>
   );
@@ -50,8 +52,9 @@ const NotifStackNavigator = () => {
 
 const Tab = createBottomTabNavigator();
 
-const BotTab = () => {
+const BotTab = ({ route, navigation }) => {
   const screenOptions = () => ({
+
     headerShown: false,
     tabBarActiveTintColor: colors.primary1,
     tabBarInactiveTintColor: colors.inactive,
@@ -60,7 +63,8 @@ const BotTab = () => {
   });
   return (
     <Tab.Navigator initialRouteName="Projects" screenOptions={screenOptions}>
-      <Tab.Screen name={"Projects"} component={ProjectStackNavigator} options={{ tabBarLabel: 'Project', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="folder" color={color} size={size} />), }} />
+      <Tab.Screen name={"Projects"}
+        component={ProjectStackNavigator} options={{ tabBarLabel: 'Project', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="folder" color={color} size={size} />), }} />
       <Tab.Screen name={"Notification"} component={NotifStackNavigator} options={{ tabBarLabel: 'Notification', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="bell" color={color} size={size} />), }} />
       <Tab.Screen name={"Account"} component={AccountStackNavigator} options={{ tabBarLabel: 'Account', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="account" color={color} size={size} />), }} />
 

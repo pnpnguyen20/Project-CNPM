@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 const StartScreen = ({ navigation }) => (
     <Stack.Navigator headerMode='none' >
-        <Stack.Screen options={{ headerShown: false }} name='SplashScreen' component={SplashScreen} />
+        {/* <Stack.Screen options={{ headerShown: false }} name='SplashScreen' component={SplashScreen} /> */}
         <Stack.Screen options={{ headerShown: false }} name="SignInScreen" component={SignInScreen} />
         <Stack.Screen options={{ headerShown: false }} name="SignUpScreen" component={SignUpScreen} />
     </Stack.Navigator>

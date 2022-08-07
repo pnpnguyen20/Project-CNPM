@@ -1,9 +1,27 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 const Notification = () => {
+  const [usid, setUSID] = useState(0)
+  const [username, setUsername] = useState('USER NOT FOUND')
+
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const un = await AsyncStorage.getItem('un');
+      if (un == '') setUsername('USER NOT FOUND')
+      else setUsername(un)
+      const userid = await AsyncStorage.getItem('userid');
+      setUSID(userid)
+    }
+    fetchproducts();
+  }, [])
+
+
   const tempNotiData = [
     {
       src: require("../assets/prj_icon.png"),
@@ -31,13 +49,14 @@ const Notification = () => {
         margin: 10,
         alignItems: 'center',
         marginBottom: 35,
-
+        marginTop: 20
       }}>
         <Text style={{ color: colors.textColor, fontSize: 30, fontWeight: 'bold' }}>
           Notifications
         </Text>
-        <TouchableOpacity style={{ right: 0, position: "absolute" }}>
-          <Image source={require("../assets/anya.png")} style={{ borderRadius: 50, width: 55, height: 55 }} />
+        <TouchableOpacity style={{ right: 0, position: "absolute", alignItems: "center" }}>
+          <Image source={require(`../assets/user-ava/user${usid % 9}.png`)} style={{ borderRadius: 50, width: 55, height: 55 }} />
+          <Text style={{ marginTop: 5, fontWeight: 525, fontSize: 14, color: colors.textColor }}>{username.toUpperCase()}</Text>
         </TouchableOpacity>
       </View>
 

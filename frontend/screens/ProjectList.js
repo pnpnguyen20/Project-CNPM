@@ -1,4 +1,5 @@
 import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, TextInput, Button } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { React, useEffect, useState } from "react";
 import colors from "../constants/colors";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
@@ -10,11 +11,13 @@ import { ProjectInputModal } from "../components/PopUpModal";
 import axios from "../components/axios";
 
 
-const ProjectList = ({ navigation }) => {
+const ProjectList = (props, { navigation }) => {
     const [text, setText] = useState('');
     const [inputModalVisible, setInputModalVisible] = useState(false);
     const [projects, setProjects] = useState([])
     const [filteredData, setFilteredData] = useState([]);
+    const [usid, setUSID] = useState(0)
+    const [username, setUsername] = useState('')
 
     const searchProject = (e) => {
         let text = e.toLowerCase()
@@ -25,26 +28,32 @@ const ProjectList = ({ navigation }) => {
     }
 
 
-
     useEffect(() => {
         const fetchproducts = async () => {
-
+            const un = await AsyncStorage.getItem('un');
+            const pw = await AsyncStorage.getItem('pw');
+            setUsername(un)
             const { data } = await axios.put('/login',
                 {
 
-                    "US_ACCOUNT": 'goporo',
-                    "US_PASSWORD": '123456',
+                    "US_ACCOUNT": un,
+                    "US_PASSWORD": pw,
 
                 })
             const message = data.message
             if (message.success) {
                 const temp = data.data.USER_INFO.PROJECT_MEMBER
-                // console.log(data.data)
+                setUSID(data.data.US_ID)
+                AsyncStorage.setItem('userid', data.data.US_ID);
                 setProjects(temp)
                 setFilteredData(temp)
+                console.log(AsyncStorage.getItem('un'),
+                    AsyncStorage.getItem('pw'))
             }
-            else
+            else {
                 console.log(message)
+                setUsername('USER NOT FOUND')
+            }
         }
         fetchproducts();
     }, [])
@@ -60,6 +69,7 @@ const ProjectList = ({ navigation }) => {
         }}>
 
             <View style={{
+                marginTop: 20,
                 flexDirection: 'row',
                 margin: 10,
                 alignItems: 'center',
@@ -68,8 +78,9 @@ const ProjectList = ({ navigation }) => {
                 <Text style={{ color: colors.textColor, fontSize: 30, fontWeight: 'bold' }}>
                     Projects
                 </Text>
-                <TouchableOpacity style={{ right: 0, position: "absolute" }}>
-                    <Image source={require("../assets/anya.png")} style={{ borderRadius: 50, width: 55, height: 55 }} />
+                <TouchableOpacity style={{ right: 0, position: "absolute", alignItems: "center" }}>
+                    <Image source={require(`../assets/user-ava/user${usid % 9}.png`)} style={{ borderRadius: 50, width: 55, height: 55 }} />
+                    <Text style={{ marginTop: 5, fontWeight: 525, fontSize: 14, color: colors.textColor }}>{username.toUpperCase()}</Text>
                 </TouchableOpacity>
             </View>
 
