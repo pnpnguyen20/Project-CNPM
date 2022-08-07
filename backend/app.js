@@ -212,20 +212,33 @@ app.put('/project', async (req, res, next) => {
           include:{
             LABELS:{
               include:{
-                TASK_INFO:true,
+                TASK_INFO:{
+                  include:{
+                    TASK_RESPONDSIPLE: true,
+                  }
+                },
               }
-            }
+            },
+            PROJECT_MEMBERS:true
+
+            
           }
         },
+ 
         PROJECT_ACCESSIBILITY:true,
         
         
       }
     })
-    res.json( {data,message})
+    const user= await prisma.uSER_INFO.findMany({
+      include:{
+        USER_ACCOUNT:true,
+      }
+    })
+    res.json( {data,message,user})
   }
   else
-  res.json( {data:{},message})
+  res.json( {data:{},message,user:{}})
 });
 app.post('/project', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
