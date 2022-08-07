@@ -52,7 +52,7 @@ const NotifStackNavigator = () => {
 
 const Tab = createBottomTabNavigator();
 
-const BotTab = ({ route, navigation }) => {
+const BotTab = () => {
   const screenOptions = () => ({
 
     headerShown: false,
@@ -63,8 +63,7 @@ const BotTab = ({ route, navigation }) => {
   });
   return (
     <Tab.Navigator initialRouteName="Projects" screenOptions={screenOptions}>
-      <Tab.Screen name={"Projects"}
-        component={ProjectStackNavigator} options={{ tabBarLabel: 'Project', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="folder" color={color} size={size} />), }} />
+      <Tab.Screen name={"Projects"} component={ProjectStackNavigator} options={{ tabBarLabel: 'Project', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="folder" color={color} size={size} />), }} />
       <Tab.Screen name={"Notification"} component={NotifStackNavigator} options={{ tabBarLabel: 'Notification', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="bell" color={color} size={size} />), }} />
       <Tab.Screen name={"Account"} component={AccountStackNavigator} options={{ tabBarLabel: 'Account', tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="account" color={color} size={size} />), }} />
 

@@ -11,7 +11,7 @@ import { ProjectInputModal } from "../components/PopUpModal";
 import axios from "../components/axios";
 
 
-const ProjectList = (props, { navigation }) => {
+const ProjectList = ({ navigation }) => {
     const [text, setText] = useState('');
     const [inputModalVisible, setInputModalVisible] = useState(false);
     const [projects, setProjects] = useState([])
