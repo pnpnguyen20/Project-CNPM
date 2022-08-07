@@ -69,28 +69,6 @@ export default function ProjectDetail({ route, navigation }) {
   }
 
 
-  //delete board
-
-  // useEffect(() => {
-  //   axios.post('/label', {
-  //     "access": {
-  //       "PJ_ID": 3
-  //       , "MEM_ID": 4
-  //       , "MEM_POS": 0
-  //     },
-  //     "data": {
-  //       "PJ_ID": 3,
-  //       "LB_ID": 3,
-  //       "LB_NAME": "To do"
-  //     }
-  //   })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, [])
 
   const scrollRef1 = useRef();
 
@@ -99,19 +77,8 @@ export default function ProjectDetail({ route, navigation }) {
   const [memnerVisible, setMemberVisible] = useState(false);
 
 
-
   const handleAddBoard = (title) => {
-    // setLABELS([
-    //   ...LABELS,
-    //   {
-    //     id: new Date().getTime() % 1e6,
-    //     title: title ? title.toUpperCase() : "NEW COLUMN",
-    //     tasks: [{ id: new Date().getTime() % 1e6, text: "this is a task" }],
-    //   },
-    // ]);
-
-    postBoard(3, title)
-
+    postBoard(LABELS.length, title)
     setTimeout(() => {
       scrollRef1.current.scrollToEnd({ animated: true });
     }, 150);
@@ -128,9 +95,20 @@ export default function ProjectDetail({ route, navigation }) {
   };
 
   const handleDeleteBoard = (id) => {
-    const filteredData = LABELS.filter((item) => item.id !== id);
-    setLABELS(filteredData);
-  };
+    axios.delete('/label', {
+      "access": {
+        "PJ_ID": 3
+        , "MEM_ID": 4
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": 99,
+        "LB_ID": 3,
+        "LB_NAME": "99"
+      }
+    })
+    setNeedRefresh(!needRefresh)
+  }
 
   const renderItem = ({ item, index }) => (
     <View>
@@ -274,7 +252,7 @@ export default function ProjectDetail({ route, navigation }) {
         scrollEnabled
         data={LABELS}
         renderItem={renderItem}
-        keyExtractor={(item) => item.LB_NAME}
+        keyExtractor={(item) => item.LB_ID}
       />
 
     </SafeAreaView>

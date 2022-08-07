@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "US_ID":4,
-    "US_ACCOUNT":"goporo",
+    "US_ACCOUNT":"goporo1",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -135,12 +135,12 @@ Content-Type: application/json
 
 {
   "access": {
-     "PJ_ID":1
-    ,"MEM_ID":1
+     "PJ_ID":3
+    ,"MEM_ID":4
     ,"MEM_POS":0
   },
   "data":{
-    "US_ID": 2,
+    "US_ID": 6,
     "US_NAME": "Pham Minh Tai",
     "US_MAIL": "pmt@clc.fitus.edu.vn",
     "US_PHONE": "0123456789",
@@ -232,14 +232,14 @@ Content-Type: application/json
 
 {
     "access": {
-     "PJ_ID":1 
-    ,"MEM_ID":1
+     "PJ_ID":3
+    ,"MEM_ID":4
     ,"MEM_POS":0
   },
   "data":{
-    "PJ_ID":1,
-    "LB_ID":2,
-    "LB_NAME": "To do"
+    "PJ_ID":3,
+    "LB_ID":3,//
+    "LB_NAME": "gelo"
   }
 }
 ### create task
