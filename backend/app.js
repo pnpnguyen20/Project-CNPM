@@ -365,8 +365,15 @@ app.post('/member', async (req, res, next) => {
   var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
   if(message.success){
     project_service.project_member=new ProjectService.Project_Member(project_service.member)
-    message=await project_service.project_member.addMember(req.body["data"]["US_ID"])
-    
+    const data= await prisma.uSER_ACCOUNT.findFirst({
+      where:{
+        US_ACCOUNT:req.body["data"]["US_ACCOUNT"]
+      }
+    })
+    if(data)
+    message=await project_service.project_member.addMember(data.US_ID)
+    else
+      message=new Message(false,"account not correct")
     res.json({data:{},message})
   }
   else
