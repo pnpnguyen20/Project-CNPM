@@ -38,7 +38,7 @@ export default function ProjectDetail({ route, navigation }) {
         })
       const message = data.message
       if (message.success) {
-        // console.log(data.data)
+        console.log(data.data)
         setProject(data.data.PROJECT_INFO)
         setLABELS(data.data.PROJECT_INFO.LABELS)
       }
@@ -95,15 +95,15 @@ export default function ProjectDetail({ route, navigation }) {
   };
 
   const handleDeleteBoard = (id) => {
-    axios.delete('/label', {
+    axios.put('/delete/label', {
       "access": {
-        "PJ_ID": 3
-        , "MEM_ID": 4
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
         , "MEM_POS": 0
       },
       "data": {
-        "PJ_ID": 3,
-        "LB_ID": 3,
+        "PJ_ID": 99,
+        "LB_ID": id,
         "LB_NAME": "99"
       }
     })
