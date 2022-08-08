@@ -18,14 +18,15 @@ const ProjectList = ({ route, navigation }) => {
     const [filteredData, setFilteredData] = useState([]);
     const [usid, setUSID] = useState(0)
     const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const [needRefresh, setNeedRefresh] = useState(false)
 
     const handleAddProject = (title) => {
         axios.post('/project', {
             "access": {
                 "US_ID": usid,
-                "US_ACCOUNT": "goporo",
-                "US_PASSWORD": "123456",
+                "US_ACCOUNT": username,
+                "US_PASSWORD": password,
                 "TOKEN": null
             },
             "data": {
@@ -55,6 +56,7 @@ const ProjectList = ({ route, navigation }) => {
             const un = await AsyncStorage.getItem('un');
             const pw = await AsyncStorage.getItem('pw');
             setUsername(un)
+            setPassword(pw)
             const { data } = await axios.put('/login',
                 {
 
