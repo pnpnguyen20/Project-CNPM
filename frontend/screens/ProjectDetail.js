@@ -102,7 +102,7 @@ export default function ProjectDetail({ route, navigation }) {
         , "MEM_POS": 0
       },
       "data": {
-        "PJ_ID": 99,
+        "PJ_ID": 3,
         "LB_ID": 3,
         "LB_NAME": "99"
       }
