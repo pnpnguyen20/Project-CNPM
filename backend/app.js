@@ -281,9 +281,9 @@ app.post('/project', async (req, res, next) => {
   else
   res.json({data:{},message: new Message(false,"Unknown user")})
 });
-app.delete('/project',async(req,res,next)=>{
+app.put('/delete/project',async(req,res,next)=>{
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", " DELETE");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   const message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
@@ -392,9 +392,9 @@ app.post('/member', async (req, res, next) => {
   else
   res.json({data:{},message})
 })
-app.delete('/member', async (req, res, next) => {
+app.put('/delete/member', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", " DELETE");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
   const project_service=new ProjectService.Project_Manager()
   var message=await project_service.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
@@ -521,9 +521,9 @@ app.put('/label', async (req, res, next) => {
   }
  
 })
-app.delete('/label', async (req, res, next) => {
+app.put('/delete/label', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")  
-  res.header("Access-Control-Allow-Methods", " DELETE");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
 
   const project_service=new ProjectService.Project_Manager()
@@ -682,9 +682,9 @@ app.post('/task', async (req, res, next) => {
   }
  
 })
-app.delete('/task', async (req, res, next) => {
+app.put('/delete/task', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")  
-  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
 
   const project_service=new ProjectService.Project_Manager()
@@ -830,9 +830,9 @@ app.post('/taskmember', async (req, res, next) => {
   else
   res.json({data:{},message})
 })
-app.delete('/taskmember', async (req, res, next) => {
+app.put('/delete/taskmember', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", " POST");
+  res.header("Access-Control-Allow-Methods", " PUT");
   res.header("Access-Control-Allow-Headers", "Content-Type")
   const admin=new ProjectService.Project_Manager()
   var message=await admin.connect(req.body["access"]["MEM_ID"],req.body["access"]["PJ_ID"])
