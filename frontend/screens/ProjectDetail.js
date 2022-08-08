@@ -24,6 +24,7 @@ export default function ProjectDetail({ route, navigation }) {
   const [project, setProject] = useState([])
   const [PJ_NAME, setPJ_NAME] = useState(project.PJ_NAME);
   const [LABELS, setLABELS] = useState([]);
+  const [Members, setMembers] = useState([]);
   const [needRefresh, setNeedRefresh] = useState(false)
 
   //get
@@ -41,6 +42,9 @@ export default function ProjectDetail({ route, navigation }) {
         console.log(data.data)
         setProject(data.data.PROJECT_INFO)
         setLABELS(data.data.PROJECT_INFO.LABELS)
+        setMembers(data.data.PROJECT_INFO.PROJECT_MEMBERS)
+        
+
       }
       else
         console.log(message)
@@ -68,7 +72,22 @@ export default function ProjectDetail({ route, navigation }) {
     setNeedRefresh(!needRefresh)
   }
 
+  const postMem = (MEM_ID) => {
 
+    axios.post('/member', {
+      "access": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID,
+        "MEM_ID": MEM_ID
+      }
+    })
+
+    setNeedRefresh(!needRefresh)
+  }
 
   const scrollRef1 = useRef();
 
@@ -105,6 +124,21 @@ export default function ProjectDetail({ route, navigation }) {
         "PJ_ID": 99,
         "LB_ID": id,
         "LB_NAME": "99"
+      }
+    })
+    setNeedRefresh(!needRefresh)
+  }
+
+  const handleDeleteMem = (id) => {
+    axios.put('/delete/member', {
+      "access": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": 99,
+        "MEM_ID": id,
       }
     })
     setNeedRefresh(!needRefresh)
@@ -183,7 +217,7 @@ export default function ProjectDetail({ route, navigation }) {
         </TouchableOpacity>
 
 
-        <AddMemberModal
+        <MemberModal
           isVisible={projectVisible}
           styles={{
             backgroundColor: colors.mainBackground,
@@ -196,7 +230,7 @@ export default function ProjectDetail({ route, navigation }) {
             shadowOpacity: 1,
             shadowRadius: 300,
           }}
-
+          Members = {Members}
           close={() => {
             setProjectVisible(false);
           }}

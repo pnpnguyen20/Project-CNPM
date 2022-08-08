@@ -692,23 +692,9 @@ const ProjectModal = (props) => {
 
 
 const MemberModal = (props) => {
-  const [title, setTitle] = useState("");
-  
-  const tempMember = [
-    {
-      src: require("../assets/prj_icon.png"),
-      name: "Minh Tài",
-      lead: true,
-    },
-    {
-      src: require("../assets/prj_icon.png"),
-      name: "Hữu Niên",
-      lead: false,
-    }
-  ]
 
   return (
-    <View >
+    <View>
       <Modal animationType="none" transparent={true} visible={props.isVisible}>
         <Pressable
           style={{ flex: 1 }}
@@ -756,7 +742,7 @@ const MemberModal = (props) => {
 
               </View>
               <ScrollView>
-              {tempMember.map((item, index) =>
+              {props.Members.map((item, index) =>
               <TouchableOpacity
                 key={index}
                 style={{
@@ -766,7 +752,7 @@ const MemberModal = (props) => {
                 borderRadius: 15,
                 paddingBottom: 10,
               }}>
-              <Image source={item.src}
+              <Image source={require("../assets/prj_icon.png")}
                 style={{
                   width: 40,
                   height: 40,
@@ -781,7 +767,7 @@ const MemberModal = (props) => {
                   margin: 5,
                   fontWeight: "700"
                 }}>
-                  {item.name}
+                  {item.MEM_ID}
                 </Text>
 
 
