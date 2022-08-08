@@ -198,9 +198,7 @@ export default function ProjectDetail({ route, navigation }) {
             flex: 1,
             marginHorizontal: 30,
           }}
-          onPress={() => {
-            setProjectVisible(!projectVisible)
-          }}
+          onPress={() => {setProjectVisible(!projectVisible)}}
         >
           <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
             {route.params.PROJECT_INFO.PJ_NAME}
@@ -215,7 +213,6 @@ export default function ProjectDetail({ route, navigation }) {
             }}
           />
         </TouchableOpacity>
-
 
         <MemberModal
           isVisible={projectVisible}
@@ -237,9 +234,7 @@ export default function ProjectDetail({ route, navigation }) {
         />
 
         <TouchableOpacity
-          onPress={() => {
-            setModalVisible(!modalVisible);
-          }}
+          onPress={() => {setModalVisible(!modalVisible)}}
         >
           <Entypo
             name={"menu"}
@@ -251,6 +246,7 @@ export default function ProjectDetail({ route, navigation }) {
             }}
           />
         </TouchableOpacity>
+        
         <PopUpModal
           isVisible={modalVisible}
           styles={{

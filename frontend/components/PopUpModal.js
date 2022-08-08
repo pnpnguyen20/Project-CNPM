@@ -690,8 +690,89 @@ const ProjectModal = (props) => {
   );
 };
 
+const MemberPopUpModal = (props) => {
+  const [inputModalVisible, setInputModalVisible] = useState(false);
+  const [ProjectVisible, setProjectVisible] = useState(false);
+  return (
+    <View>
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => {
+            props.close();
+          }}
+        >
+          <View>
+            <View style={props.styles}>
+              <View style={{
+                flexDirection: "column",
+                shadowOpacity: 0.5,
+                shadowRadius: 75,
+                shadowColor: colors.textColor,
+              }}>
+                <Text
+                  style={{
+                    fontSize: 13,
+                    color: colors.textColor,
+                    opacity: 0.5,
+                    textAlign: "center",
+                    marginVertical: 10,
+                  }}
+                >
+                  Member actions
+                </Text>
+                <View
+                  style={{
+                    height: 0.5,
+                    backgroundColor: colors.textColor,
+                    opacity: 0.5,
+                  }}
+                />
+
+                <View
+                  style={{
+                    height: 0.5,
+                    backgroundColor: colors.textColor,
+                    opacity: 0.5,
+                  }}
+                />
+                <TouchableOpacity
+                  style={{
+                    paddingVertical: 10,
+                    paddingLeft: 15,
+                  }}
+                  onPress={() => {
+                    setProjectVisible(true);
+                    props.close();
+                  }}
+                >
+                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
+                    Assign to team leader
+                  </Text>
+                </TouchableOpacity>
+                <View
+                  style={{
+                    height: 0.5,
+                    backgroundColor: colors.textColor,
+                    opacity: 0.5,
+                  }}
+                />
+                <TouchableOpacity
+                  style={{ paddingVertical: 10, paddingLeft: 15 }}
+                >
+                  <Text style={{ color: colors.warning, fontSize: 15, fontWeight: "bold", }}>Remove member</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
 
 const MemberModal = (props) => {
+  const [ModalVisible, setModalVisible] = useState(false);
 
   return (
     <View>
@@ -773,7 +854,7 @@ const MemberModal = (props) => {
 
                 <TouchableOpacity style={{position: "absolute", right: 45,}}>
                 <Ionicons
-                  name={item.lead ? "flag" : "flag-outline"}
+                  name={item.MEM_POS === '1' ? "flag" : "flag-outline"}
                   style={{
                     color: colors.primary1,
                     fontSize: 25,
@@ -783,12 +864,28 @@ const MemberModal = (props) => {
                   }}/>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{position: "absolute", right: 15,}}>
+                <TouchableOpacity style={{position: "absolute", right: 15,}} 
+                  onPress={() => {
+                  setModalVisible(!ModalVisible)
+                }}>
                   <Entypo
                     name="dots-three-horizontal"
                     style={{fontSize: 20, color: colors.textColor, marginLeft: 5 }} />
                 </TouchableOpacity>
-              
+
+                <MemberPopUpModal
+                  isVisible={ModalVisible}
+                  styles={{
+                    backgroundColor: colors.mainBackground,
+                    width: 230,
+                    right: 10,
+                    position: "absolute",
+                    borderRadius: 10,
+                  }}
+                  close={() => {
+                  setModalVisible(false);
+                  }}
+                />
 
           </TouchableOpacity>
           )}
