@@ -523,7 +523,7 @@ app.put('/label', async (req, res, next) => {
 })
 app.delete('/label', async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")  
-  res.header("Access-Control-Allow-Methods", " *");
+  res.header("Access-Control-Allow-Methods", " DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type")
 
   const project_service=new ProjectService.Project_Manager()
@@ -539,7 +539,6 @@ app.delete('/label', async (req, res, next) => {
           TASK_ID:true
         }
       })
-      console.log(task.slice(0).TASK_ID)
       if (task.length>0){
       for (i=0;i<task.length;i++)
       await prisma.tASK_RESPONDSIPLE.deleteMany({
