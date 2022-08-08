@@ -81,12 +81,12 @@ Content-Type: application/json
 {
   "access": {
     "US_ID":4,
-    "US_ACCOUNT":"goporo",
-    "US_PASSWORD":"123456",
+    "US_ACCOUNT":"99",
+    "US_PASSWORD":"99",
     "TOKEN":null
 },
   "data":{
-      "PJ_ID": 0,
+      "PJ_ID": 99,
       "PJ_NAME": "PRJ TEST",
       "PJ_CREATEDAY": "2022-08-05T14:03:50.911Z",
       "PJ_DEADLINE": "09/09/2022",
@@ -101,8 +101,8 @@ Content-Type: application/json
 
 {
   "access": {
-    "PJ_ID":1
-    ,"MEM_ID":1
+    "PJ_ID":4
+    ,"MEM_ID":3
     ,"MEM_POS":0
 }}
 
@@ -237,9 +237,9 @@ Content-Type: application/json
     ,"MEM_POS":0
   },
   "data":{
-    "PJ_ID":3,
-    "LB_ID":3,//
-    "LB_NAME": "gelo"
+    "PJ_ID":99,
+    "LB_ID":3,
+    "LB_NAME": "99"
   }
 }
 ### create task

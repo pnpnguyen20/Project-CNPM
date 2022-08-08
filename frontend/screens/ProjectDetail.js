@@ -43,7 +43,7 @@ export default function ProjectDetail({ route, navigation }) {
         setProject(data.data.PROJECT_INFO)
         setLABELS(data.data.PROJECT_INFO.LABELS)
         setMembers(data.data.PROJECT_INFO.PROJECT_MEMBERS)
-        
+
 
       }
       else
@@ -95,6 +95,18 @@ export default function ProjectDetail({ route, navigation }) {
   const [projectVisible, setProjectVisible] = useState(false);
   const [memnerVisible, setMemberVisible] = useState(false);
 
+  const handleLeave = () => {
+
+    axios.put('/delete/project', {
+      "access": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      }
+    })
+
+    navigation.navigate("ProjectList", { refresh: 1 })
+  }
 
   const handleAddBoard = (title) => {
     postBoard(LABELS.length, title)
@@ -198,7 +210,7 @@ export default function ProjectDetail({ route, navigation }) {
             flex: 1,
             marginHorizontal: 30,
           }}
-          onPress={() => {setProjectVisible(!projectVisible)}}
+          onPress={() => { setProjectVisible(!projectVisible) }}
         >
           <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
             {route.params.PROJECT_INFO.PJ_NAME}
@@ -227,14 +239,14 @@ export default function ProjectDetail({ route, navigation }) {
             shadowOpacity: 1,
             shadowRadius: 300,
           }}
-          Members = {Members}
+          Members={Members}
           close={() => {
             setProjectVisible(false);
           }}
         />
 
         <TouchableOpacity
-          onPress={() => {setModalVisible(!modalVisible)}}
+          onPress={() => { setModalVisible(!modalVisible) }}
         >
           <Entypo
             name={"menu"}
@@ -246,7 +258,7 @@ export default function ProjectDetail({ route, navigation }) {
             }}
           />
         </TouchableOpacity>
-        
+
         <PopUpModal
           isVisible={modalVisible}
           styles={{
@@ -257,6 +269,8 @@ export default function ProjectDetail({ route, navigation }) {
             position: "absolute",
             borderRadius: 10,
           }}
+          goBack={1}
+          handleLeave={handleLeave}
           addBoard={handleAddBoard}
           close={() => {
             setModalVisible(false);

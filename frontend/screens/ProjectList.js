@@ -11,13 +11,35 @@ import { ProjectInputModal } from "../components/PopUpModal";
 import axios from "../components/axios";
 
 
-const ProjectList = ({ navigation }) => {
+const ProjectList = ({ route, navigation }) => {
     const [text, setText] = useState('');
     const [inputModalVisible, setInputModalVisible] = useState(false);
     const [projects, setProjects] = useState([])
     const [filteredData, setFilteredData] = useState([]);
     const [usid, setUSID] = useState(0)
     const [username, setUsername] = useState('')
+    const [needRefresh, setNeedRefresh] = useState(false)
+
+    const handleAddProject = (title) => {
+        axios.post('/project', {
+            "access": {
+                "US_ID": usid,
+                "US_ACCOUNT": "goporo",
+                "US_PASSWORD": "123456",
+                "TOKEN": null
+            },
+            "data": {
+                "PJ_ID": 99,
+                "PJ_NAME": title,
+                "PJ_CREATEDAY": "2022-08-05T14:03:50.911Z",
+                "PJ_DEADLINE": "09/09/2022",
+                "PJ_STATUS": "0",
+                "PJ_ADMIN": 1,
+                "PJ_OWNER": "Khoa CNTT"
+            }
+        })
+        setNeedRefresh(!needRefresh)
+    }
 
     const searchProject = (e) => {
         let text = e.toLowerCase()
@@ -47,16 +69,14 @@ const ProjectList = ({ navigation }) => {
                 AsyncStorage.setItem('userid', data.data.US_ID);
                 setProjects(temp)
                 setFilteredData(temp)
-                console.log(AsyncStorage.getItem('un'),
-                    AsyncStorage.getItem('pw'))
+
             }
             else {
-                console.log(message)
                 setUsername('USER NOT FOUND')
             }
         }
         fetchproducts();
-    }, [])
+    }, [route.params, needRefresh])
 
     const { PJ_ID, PJ_NAME, a1, a2, a3, a4, a5, LABELS } = projects
     return (
@@ -121,51 +141,53 @@ const ProjectList = ({ navigation }) => {
             <Text style={{ fontSize: 20, color: colors.textColor, marginTop: 15, fontWeight: 'bold', marginBottom: 10 }}>All projects</Text>
 
 
-            {filteredData.map((item, index) =>
-                <TouchableOpacity
-                    key={index}
-                    onPress={() => navigation.navigate("ProjectDetail", item)}
-                    style={{
-                        minHeight: 100,
-                        // width: "100%",
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        backgroundColor: colors.primary3,
-                        borderRadius: 15,
-                        marginBottom: 10,
-                    }}>
-                    <Image source={require("../assets/project.png")} style={{
-                        width: 55,
-                        height: 55,
-                        marginRight: 20,
-                        margin: 10,
-                        borderRadius: 6,
-                        shadowColor: '#000000',
-                        shadowOffset: { width: 1, height: 3 },
-                        shadowOpacity: 0.9,
-                        shadowRadius: 3,
-                        elevation: 5,
-                    }} />
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={{
-                                fontSize: 20,
-                                color: colors.textColor,
-                                alignContent: 'center',
-                                margin: 4,
-                            }}>{item.PROJECT_INFO.PJ_NAME}</Text>
-                            <Text style={{
-                                fontSize: 14, color: colors.textColor, alignContent: 'center', margin: 4,
-                                opacity: .75,
-                            }}>Due date: 10/10/2000</Text>
+            <ScrollView>
+                {filteredData.map((item, index) =>
+                    <TouchableOpacity
+                        key={index}
+                        onPress={() => navigation.navigate("ProjectDetail", item)}
+                        style={{
+                            minHeight: 100,
+                            // width: "100%",
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: colors.primary3,
+                            borderRadius: 15,
+                            marginBottom: 10,
+                        }}>
+                        <Image source={require("../assets/project.png")} style={{
+                            width: 55,
+                            height: 55,
+                            marginRight: 20,
+                            margin: 10,
+                            borderRadius: 6,
+                            shadowColor: '#000000',
+                            shadowOffset: { width: 1, height: 3 },
+                            shadowOpacity: 0.9,
+                            shadowRadius: 3,
+                            elevation: 5,
+                        }} />
+                        <View style={{ flexDirection: 'row' }}>
+                            <View style={{ flex: 1 }}>
+                                <Text style={{
+                                    fontSize: 20,
+                                    color: colors.textColor,
+                                    alignContent: 'center',
+                                    margin: 4,
+                                }}>{item.PROJECT_INFO.PJ_NAME}</Text>
+                                <Text style={{
+                                    fontSize: 14, color: colors.textColor, alignContent: 'center', margin: 4,
+                                    opacity: .75,
+                                }}>Due date: 10/10/2000</Text>
+                            </View>
                         </View>
-                    </View>
 
 
-                    {/* <View style={{ width: "100%", height: .1, opacity: .25, backgroundColor: colors.textColor, position: "absolute", bottom: 0, }} /> */}
+                        {/* <View style={{ width: "100%", height: .1, opacity: .25, backgroundColor: colors.textColor, position: "absolute", bottom: 0, }} /> */}
 
-                </TouchableOpacity>)
-            }
+                    </TouchableOpacity>)
+                }
+            </ScrollView>
 
             <TouchableOpacity
                 onPress={() => { setInputModalVisible(true) }}
@@ -200,7 +222,7 @@ const ProjectList = ({ navigation }) => {
                     shadowRadius: 300,
                 }}
                 isVisible={inputModalVisible}
-                // addBoard={props.addBoard}
+                addProject={handleAddProject}
                 close={() => {
                     setInputModalVisible(false);
                 }}
