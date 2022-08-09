@@ -214,12 +214,24 @@ app.put('/project', async (req, res, next) => {
               include:{
                 TASK_INFO:{
                   include:{
-                    TASK_RESPONDSIPLE: true,
+                    TASK_RESPONDSIPLE:{
+                      include:{
+                      PROJECT_MEMBER:{
+                        include:{
+                          USER_INFO:true
+                        }
+                      }
+                      }
+                    },
                   }
                 },
               }
             },
-            PROJECT_MEMBERS:true
+            PROJECT_MEMBERS:{
+              include:{
+                USER_INFO:true
+              }
+            }
 
             
           }
