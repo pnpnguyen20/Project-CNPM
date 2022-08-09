@@ -24,7 +24,8 @@ export default function ProjectDetail({ route, navigation }) {
   const [project, setProject] = useState([])
   const [PJ_NAME, setPJ_NAME] = useState(project.PJ_NAME);
   const [LABELS, setLABELS] = useState([]);
-  const [Members, setMembers] = useState([]);
+  const [P_Members, setP_Members] = useState([]);
+  const [A_Members, setA_Members] = useState([]);
   const [needRefresh, setNeedRefresh] = useState(false)
 
   //get
@@ -42,8 +43,8 @@ export default function ProjectDetail({ route, navigation }) {
         console.log(data.data)
         setProject(data.data.PROJECT_INFO)
         setLABELS(data.data.PROJECT_INFO.LABELS)
-        setMembers(data.data.PROJECT_INFO.PROJECT_MEMBERS)
-
+        setP_Members(data.data.PROJECT_INFO.PROJECT_MEMBERS)
+        setA_Members(data.user)
 
       }
       else
@@ -251,7 +252,8 @@ export default function ProjectDetail({ route, navigation }) {
             borderRadius: 10,
           }}
           goBack={1}
-          Members={Members}
+          P_Members={P_Members}
+          A_Members={A_Members}
           handleDeleteMem = {handleDeleteMem}
           handleLeave={handleLeave}
           addBoard={handleAddBoard}

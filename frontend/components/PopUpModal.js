@@ -306,7 +306,8 @@ const PopUpModal = (props) => {
                     shadowOpacity: 1,
                     shadowRadius: 300,
                 }}
-                Members={props.Members}
+                P_Members={props.P_Members}
+                A_Members={props.A_Members}
                 handleDeleteMem = {props.handleDeleteMem}
                 close={() => {
                   setProjectVisible(false);
@@ -682,7 +683,8 @@ const ProjectModal = (props) => {
                     shadowOpacity: 1,
                     shadowRadius: 300,
                   }}
-                  Members={props.Members}
+                  P_Members={props.P_Members}
+                  A_Members={props.A_Members}
                   handleDeleteMem = {props.handleDeleteMem}
                   close={() => {
                     setmodalVisible(false);
@@ -855,12 +857,12 @@ const MemberModal = (props) => {
                   >Member</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ position: "absolute", right: 15, }} onPress={() => { setaddModalVisible(!addModalVisible) }}>
+                <TouchableOpacity style={{ position: "absolute", right: 9, }} onPress={() => { setaddModalVisible(!addModalVisible) }}>
                   <Ionicons
                     name={"add-circle-outline"}
                     style={{
                       color: colors.primary1,
-                      fontSize: 23,
+                      fontSize: 30,
                       //marginLeft: 60,
 
                     }}
@@ -883,7 +885,7 @@ const MemberModal = (props) => {
                         shadowOpacity: 1,
                         shadowRadius: 300,
                       }}
-                      //ID = {MEMID}
+                      A_Members={props.A_Members}
                       //handleDeleteMem = {props.handleDeleteMem}
                       close={() => {
                         setaddModalVisible(false);
@@ -891,7 +893,7 @@ const MemberModal = (props) => {
                     />
 
               <ScrollView>
-                {props.Members.map((item, index) =>
+                {props.P_Members.map((item, index) =>
                   <TouchableOpacity
                     key={index}
                     style={{
@@ -901,7 +903,7 @@ const MemberModal = (props) => {
                       borderRadius: 15,
                       paddingBottom: 10,
                     }}>
-                    <Image source={require("../assets/prj_icon.png")}
+                    <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)} 
                       style={{
                         width: 40,
                         height: 40,
@@ -974,19 +976,6 @@ const MemberModal = (props) => {
 const AddMemberModal = (props) => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState("");
-
-  const tempMember = [
-    {
-      src: require("../assets/prj_icon.png"),
-      name: "Quang",
-      added: true,
-    },
-    {
-      src: require("../assets/prj_icon.png"),
-      name: "Toàn",
-      added: false,
-    }
-  ]
 
   const searchMember = (e) => {
     let text = e.toLowerCase()
@@ -1063,7 +1052,7 @@ const AddMemberModal = (props) => {
                 />
               </View>
               <ScrollView style={{ paddingTop: 15 }}>
-                {tempMember.map((item, index) =>
+                {props.A_Members.map((item, index) =>
                   <TouchableOpacity
                     key={index}
                     style={{
@@ -1073,7 +1062,7 @@ const AddMemberModal = (props) => {
                       borderRadius: 15,
                       paddingBottom: 15,
                     }}>
-                    <Image source={item.src}
+                    <Image source={require(`../assets/user-ava/user${item.US_ID % 9}.png`)} 
                       style={{
                         width: 40,
                         height: 40,
@@ -1088,7 +1077,7 @@ const AddMemberModal = (props) => {
                       margin: 5,
                       fontWeight: "700"
                     }}>
-                      {item.name}
+                      {item.US_NAME}
                     </Text>
 
                     <TouchableOpacity
