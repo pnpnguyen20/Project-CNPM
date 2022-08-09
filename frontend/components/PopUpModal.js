@@ -450,6 +450,196 @@ const TaskModal = (props) => {
   );
 };
 
+// new task modal
+// const taskModal = (props) => {
+//   const [title, setTitle] = useState("");
+//   const [modalVisible, setmodalVisible] = useState(false);
+
+//   return (
+//     <View >
+//       <Modal animationType="none" transparent={true} visible={props.isVisible}>
+//         <Pressable
+//           style={{ flex: 1 }}
+//           onPress={() => props.close()}
+//         >
+//           <Pressable style={props.styles}>
+//             <View style={{ padding: 25, paddingVertical: 30 }}>
+//               <View style={{ flexDirection: "row" }}>
+//                 <Entypo
+//                   name={"folder"}
+//                   style={{
+//                     color: colors.textColor,
+//                     fontSize: 25,
+//                     marginRight: 15,
+//                     alignSelf: 'center'
+//                   }}
+//                 />
+//                 <Text
+//                   style={{
+//                     color: colors.textColor,
+//                     textAlign: "center",
+//                     fontWeight: "bold",
+//                     fontSize: 28,
+//                   }}
+//                 >
+//                   Task X
+//                 </Text>
+//                 <Entypo
+//                   name={"edit"}
+//                   style={{
+//                     color: colors.textColor,
+//                     fontSize: 23,
+//                     position: "absolute",
+//                     right: 15,
+//                     alignSelf: "center",
+//                   }}
+//                 />
+//               </View>
+//               <Text style={{
+//                 color: colors.textColor,
+//                 fontSize: 19,
+//                 marginTop: 20,
+//               }}>Description</Text>
+//               <TextInput
+//                 placeholder="Add a detail description..."
+//                 value={title}
+//                 style={{
+//                   height: 75,
+//                   color: colors.textColor,
+//                   backgroundColor: colors.primary3,
+//                   paddingLeft: 5,
+//                   width: "100%",
+//                   borderColor: colors.primary3,
+//                   borderWidth: 1,
+//                   borderRadius: 7,
+//                   marginTop: 5,
+//                   marginBottom: 15,
+//                   paddingLeft: 8,
+//                   paddingTop: 6,
+//                   fontSize: 16,
+//                 }}
+//                 multiline={true}
+//                 onChangeText={(text) => {
+//                   const temp = text.replace(/^\s*\n/gm, "")
+//                   setTitle(temp);
+//                 }}
+//                 onSubmitEditing={() => {
+//                   props.addProject(title);
+//                   Keyboard.dismiss()
+//                 }}
+//               />
+//               <Text style={{
+//                 color: colors.textColor,
+//                 fontSize: 19,
+//                 marginBottom: 7,
+//               }}>
+//                 Due Date
+//               </Text>
+//               <View style={{ flexDirection: "row" }}>
+//                 <Entypo
+//                   name={"calendar"}
+//                   style={{
+//                     color: colors.textColor,
+//                     fontSize: 19,
+//                     alignSelf: "center",
+//                     marginRight: 5
+//                   }}
+//                 />
+
+//                 <Text style={{
+//                   color: colors.textColor,
+//                   fontSize: 15,
+//                 }}>
+//                   10/10/2023
+//                 </Text>
+//               </View>
+
+//               <Text style={{
+//                 color: colors.textColor,
+//                 fontSize: 19,
+//                 marginTop: 15,
+//                 marginBottom: 8,
+//               }}>
+//                 Members
+//               </Text>
+//               <View style={{ flexDirection: "row", alignItems: 'center' }}>
+//                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+//                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+//                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
+//                   <Ionicons
+//                     name="ios-ellipsis-horizontal-circle-sharp"
+//                     style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
+//                 </TouchableOpacity>
+
+//                 {/* <MemberModal
+//                   isVisible={modalVisible}
+//                   styles={{
+//                     backgroundColor: colors.mainBackground,
+//                     width: 350,
+//                     borderRadius: 10,
+//                     alignSelf: "center",
+//                     top: '16%',
+
+//                     flexDirection: "column",
+//                     shadowOpacity: 1,
+//                     shadowRadius: 300,
+//                   }}
+//                   P_Members={props.P_Members}
+//                   A_Members={props.A_Members}
+//                   handleDeleteMem = {props.handleDeleteMem}
+//                   close={() => {
+//                     setmodalVisible(false);
+//                   }}
+//                 /> */}
+
+//                 <TouchableOpacity style = {{flexDirection: 'row'}}>
+//                 <Ionicons
+//                     name={item.TASK_STATUS === '1' ? "checkbox" : "checkbox-outline"}
+//                     style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
+//                 </TouchableOpacity>
+
+//                 <Text>
+//                   {item.TASK_STATUS === '1' ? "Mark as completed": "Mark as incompleted"}
+//                 </Text>
+
+//               </View>
+//             </View>
+//             <View
+//               style={{ backgroundColor: colors.textColor, height: .5, opacity: .3, width: "100%" }}
+//             ></View>
+//             <View
+//               style={{
+//                 flexDirection: "row",
+//                 justifyContent: "space-evenly",
+//                 alignItems: "center",
+//               }}
+//             >
+//               <TouchableOpacity
+//                 style={{ paddingVertical: 10 }}
+//                 onPress={() => {
+//                   props.handleDeleteTask(props.id);
+//                   props.close();
+//                 }}
+//               >
+//                 <Text style={{
+//                   color: colors.warning,
+//                   fontSize: 20,
+//                   fontWeight: "bold",
+//                   marginVertical: 5,
+//                 }}>
+//                   Delete task
+//                 </Text>
+//               </TouchableOpacity>
+
+//             </View>
+
+//           </Pressable>
+//         </Pressable>
+//       </Modal>
+//     </View>
+//   );
+// };
+
 const ProjectInputModal = (props) => {
   const [title, setTitle] = useState("");
 
@@ -862,7 +1052,7 @@ const MemberModal = (props) => {
                     name={"add-circle-outline"}
                     style={{
                       color: colors.primary1,
-                      fontSize: 30,
+                      fontSize: 27,
                       //marginLeft: 60,
 
                     }}
