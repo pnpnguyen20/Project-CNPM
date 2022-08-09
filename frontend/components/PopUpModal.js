@@ -292,6 +292,27 @@ const PopUpModal = (props) => {
                     Project Detail
                   </Text>
                 </TouchableOpacity>
+
+                <ProjectModal
+                  isVisible={ProjectVisible}
+                  styles={{
+                    backgroundColor: colors.mainBackground,
+                    width: 350,
+                    borderRadius: 10,
+                    alignSelf: "center",
+                    top: '16%',
+
+                    flexDirection: "column",
+                    shadowOpacity: 1,
+                    shadowRadius: 300,
+                }}
+                Members={props.Members}
+                handleDeleteMem = {props.handleDeleteMem}
+                close={() => {
+                  setProjectVisible(false);
+                }}
+              />
+
                 <View
                   style={{
                     height: 0.5,
@@ -521,6 +542,7 @@ const ProjectInputModal = (props) => {
 
 const ProjectModal = (props) => {
   const [title, setTitle] = useState("");
+  const [modalVisible, setmodalVisible] = useState(false);
 
   return (
     <View >
@@ -641,11 +663,32 @@ const ProjectModal = (props) => {
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
                   <Ionicons
                     name="ios-ellipsis-horizontal-circle-sharp"
                     style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
                 </TouchableOpacity>
+
+                <MemberModal
+                  isVisible={modalVisible}
+                  styles={{
+                    backgroundColor: colors.mainBackground,
+                    width: 350,
+                    borderRadius: 10,
+                    alignSelf: "center",
+                    top: '16%',
+
+                    flexDirection: "column",
+                    shadowOpacity: 1,
+                    shadowRadius: 300,
+                  }}
+                  Members={props.Members}
+                  handleDeleteMem = {props.handleDeleteMem}
+                  close={() => {
+                    setmodalVisible(false);
+                  }}
+                />
+
               </View>
 
 
@@ -692,7 +735,7 @@ const ProjectModal = (props) => {
 };
 
 const MemberPopUpModal = (props) => {
-  const [inputModalVisible, setInputModalVisible] = useState(false);
+  const [ModalVisible, setModalVisible] = useState(false);
   const [ProjectVisible, setProjectVisible] = useState(false);
   return (
     <View>
@@ -760,6 +803,7 @@ const MemberPopUpModal = (props) => {
                 />
                 <TouchableOpacity
                   style={{ paddingVertical: 10, paddingLeft: 15 }}
+                  onPress={() => { props.handleDeleteMem(props.ID) }}
                 >
                   <Text style={{ color: colors.warning, fontSize: 15, fontWeight: "bold", }}>Remove member</Text>
                 </TouchableOpacity>
@@ -774,6 +818,8 @@ const MemberPopUpModal = (props) => {
 
 const MemberModal = (props) => {
   const [ModalVisible, setModalVisible] = useState(false);
+  const [addModalVisible, setaddModalVisible] = useState(false);
+  const [MEMID, setMEMID] = useState();
 
   return (
     <View>
@@ -809,7 +855,7 @@ const MemberModal = (props) => {
                   >Member</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ position: "absolute", right: 15, }}>
+                <TouchableOpacity style={{ position: "absolute", right: 15, }} onPress={() => { setaddModalVisible(!addModalVisible) }}>
                   <Ionicons
                     name={"add-circle-outline"}
                     style={{
@@ -820,9 +866,30 @@ const MemberModal = (props) => {
                     }}
                   />
                 </TouchableOpacity>
-
-
               </View>
+
+              
+
+              <AddMemberModal
+                      isVisible={addModalVisible}
+                      styles={{
+                        backgroundColor: colors.mainBackground,
+                        width: 350,
+                        borderRadius: 10,
+                        alignSelf: "center",
+                        top: '16%',
+            
+                        flexDirection: "column",
+                        shadowOpacity: 1,
+                        shadowRadius: 300,
+                      }}
+                      //ID = {MEMID}
+                      //handleDeleteMem = {props.handleDeleteMem}
+                      close={() => {
+                        setaddModalVisible(false);
+                      }}
+                    />
+
               <ScrollView>
                 {props.Members.map((item, index) =>
                   <TouchableOpacity
@@ -867,6 +934,7 @@ const MemberModal = (props) => {
 
                     <TouchableOpacity style={{ position: "absolute", right: 15, }}
                       onPress={() => {
+                        setMEMID(item.MEM_ID)
                         setModalVisible(!ModalVisible)
                       }}>
                       <Entypo
@@ -883,11 +951,12 @@ const MemberModal = (props) => {
                         position: "absolute",
                         borderRadius: 10,
                       }}
+                      ID = {MEMID}
+                      handleDeleteMem = {props.handleDeleteMem}
                       close={() => {
                         setModalVisible(false);
                       }}
                     />
-
                   </TouchableOpacity>
                 )}
 

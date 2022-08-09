@@ -226,25 +226,6 @@ export default function ProjectDetail({ route, navigation }) {
           />
         </TouchableOpacity>
 
-        <MemberModal
-          isVisible={projectVisible}
-          styles={{
-            backgroundColor: colors.mainBackground,
-            width: 350,
-            borderRadius: 10,
-            alignSelf: "center",
-            top: '16%',
-
-            flexDirection: "column",
-            shadowOpacity: 1,
-            shadowRadius: 300,
-          }}
-          Members={Members}
-          close={() => {
-            setProjectVisible(false);
-          }}
-        />
-
         <TouchableOpacity
           onPress={() => { setModalVisible(!modalVisible) }}
         >
@@ -270,6 +251,8 @@ export default function ProjectDetail({ route, navigation }) {
             borderRadius: 10,
           }}
           goBack={1}
+          Members={Members}
+          handleDeleteMem = {handleDeleteMem}
           handleLeave={handleLeave}
           addBoard={handleAddBoard}
           close={() => {
