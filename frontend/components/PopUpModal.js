@@ -285,7 +285,7 @@ const PopUpModal = (props) => {
                   }}
                   onPress={() => {
                     setProjectVisible(true);
-                    props.close();
+                    //props.close();
                   }}
                 >
                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
@@ -916,7 +916,7 @@ const MemberModal = (props) => {
                       margin: 5,
                       fontWeight: "700"
                     }}>
-                      {item.MEM_ID}
+                      {item.USER_INFO.US_NAME}
                     </Text>
 
 
