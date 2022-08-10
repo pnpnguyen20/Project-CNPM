@@ -11,12 +11,13 @@ import {
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
-import { React, useRef, useState } from "react";
+import { forwardRef, React, useRef, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Task from "./Task";
 import BoardModal from "./BoardModal";
 import colors from "../../constants/colors";
-import { TaskModal} from "../PopUpModal";
+import { TaskModal } from "../PopUpModal";
+import axios from "../axios";
 
 
 const Board = (props) => {
@@ -29,9 +30,8 @@ const Board = (props) => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      id={item.id}
       onPress={() => {
-        setClickedID(item.id);
+        setClickedID(item.TASK_ID);
         setTaskModalVisible(true)
       }}>
       <Task
@@ -43,7 +43,25 @@ const Board = (props) => {
   );
 
   const handleAddTask = () => {
-    setTaskItems([...taskItems, task]);
+    axios.post('/task', {
+      "access": {
+        "PJ_ID": props.PJ_ID
+        , "MEM_ID": props.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": 99,
+        "TASK_ID": 99,
+        "TASK_STATUS": "99",
+        "TASK_NAME": task.text,
+        "TASK_DESCRIPTION": "99",
+        "TASK_CREATEDAY": null,
+        "TASK_DEADLINE": null,
+        "TASK_CREATOR": 1,
+        "TASK_LABEL": props.id
+      }
+    })
+    // props.refresh()
     setTask({ text: "" });
     setIsSelectCreate(false);
 
@@ -53,8 +71,24 @@ const Board = (props) => {
   };
 
   const handleDeleteTask = (id) => {
-    const filteredData = taskItems.filter((item) => item.id !== id);
-    setTaskItems(filteredData);
+    axios.put('/delete/task', {
+      "access": {
+        "PJ_ID": props.PJ_ID
+        , "MEM_ID": props.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": 99,
+        "TASK_ID": id,
+        "TASK_STATUS": "0",
+        "TASK_NAME": "99",
+        "TASK_DESCRIPTION": "99",
+        "TASK_CREATEDAY": null,
+        "TASK_DEADLINE": null,
+        "TASK_CREATOR": 99,
+        "TASK_LABEL": 1
+      }
+    })
   };
   const [isSelectCreate, setIsSelectCreate] = useState(false);
 
@@ -146,6 +180,7 @@ const Board = (props) => {
         id={clickedID}
       />
       <FlatList
+
         ref={scrollRef}
         scrollEnabled
         data={taskItems}

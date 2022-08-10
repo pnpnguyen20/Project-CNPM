@@ -254,10 +254,10 @@ Content-Type: application/json
   },
   "data":{
     "PJ_ID": 3,
-    "TASK_ID": 2,
-    "TASK_STATUS": "0",
+    "TASK_ID": 99,
+    "TASK_STATUS": "99",
     "TASK_NAME": "label 2 task ",
-    "TASK_DESCRIPTION": "bcd",
+    "TASK_DESCRIPTION": "99",
     "TASK_CREATEDAY": null,
     "TASK_DEADLINE": null,
     "TASK_CREATOR": 1,
@@ -265,25 +265,25 @@ Content-Type: application/json
   }
 }
 ### delete task
-DELETE  http://localhost:9696/task
+PUT  http://localhost:9696/delete/task
 Content-Type: application/json
 
 {
     "access": {
-     "PJ_ID":1 
-    ,"MEM_ID":1
+     "PJ_ID":4
+    ,"MEM_ID":4
     ,"MEM_POS":0
   },
   "data":{
-    "PJ_ID": 1,
-    "TASK_ID": 3,
+    "PJ_ID": 4,
+    "TASK_ID": 1,
     "TASK_STATUS": "0",
-    "TASK_NAME": "success",
-    "TASK_DESCRIPTION": "bcd",
+    "TASK_NAME": "99",
+    "TASK_DESCRIPTION": "99",
     "TASK_CREATEDAY": null,
     "TASK_DEADLINE": null,
-    "TASK_CREATOR": 1,
-    "TASK_LABEL": 2
+    "TASK_CREATOR": 99,
+    "TASK_LABEL": 1
   }
 }
 ### update task

@@ -1,4 +1,4 @@
-import { React, useCallback, useEffect, useRef, useState } from "react";
+import { Component, React, useCallback, useEffect, useRef, useState } from "react";
 import {
   Text,
   View,
@@ -28,35 +28,34 @@ export default function ProjectDetail({ route, navigation }) {
   const [A_Members, setA_Members] = useState([]);
   const [needRefresh, setNeedRefresh] = useState(false)
 
-  //get
-  useEffect(() => {
-    const fetchproducts = async () => {
+  const fetchproducts = async () => {
 
-      const { data } = await axios.put('/project',
-        {
-          "PJ_ID": route.params.PROJECT_INFO.PJ_ID
-          , "MEM_ID": route.params.MEM_ID
-          , "MEM_POS": 0
-        })
-      const message = data.message
-      if (message.success) {
-        console.log(data.data)
-        setProject(data.data.PROJECT_INFO)
-        setLABELS(data.data.PROJECT_INFO.LABELS)
-        setP_Members(data.data.PROJECT_INFO.PROJECT_MEMBERS)
-        setA_Members(data.user)
+    const { data } = await axios.put('/project',
+      {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      })
+    const message = data.message
+    if (message.success) {
+      setProject(data.data.PROJECT_INFO)
+      setLABELS(data.data.PROJECT_INFO.LABELS)
+      setP_Members(data.data.PROJECT_INFO.PROJECT_MEMBERS)
+      setA_Members(data.user)
 
-      }
-      else
-        console.log(message)
     }
+    else
+      console.log(message)
+  }
+  const [helo, sethelo] = useState(100)
+  useEffect(() => {
     fetchproducts();
-  }, [needRefresh])
+  }, [needRefresh, helo])
+
+
 
   //post new board
-
   const postBoard = (LB_ID, LB_NAME) => {
-
     axios.post('/label', {
       "access": {
         "PJ_ID": route.params.PROJECT_INFO.PJ_ID
@@ -167,7 +166,9 @@ export default function ProjectDetail({ route, navigation }) {
     <View>
       <Board
         id={item.LB_ID}
+        PJ_ID={project.PJ_ID}
         PJ_NAME={project.PJ_NAME}
+        MEM_ID={project.MEM_ID}
         title={item.LB_NAME}
         P_Members={P_Members}
         A_Members={A_Members}
