@@ -63,16 +63,7 @@ const BoardModal = (props) => {
                     opacity: 0.5,
                   }}
                 />
-                <TouchableOpacity
-                  style={{ marginVertical: 10, paddingLeft: 15 }}
-                  onPress={() => {
-                    // props.close();
-                  }}
-                >
-                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
-                    Move column right
-                  </Text>
-                </TouchableOpacity>
+
                 <View
                   style={{
                     height: 0.5,

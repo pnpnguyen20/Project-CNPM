@@ -117,13 +117,19 @@ export default function ProjectDetail({ route, navigation }) {
   };
 
   const handleRenameBoard = (id, newName) => {
-    const temp = [...LABELS];
-    temp.forEach((b) => {
-      if (b.id == id)
-        b.title = newName
-    });
-
-    setLABELS(temp)
+    axios.patch('/label', {
+      "access": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": 99,
+        "LB_ID": id,
+        "LB_NAME": newName
+      }
+    })
+    setNeedRefresh(!needRefresh)
   };
 
   const handleDeleteBoard = (id) => {
@@ -181,7 +187,7 @@ export default function ProjectDetail({ route, navigation }) {
     >
       {/* nut reload */}
       {/* <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
-        setNeedRefresh(!needRefresh)
+
       }} /> */}
       <View
         style={{
@@ -213,7 +219,11 @@ export default function ProjectDetail({ route, navigation }) {
           }}
           onPress={() => { setProjectVisible(!projectVisible) }}
         >
-          <Text style={{ color: colors.textColor, fontSize: 22, fontWeight: 'bold' }}>
+          <Text
+            numberOfLines={1}
+            style={{
+              color: colors.textColor, fontSize: 22, fontWeight: 'bold'
+            }}>
             {route.params.PROJECT_INFO.PJ_NAME}
           </Text>
           <Icon
@@ -254,7 +264,7 @@ export default function ProjectDetail({ route, navigation }) {
           goBack={1}
           P_Members={P_Members}
           A_Members={A_Members}
-          handleDeleteMem = {handleDeleteMem}
+          handleDeleteMem={handleDeleteMem}
           handleLeave={handleLeave}
           addBoard={handleAddBoard}
           close={() => {

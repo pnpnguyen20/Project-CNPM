@@ -81,8 +81,8 @@ Content-Type: application/json
 {
   "access": {
     "US_ID":4,
-    "US_ACCOUNT":"99",
-    "US_PASSWORD":"99",
+    "US_ACCOUNT":"goporo",
+    "US_PASSWORD":"123456",
     "TOKEN":null
 },
   "data":{
@@ -216,14 +216,14 @@ Content-Type: application/json
 
 {
     "access": {
-     "PJ_ID":1
-    ,"MEM_ID":1
+     "PJ_ID":3
+    ,"MEM_ID":4
     ,"MEM_POS":0
   },
   "data":{
-    "PJ_ID":1,
-    "LB_ID":1,
-    "LB_NAME": "Is CHanged"
+    "PJ_ID":99,
+    "LB_ID":3,
+    "LB_NAME": "CC"
   }
 }
 ### delete label

@@ -60,6 +60,7 @@ const ModalInputBoardName = (props) => {
             }}
             onSubmitEditing={() => {
               props.handleRenameBoard(props.id, title);
+              setTitle('');
               props.close();
             }}
           />
@@ -97,10 +98,13 @@ const ModalInputBoardName = (props) => {
               }}
               onPress={() => {
                 props.handleRenameBoard(props.id, title);
+                setTitle('')
                 props.close();
               }}
             >
-              <Text style={{ color: colors.textColor }}>Rename</Text>
+              <Text style={{ color: colors.textColor }}>
+                Rename
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -305,14 +309,14 @@ const PopUpModal = (props) => {
                     flexDirection: "column",
                     shadowOpacity: 1,
                     shadowRadius: 300,
-                }}
-                P_Members={props.P_Members}
-                A_Members={props.A_Members}
-                handleDeleteMem = {props.handleDeleteMem}
-                close={() => {
-                  setProjectVisible(false);
-                }}
-              />
+                  }}
+                  P_Members={props.P_Members}
+                  A_Members={props.A_Members}
+                  handleDeleteMem={props.handleDeleteMem}
+                  close={() => {
+                    setProjectVisible(false);
+                  }}
+                />
 
                 <View
                   style={{
@@ -875,7 +879,7 @@ const ProjectModal = (props) => {
                   }}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
-                  handleDeleteMem = {props.handleDeleteMem}
+                  handleDeleteMem={props.handleDeleteMem}
                   close={() => {
                     setmodalVisible(false);
                   }}
@@ -1060,27 +1064,27 @@ const MemberModal = (props) => {
                 </TouchableOpacity>
               </View>
 
-              
+
 
               <AddMemberModal
-                      isVisible={addModalVisible}
-                      styles={{
-                        backgroundColor: colors.mainBackground,
-                        width: 350,
-                        borderRadius: 10,
-                        alignSelf: "center",
-                        top: '16%',
-            
-                        flexDirection: "column",
-                        shadowOpacity: 1,
-                        shadowRadius: 300,
-                      }}
-                      A_Members={props.A_Members}
-                      //handleDeleteMem = {props.handleDeleteMem}
-                      close={() => {
-                        setaddModalVisible(false);
-                      }}
-                    />
+                isVisible={addModalVisible}
+                styles={{
+                  backgroundColor: colors.mainBackground,
+                  width: 350,
+                  borderRadius: 10,
+                  alignSelf: "center",
+                  top: '16%',
+
+                  flexDirection: "column",
+                  shadowOpacity: 1,
+                  shadowRadius: 300,
+                }}
+                A_Members={props.A_Members}
+                //handleDeleteMem = {props.handleDeleteMem}
+                close={() => {
+                  setaddModalVisible(false);
+                }}
+              />
 
               <ScrollView>
                 {props.P_Members.map((item, index) =>
@@ -1093,7 +1097,7 @@ const MemberModal = (props) => {
                       borderRadius: 15,
                       paddingBottom: 10,
                     }}>
-                    <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)} 
+                    <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)}
                       style={{
                         width: 40,
                         height: 40,
@@ -1143,8 +1147,8 @@ const MemberModal = (props) => {
                         position: "absolute",
                         borderRadius: 10,
                       }}
-                      ID = {MEMID}
-                      handleDeleteMem = {props.handleDeleteMem}
+                      ID={MEMID}
+                      handleDeleteMem={props.handleDeleteMem}
                       close={() => {
                         setModalVisible(false);
                       }}
@@ -1252,7 +1256,7 @@ const AddMemberModal = (props) => {
                       borderRadius: 15,
                       paddingBottom: 15,
                     }}>
-                    <Image source={require(`../assets/user-ava/user${item.US_ID % 9}.png`)} 
+                    <Image source={require(`../assets/user-ava/user${item.US_ID % 9}.png`)}
                       style={{
                         width: 40,
                         height: 40,
