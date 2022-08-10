@@ -22,8 +22,7 @@ import axios from "../axios";
 
 const Board = (props) => {
   const [task, setTask] = useState({ text: "" });
-  const [taskItems, setTaskItems] = useState(props.tasks ? props.tasks : []);
-
+  // const [taskItems, setTaskItems] = useState(props.tasks ? props.tasks : []);
   const [boardModalVisible, setBoardModalVisible] = useState(false);
   const [taskModalVisible, setTaskModalVisible] = useState(false)
   const [clickedID, setClickedID] = useState();
@@ -35,6 +34,7 @@ const Board = (props) => {
         setTaskModalVisible(true)
       }}>
       <Task
+
         text={item.TASK_NAME}
         memberName={"Nguyen Anh"}
       />
@@ -61,7 +61,7 @@ const Board = (props) => {
         "TASK_LABEL": props.id
       }
     })
-    // props.refresh()
+    props.refresh()
     setTask({ text: "" });
     setIsSelectCreate(false);
 
@@ -89,6 +89,7 @@ const Board = (props) => {
         "TASK_LABEL": 1
       }
     })
+    props.refresh()
   };
   const [isSelectCreate, setIsSelectCreate] = useState(false);
 
@@ -183,7 +184,7 @@ const Board = (props) => {
 
         ref={scrollRef}
         scrollEnabled
-        data={taskItems}
+        data={props.tasks}
         renderItem={renderItem}
         keyExtractor={(item) => item.TASK_ID}
       />

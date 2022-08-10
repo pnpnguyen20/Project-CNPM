@@ -47,12 +47,15 @@ export default function ProjectDetail({ route, navigation }) {
     else
       console.log(message)
   }
-  const [helo, sethelo] = useState(100)
+
   useEffect(() => {
     fetchproducts();
-  }, [needRefresh, helo])
+  }, [needRefresh])
 
 
+  const refresh = () => {
+    setNeedRefresh(!needRefresh)
+  }
 
   //post new board
   const postBoard = (LB_ID, LB_NAME) => {
@@ -169,6 +172,7 @@ export default function ProjectDetail({ route, navigation }) {
         PJ_ID={project.PJ_ID}
         PJ_NAME={project.PJ_NAME}
         MEM_ID={project.MEM_ID}
+        refresh={refresh}
         title={item.LB_NAME}
         P_Members={P_Members}
         A_Members={A_Members}
@@ -190,7 +194,7 @@ export default function ProjectDetail({ route, navigation }) {
     >
       {/* nut reload */}
       {/* <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
-
+        setNeedRefresh(!needRefresh)
       }} /> */}
       <View
         style={{
