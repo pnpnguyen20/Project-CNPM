@@ -169,6 +169,8 @@ export default function ProjectDetail({ route, navigation }) {
         id={item.LB_ID}
         PJ_NAME={project.PJ_NAME}
         title={item.LB_NAME}
+        P_Members={P_Members}
+        A_Members={A_Members}
         handleDeleteBoard={handleDeleteBoard}
         handleRenameBoard={handleRenameBoard}
         tasks={project.LABELS[index] ? project.LABELS[index].TASK_INFO : []}

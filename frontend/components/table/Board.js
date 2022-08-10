@@ -16,7 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Task from "./Task";
 import BoardModal from "./BoardModal";
 import colors from "../../constants/colors";
-import { TaskModal } from "../PopUpModal";
+import { TaskModal} from "../PopUpModal";
 
 
 const Board = (props) => {
@@ -127,16 +127,21 @@ const Board = (props) => {
         isVisible={taskModalVisible}
         styles={{
           backgroundColor: colors.mainBackground,
-          width: 230,
-          position: "absolute",
-          top: 145 + useSafeAreaInsets().top,
-          right: "5%",
-          borderRadius: 15,
+          width: 350,
+          borderRadius: 10,
+          alignSelf: "center",
+          top: '16%',
+
+          flexDirection: "column",
+          shadowOpacity: 1,
+          shadowRadius: 300,
 
         }}
         close={() => {
           setTaskModalVisible(!taskModalVisible);
         }}
+        P_Members={props.P_Members}
+        A_Members={props.A_Members}
         handleDeleteTask={handleDeleteTask}
         id={clickedID}
       />

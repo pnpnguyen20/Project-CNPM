@@ -340,309 +340,310 @@ const PopUpModal = (props) => {
   );
 };
 
-const TaskModal = (props) => {
-  const [inputModalVisible, setInputModalVisible] = useState(false);
-  return (
-    <View>
-      <InputModal
-        styles={{
-          backgroundColor: colors.primary3,
-          width: 250,
-          borderRadius: 10,
-          alignSelf: "center",
-          flexDirection: "column",
-          top: 200,
-          shadowOpacity: 1,
-          shadowRadius: 300,
-        }}
-        isVisible={inputModalVisible}
-        addBoard={props.addBoard}
-        close={() => {
-          setInputModalVisible(false);
-        }}
-      />
-      <Modal animationType="none" transparent={true} visible={props.isVisible}>
-        <Pressable
-          style={{ flex: 1 }}
-          onPress={() => {
-            props.close();
-          }}
-        >
-          <View>
-            <View style={props.styles}>
-              <View style={{
-                flexDirection: "column",
-                shadowOpacity: 0.5,
-                shadowRadius: 75,
-                shadowColor: colors.textColor
-              }}>
-                <Text
-                  style={{
-                    fontSize: 13,
-                    color: colors.textColor,
-                    opacity: 0.5,
-                    textAlign: "center",
-                    marginVertical: 10,
-                  }}
-                >
-                  Task actions
-                </Text>
-                <View
-                  style={{
-                    height: 0.5,
-                    backgroundColor: colors.textColor,
-                    opacity: 0.5,
-                  }}
-                />
-
-                <TouchableOpacity
-                  style={{
-                    paddingVertical: 10,
-                    paddingLeft: 15,
-                  }}
-                  onPress={() => {
-                    props.close();
-                  }}
-                >
-                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
-                    Edit task
-                  </Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    height: 0.5,
-                    backgroundColor: colors.textColor,
-                    opacity: 0.5,
-                  }}
-                />
-                <TouchableOpacity
-                  style={{
-                    paddingVertical: 10,
-                    paddingLeft: 15,
-                  }}
-                  onPress={() => {
-                    props.close();
-                  }}
-                >
-                  <Text style={{ color: colors.textColor, fontSize: 15 }}>
-                    Assign member
-                  </Text>
-                </TouchableOpacity>
-
-                <View
-                  style={{
-                    height: 0.5,
-                    backgroundColor: colors.textColor,
-                    opacity: 0.5,
-                  }}
-                />
-                <TouchableOpacity
-                  style={{ paddingVertical: 10, paddingLeft: 15 }}
-                  onPress={() => {
-                    props.handleDeleteTask(props.id);
-                    props.close();
-                  }}
-                >
-                  <Text style={{ color: colors.textColor, fontSize: 15 }}>Delete task</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </Pressable>
-      </Modal>
-    </View>
-  );
-};
-
-// new task modal
 // const taskModal = (props) => {
-//   const [title, setTitle] = useState("");
-//   const [modalVisible, setmodalVisible] = useState(false);
-
+//   const [inputModalVisible, setInputModalVisible] = useState(false);
 //   return (
-//     <View >
+//     <View>
+//       <InputModal
+//         styles={{
+//           backgroundColor: colors.primary3,
+//           width: 250,
+//           borderRadius: 10,
+//           alignSelf: "center",
+//           flexDirection: "column",
+//           top: 200,
+//           shadowOpacity: 1,
+//           shadowRadius: 300,
+//         }}
+//         isVisible={inputModalVisible}
+//         addBoard={props.addBoard}
+//         close={() => {
+//           setInputModalVisible(false);
+//         }}
+//       />
 //       <Modal animationType="none" transparent={true} visible={props.isVisible}>
 //         <Pressable
 //           style={{ flex: 1 }}
-//           onPress={() => props.close()}
+//           onPress={() => {
+//             props.close();
+//           }}
 //         >
-//           <Pressable style={props.styles}>
-//             <View style={{ padding: 25, paddingVertical: 30 }}>
-//               <View style={{ flexDirection: "row" }}>
-//                 <Entypo
-//                   name={"folder"}
-//                   style={{
-//                     color: colors.textColor,
-//                     fontSize: 25,
-//                     marginRight: 15,
-//                     alignSelf: 'center'
-//                   }}
-//                 />
+//           <View>
+//             <View style={props.styles}>
+//               <View style={{
+//                 flexDirection: "column",
+//                 shadowOpacity: 0.5,
+//                 shadowRadius: 75,
+//                 shadowColor: colors.textColor
+//               }}>
 //                 <Text
 //                   style={{
+//                     fontSize: 13,
 //                     color: colors.textColor,
+//                     opacity: 0.5,
 //                     textAlign: "center",
-//                     fontWeight: "bold",
-//                     fontSize: 28,
+//                     marginVertical: 10,
 //                   }}
 //                 >
-//                   Task X
+//                   Task actions
 //                 </Text>
-//                 <Entypo
-//                   name={"edit"}
+//                 <View
 //                   style={{
-//                     color: colors.textColor,
-//                     fontSize: 23,
-//                     position: "absolute",
-//                     right: 15,
-//                     alignSelf: "center",
-//                   }}
-//                 />
-//               </View>
-//               <Text style={{
-//                 color: colors.textColor,
-//                 fontSize: 19,
-//                 marginTop: 20,
-//               }}>Description</Text>
-//               <TextInput
-//                 placeholder="Add a detail description..."
-//                 value={title}
-//                 style={{
-//                   height: 75,
-//                   color: colors.textColor,
-//                   backgroundColor: colors.primary3,
-//                   paddingLeft: 5,
-//                   width: "100%",
-//                   borderColor: colors.primary3,
-//                   borderWidth: 1,
-//                   borderRadius: 7,
-//                   marginTop: 5,
-//                   marginBottom: 15,
-//                   paddingLeft: 8,
-//                   paddingTop: 6,
-//                   fontSize: 16,
-//                 }}
-//                 multiline={true}
-//                 onChangeText={(text) => {
-//                   const temp = text.replace(/^\s*\n/gm, "")
-//                   setTitle(temp);
-//                 }}
-//                 onSubmitEditing={() => {
-//                   props.addProject(title);
-//                   Keyboard.dismiss()
-//                 }}
-//               />
-//               <Text style={{
-//                 color: colors.textColor,
-//                 fontSize: 19,
-//                 marginBottom: 7,
-//               }}>
-//                 Due Date
-//               </Text>
-//               <View style={{ flexDirection: "row" }}>
-//                 <Entypo
-//                   name={"calendar"}
-//                   style={{
-//                     color: colors.textColor,
-//                     fontSize: 19,
-//                     alignSelf: "center",
-//                     marginRight: 5
+//                     height: 0.5,
+//                     backgroundColor: colors.textColor,
+//                     opacity: 0.5,
 //                   }}
 //                 />
 
-//                 <Text style={{
-//                   color: colors.textColor,
-//                   fontSize: 15,
-//                 }}>
-//                   10/10/2023
-//                 </Text>
-//               </View>
-
-//               <Text style={{
-//                 color: colors.textColor,
-//                 fontSize: 19,
-//                 marginTop: 15,
-//                 marginBottom: 8,
-//               }}>
-//                 Members
-//               </Text>
-//               <View style={{ flexDirection: "row", alignItems: 'center' }}>
-//                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-//                 <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-//                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
-//                   <Ionicons
-//                     name="ios-ellipsis-horizontal-circle-sharp"
-//                     style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
+//                 <TouchableOpacity
+//                   style={{
+//                     paddingVertical: 10,
+//                     paddingLeft: 15,
+//                   }}
+//                   onPress={() => {
+//                     props.close();
+//                   }}
+//                 >
+//                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
+//                     Edit task
+//                   </Text>
+//                 </TouchableOpacity>
+//                 <View
+//                   style={{
+//                     height: 0.5,
+//                     backgroundColor: colors.textColor,
+//                     opacity: 0.5,
+//                   }}
+//                 />
+//                 <TouchableOpacity
+//                   style={{
+//                     paddingVertical: 10,
+//                     paddingLeft: 15,
+//                   }}
+//                   onPress={() => {
+//                     props.close();
+//                   }}
+//                 >
+//                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
+//                     Assign member
+//                   </Text>
 //                 </TouchableOpacity>
 
-//                 {/* <MemberModal
-//                   isVisible={modalVisible}
-//                   styles={{
-//                     backgroundColor: colors.mainBackground,
-//                     width: 350,
-//                     borderRadius: 10,
-//                     alignSelf: "center",
-//                     top: '16%',
-
-//                     flexDirection: "column",
-//                     shadowOpacity: 1,
-//                     shadowRadius: 300,
+//                 <View
+//                   style={{
+//                     height: 0.5,
+//                     backgroundColor: colors.textColor,
+//                     opacity: 0.5,
 //                   }}
-//                   P_Members={props.P_Members}
-//                   A_Members={props.A_Members}
-//                   handleDeleteMem = {props.handleDeleteMem}
-//                   close={() => {
-//                     setmodalVisible(false);
+//                 />
+//                 <TouchableOpacity
+//                   style={{ paddingVertical: 10, paddingLeft: 15 }}
+//                   onPress={() => {
+//                     props.handleDeleteTask(props.id);
+//                     props.close();
 //                   }}
-//                 /> */}
-
-//                 <TouchableOpacity style = {{flexDirection: 'row'}}>
-//                 <Ionicons
-//                     name={item.TASK_STATUS === '1' ? "checkbox" : "checkbox-outline"}
-//                     style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
+//                 >
+//                   <Text style={{ color: colors.textColor, fontSize: 15 }}>Delete task</Text>
 //                 </TouchableOpacity>
-
-//                 <Text>
-//                   {item.TASK_STATUS === '1' ? "Mark as completed": "Mark as incompleted"}
-//                 </Text>
-
 //               </View>
 //             </View>
-//             <View
-//               style={{ backgroundColor: colors.textColor, height: .5, opacity: .3, width: "100%" }}
-//             ></View>
-//             <View
-//               style={{
-//                 flexDirection: "row",
-//                 justifyContent: "space-evenly",
-//                 alignItems: "center",
-//               }}
-//             >
-//               <TouchableOpacity
-//                 style={{ paddingVertical: 10 }}
-//                 onPress={() => {
-//                   props.handleDeleteTask(props.id);
-//                   props.close();
-//                 }}
-//               >
-//                 <Text style={{
-//                   color: colors.warning,
-//                   fontSize: 20,
-//                   fontWeight: "bold",
-//                   marginVertical: 5,
-//                 }}>
-//                   Delete task
-//                 </Text>
-//               </TouchableOpacity>
-
-//             </View>
-
-//           </Pressable>
+//           </View>
 //         </Pressable>
 //       </Modal>
 //     </View>
 //   );
 // };
+
+// new task modal
+const TaskModal = (props) => {
+  const [title, setTitle] = useState("");
+  const [modalVisible, setmodalVisible] = useState(false);
+
+  return (
+    <View >
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => props.close()}
+        >
+          <Pressable style={props.styles}>
+            <View style={{ padding: 25, paddingTop: 30, paddingBottom: 15 }}>
+              <View style={{ flexDirection: "row" }}>
+                <Entypo
+                  name={"folder"}
+                  style={{
+                    color: colors.textColor,
+                    fontSize: 25,
+                    marginRight: 15,
+                    alignSelf: 'center'
+                  }}
+                />
+                <Text
+                  style={{
+                    color: colors.textColor,
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 28,
+                  }}
+                >
+                  Task X
+                </Text>
+                <Entypo
+                  name={"edit"}
+                  style={{
+                    color: colors.textColor,
+                    fontSize: 23,
+                    position: "absolute",
+                    right: 15,
+                    alignSelf: "center",
+                  }}
+                />
+              </View>
+              <Text style={{
+                color: colors.textColor,
+                fontSize: 19,
+                marginTop: 20,
+              }}>Description</Text>
+              <TextInput
+                placeholder="Add a detail description..."
+                value={title}
+                style={{
+                  height: 75,
+                  color: colors.textColor,
+                  backgroundColor: colors.primary3,
+                  paddingLeft: 5,
+                  width: "100%",
+                  borderColor: colors.primary3,
+                  borderWidth: 1,
+                  borderRadius: 7,
+                  marginTop: 5,
+                  marginBottom: 15,
+                  paddingLeft: 8,
+                  paddingTop: 6,
+                  fontSize: 16,
+                }}
+                multiline={true}
+                onChangeText={(text) => {
+                  const temp = text.replace(/^\s*\n/gm, "")
+                  setTitle(temp);
+                }}
+                onSubmitEditing={() => {
+                  props.addProject(title);
+                  Keyboard.dismiss()
+                }}
+              />
+              <Text style={{
+                color: colors.textColor,
+                fontSize: 19,
+                marginBottom: 7,
+              }}>
+                Due Date
+              </Text>
+              <View style={{ flexDirection: "row" }}>
+                <Entypo
+                  name={"calendar"}
+                  style={{
+                    color: colors.textColor,
+                    fontSize: 19,
+                    alignSelf: "center",
+                    marginRight: 5
+                  }}
+                />
+
+                <Text style={{
+                  color: colors.textColor,
+                  fontSize: 15,
+                }}>
+                  10/10/2023
+                </Text>
+              </View>
+
+              <Text style={{
+                color: colors.textColor,
+                fontSize: 19,
+                marginTop: 15,
+                marginBottom: 8,
+              }}>
+                Members
+              </Text>
+              <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+                <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+                <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
+                  <Ionicons
+                    name="ios-ellipsis-horizontal-circle-sharp"
+                    style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
+                </TouchableOpacity>
+
+                <MemberModal
+                  isVisible={modalVisible}
+                  styles={{
+                    backgroundColor: colors.mainBackground,
+                    width: 350,
+                    borderRadius: 10,
+                    alignSelf: "center",
+                    top: '16%',
+
+                    flexDirection: "column",
+                    shadowOpacity: 1,
+                    shadowRadius: 300,
+                  }}
+                  P_Members={props.P_Members}
+                  A_Members={props.A_Members}
+                  handleDeleteMem = {props.handleDeleteMem}
+                  close={() => {
+                    setmodalVisible(false);
+                  }}
+                />
+
+              </View>
+              <View style={{ flexDirection: "row", alignItems: 'center', paddingTop: 20 }}>
+              <TouchableOpacity style = {{flexDirection: 'row'}}>
+                <Ionicons
+                    name={"checkbox-outline"}
+                    style={{ fontSize: 25, color: colors.primary1 }} />
+                </TouchableOpacity>
+
+                <Text style = {{marginLeft: 10, fontSize: 15, fontWeight: '500'}}>
+                  Mark as completed
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{ backgroundColor: colors.textColor, height: .5, opacity: .3, width: "100%" }}
+            ></View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity
+                style={{ paddingVertical: 10 }}
+                onPress={() => {
+                  props.handleDeleteTask(props.id);
+                  props.close();
+                }}
+              >
+                <Text style={{
+                  color: colors.warning,
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  marginVertical: 5,
+                }}>
+                  Delete task
+                </Text>
+              </TouchableOpacity>
+
+            </View>
+
+          </Pressable>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
 
 const ProjectInputModal = (props) => {
   const [title, setTitle] = useState("");
@@ -1291,7 +1292,7 @@ const AddMemberModal = (props) => {
               </ScrollView>
 
 
-              <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
+              <TouchableOpacity style={styles.commandButton}>
                 <Text style={styles.panelButtonTitle}>Confirm</Text>
               </TouchableOpacity>
             </View>
@@ -1303,7 +1304,7 @@ const AddMemberModal = (props) => {
   );
 };
 
-export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, AddMemberModal };
+export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, AddMemberModal};
 
 const styles = StyleSheet.create({
   commandButton: {
