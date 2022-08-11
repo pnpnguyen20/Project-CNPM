@@ -857,8 +857,9 @@ const ProjectModal = (props) => {
                 Team Members
               </Text>
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
-                <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-                <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+                <Image source={require(`../assets/user-ava/user${props.P_Members[0].MEM_ID % 9}.png`)} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+                <Image source={require(`../assets/user-ava/user${props.P_Members[1].MEM_ID % 9}.png`)}  style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+
                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
                   <Ionicons
                     name="ios-ellipsis-horizontal-circle-sharp"
