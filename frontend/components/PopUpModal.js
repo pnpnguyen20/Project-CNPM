@@ -310,6 +310,7 @@ const PopUpModal = (props) => {
                     shadowOpacity: 1,
                     shadowRadius: 300,
                   }}
+                  handleAddMem={props.handleAddMem}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
                   handleDeleteMem={props.handleDeleteMem}
@@ -879,6 +880,7 @@ const ProjectModal = (props) => {
                     shadowOpacity: 1,
                     shadowRadius: 300,
                   }}
+                  handleAddMem={props.handleAddMem}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
                   handleDeleteMem={props.handleDeleteMem}
@@ -1082,7 +1084,7 @@ const MemberModal = (props) => {
                   shadowRadius: 300,
                 }}
                 A_Members={props.A_Members}
-                //handleDeleteMem = {props.handleDeleteMem}
+                handleAddMem = {props.handleAddMem}
                 close={() => {
                   setaddModalVisible(false);
                 }}
@@ -1171,7 +1173,7 @@ const MemberModal = (props) => {
 
 const AddMemberModal = (props) => {
   const [text, setText] = useState('');
-  const [title, setTitle] = useState("");
+  const [id, setid] = useState("");
 
   const searchMember = (e) => {
     let text = e.toLowerCase()
@@ -1277,7 +1279,7 @@ const AddMemberModal = (props) => {
                     </Text>
 
                     <TouchableOpacity
-                      //onPress={() => {item.added(!item.added)}}
+                      onPress={() => {setid(item.US_ID)}}
                       style={{ position: "absolute", right: 0 }}
                     >
                       <Ionicons
@@ -1293,7 +1295,7 @@ const AddMemberModal = (props) => {
               </ScrollView>
 
 
-              <TouchableOpacity style={styles.commandButton}>
+              <TouchableOpacity onPress={() => {props.handleAddMem(id)}} style={styles.commandButton}>
                 <Text style={styles.panelButtonTitle}>Confirm</Text>
               </TouchableOpacity>
             </View>

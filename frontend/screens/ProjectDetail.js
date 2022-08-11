@@ -38,6 +38,7 @@ export default function ProjectDetail({ route, navigation }) {
       })
     const message = data.message
     if (message.success) {
+      console.log(data.data)
       setProject(data.data.PROJECT_INFO)
       setLABELS(data.data.PROJECT_INFO.LABELS)
       setP_Members(data.data.PROJECT_INFO.PROJECT_MEMBERS)
@@ -85,12 +86,16 @@ export default function ProjectDetail({ route, navigation }) {
       },
       "data": {
         "PJ_ID": route.params.PROJECT_INFO.PJ_ID,
-        "MEM_ID": MEM_ID
+        "MEM_ID": MEM_ID,
       }
     })
 
     setNeedRefresh(!needRefresh)
   }
+
+  const handleAddMem = (id) => {
+    postMem(id)
+  };
 
   const scrollRef1 = useRef();
 
@@ -271,6 +276,7 @@ export default function ProjectDetail({ route, navigation }) {
           goBack={1}
           P_Members={P_Members}
           A_Members={A_Members}
+          handleAddMem={handleAddMem}
           handleDeleteMem={handleDeleteMem}
           handleLeave={handleLeave}
           addBoard={handleAddBoard}
