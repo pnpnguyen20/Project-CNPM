@@ -859,7 +859,7 @@ const ProjectModal = (props) => {
               </Text>
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
                 <Image source={require(`../assets/user-ava/user${props.P_Members[0].MEM_ID % 9}.png`)} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-                <Image source={require(`../assets/user-ava/user${props.P_Members[1].MEM_ID % 9}.png`)}  style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+                {/* <Image source={require(`../assets/user-ava/user${props.P_Members[1].MEM_ID % 9}.png`)}  style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} /> */}
 
                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
                   <Ionicons
@@ -1279,7 +1279,7 @@ const AddMemberModal = (props) => {
                     </Text>
 
                     <TouchableOpacity
-                      onPress={() => {setid(item.US_ID)}}
+                      onPress={() => {setid(item.USER_ACCOUNT.US_ACCOUNT)}}
                       style={{ position: "absolute", right: 0 }}
                     >
                       <Ionicons

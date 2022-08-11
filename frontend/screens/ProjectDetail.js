@@ -76,7 +76,7 @@ export default function ProjectDetail({ route, navigation }) {
     setNeedRefresh(!needRefresh)
   }
 
-  const postMem = (MEM_ID) => {
+  const postMem = (US_ACCOUNT) => {
 
     axios.post('/member', {
       "access": {
@@ -86,15 +86,15 @@ export default function ProjectDetail({ route, navigation }) {
       },
       "data": {
         "PJ_ID": route.params.PROJECT_INFO.PJ_ID,
-        "MEM_ID": MEM_ID,
+        "US_ACCOUNT": US_ACCOUNT,
       }
     })
 
     setNeedRefresh(!needRefresh)
   }
 
-  const handleAddMem = (id) => {
-    postMem(id)
+  const handleAddMem = (US_ACCOUNT) => {
+    postMem(US_ACCOUNT)
   };
 
   const scrollRef1 = useRef();
@@ -163,7 +163,7 @@ export default function ProjectDetail({ route, navigation }) {
         , "MEM_POS": 0
       },
       "data": {
-        "PJ_ID": 99,
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID,
         "MEM_ID": id,
       }
     })
