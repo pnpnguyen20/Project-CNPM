@@ -1116,13 +1116,13 @@ const MemberModal = (props) => {
                       margin: 5,
                       fontWeight: "700"
                     }}>
-                      {item.USER_INFO.US_NAME}
+                      {item.USER_INFO.USER_ACCOUNT.US_ACCOUNT}
                     </Text>
 
 
                     <TouchableOpacity style={{ position: "absolute", right: 45, }}>
                       <Ionicons
-                        name={item.MEM_POS === '1' ? "flag" : "flag-outline"}
+                        name={item.MEM_POS === 0 ? "flag" : "flag-outline"}
                         style={{
                           color: colors.primary1,
                           fontSize: 25,
@@ -1275,7 +1275,7 @@ const AddMemberModal = (props) => {
                       margin: 5,
                       fontWeight: "700"
                     }}>
-                      {item.US_NAME}
+                      {item.USER_ACCOUNT.US_ACCOUNT}
                     </Text>
 
                     <TouchableOpacity
