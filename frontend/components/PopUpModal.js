@@ -1173,12 +1173,13 @@ const MemberModal = (props) => {
 
 const AddMemberModal = (props) => {
   const [text, setText] = useState('');
+  const [filteredData, setFilteredData] = useState(props.A_Members);
   const [id, setid] = useState("");
 
   const searchMember = (e) => {
     let text = e.toLowerCase()
-    let filteredName = tempMember.filter((item) => {
-      return item.name.toLowerCase().includes(text)
+    let filteredName = props.A_Members.filter((item) => {
+      return item.USER_ACCOUNT.US_ACCOUNT.toLowerCase().includes(text)
     })
     setFilteredData(filteredName);
   }
@@ -1250,7 +1251,7 @@ const AddMemberModal = (props) => {
                 />
               </View>
               <ScrollView style={{ paddingTop: 15 }}>
-                {props.A_Members.map((item, index) =>
+                {filteredData.map((item, index) =>
                   <TouchableOpacity
                     key={index}
                     style={{
