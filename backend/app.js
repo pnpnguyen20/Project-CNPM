@@ -218,7 +218,11 @@ app.put('/project', async (req, res, next) => {
                       include:{
                       PROJECT_MEMBER:{
                         include:{
-                          USER_INFO:true
+                          USER_INFO:{
+                            include:{
+                              USER_ACCOUNT:true
+                            }
+                          }
                         }
                       }
                       }
@@ -229,7 +233,11 @@ app.put('/project', async (req, res, next) => {
             },
             PROJECT_MEMBERS:{
               include:{
-                USER_INFO:true
+                USER_INFO:{
+                  include:{
+                    USER_ACCOUNT:true
+                  }
+                }
               }
             }
 
@@ -431,6 +439,7 @@ app.put('/delete/member', async (req, res, next) => {
           }
         }
       })
+      res.json({data:{},message: new Message(true,"Success")})
     }
     else
     message.message="Member don't exist in the project"
