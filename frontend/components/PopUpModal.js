@@ -341,121 +341,6 @@ const PopUpModal = (props) => {
   );
 };
 
-// const taskModal = (props) => {
-//   const [inputModalVisible, setInputModalVisible] = useState(false);
-//   return (
-//     <View>
-//       <InputModal
-//         styles={{
-//           backgroundColor: colors.primary3,
-//           width: 250,
-//           borderRadius: 10,
-//           alignSelf: "center",
-//           flexDirection: "column",
-//           top: 200,
-//           shadowOpacity: 1,
-//           shadowRadius: 300,
-//         }}
-//         isVisible={inputModalVisible}
-//         addBoard={props.addBoard}
-//         close={() => {
-//           setInputModalVisible(false);
-//         }}
-//       />
-//       <Modal animationType="none" transparent={true} visible={props.isVisible}>
-//         <Pressable
-//           style={{ flex: 1 }}
-//           onPress={() => {
-//             props.close();
-//           }}
-//         >
-//           <View>
-//             <View style={props.styles}>
-//               <View style={{
-//                 flexDirection: "column",
-//                 shadowOpacity: 0.5,
-//                 shadowRadius: 75,
-//                 shadowColor: colors.textColor
-//               }}>
-//                 <Text
-//                   style={{
-//                     fontSize: 13,
-//                     color: colors.textColor,
-//                     opacity: 0.5,
-//                     textAlign: "center",
-//                     marginVertical: 10,
-//                   }}
-//                 >
-//                   Task actions
-//                 </Text>
-//                 <View
-//                   style={{
-//                     height: 0.5,
-//                     backgroundColor: colors.textColor,
-//                     opacity: 0.5,
-//                   }}
-//                 />
-
-//                 <TouchableOpacity
-//                   style={{
-//                     paddingVertical: 10,
-//                     paddingLeft: 15,
-//                   }}
-//                   onPress={() => {
-//                     props.close();
-//                   }}
-//                 >
-//                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
-//                     Edit task
-//                   </Text>
-//                 </TouchableOpacity>
-//                 <View
-//                   style={{
-//                     height: 0.5,
-//                     backgroundColor: colors.textColor,
-//                     opacity: 0.5,
-//                   }}
-//                 />
-//                 <TouchableOpacity
-//                   style={{
-//                     paddingVertical: 10,
-//                     paddingLeft: 15,
-//                   }}
-//                   onPress={() => {
-//                     props.close();
-//                   }}
-//                 >
-//                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
-//                     Assign member
-//                   </Text>
-//                 </TouchableOpacity>
-
-//                 <View
-//                   style={{
-//                     height: 0.5,
-//                     backgroundColor: colors.textColor,
-//                     opacity: 0.5,
-//                   }}
-//                 />
-//                 <TouchableOpacity
-//                   style={{ paddingVertical: 10, paddingLeft: 15 }}
-//                   onPress={() => {
-//                     props.handleDeleteTask(props.id);
-//                     props.close();
-//                   }}
-//                 >
-//                   <Text style={{ color: colors.textColor, fontSize: 15 }}>Delete task</Text>
-//                 </TouchableOpacity>
-//               </View>
-//             </View>
-//           </View>
-//         </Pressable>
-//       </Modal>
-//     </View>
-//   );
-// };
-
-// new task modal
 const TaskModal = (props) => {
   const [title, setTitle] = useState("");
   const [modalVisible, setmodalVisible] = useState(false);
@@ -1032,7 +917,7 @@ const MemberModal = (props) => {
             <View style={{ padding: 25, paddingVertical: 30 }}>
               <View style={{ flexDirection: "row", paddingBottom: 15 }}>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.close()}>
                   <Ionicons
                     name={"arrow-back"}
                     style={{
@@ -1195,7 +1080,7 @@ const AddMemberModal = (props) => {
             <View style={{ padding: 25, paddingVertical: 30 }}>
               <View style={{ flexDirection: "row", paddingBottom: 10 }}>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.close()}>
                   <Ionicons
                     name={"arrow-back"}
                     style={{
