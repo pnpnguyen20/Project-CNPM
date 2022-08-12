@@ -440,10 +440,12 @@ app.put('/delete/member', async (req, res, next) => {
         }
       })
       res.json({data:{},message: new Message(true,"Success")})
+      return
     }
     else
     message.message="Member don't exist in the project"
     res.json({data:{},message})
+    return
   }
   else
   {
@@ -451,6 +453,7 @@ app.put('/delete/member', async (req, res, next) => {
   res.json({data:{},message})
   else
   res.json({data:{},message: new Message(false,"Not permit to delete member")})
+  return
   }
 })
 app.patch('/member', async (req, res, next) => {
