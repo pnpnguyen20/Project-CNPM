@@ -21,8 +21,8 @@ const ProjectList = ({ route, navigation }) => {
     const [password, setPassword] = useState('')
     const [needRefresh, setNeedRefresh] = useState(false)
 
-    const handleAddProject = (title) => {
-        axios.post('/project', {
+    const handleAddProject = async (title) => {
+        await axios.post('/project', {
             "access": {
                 "US_ID": usid,
                 "US_ACCOUNT": username,
