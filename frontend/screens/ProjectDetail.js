@@ -22,7 +22,7 @@ import axios from "../components/axios";
 export default function ProjectDetail({ route, navigation }) {
 
   const [project, setProject] = useState([])
-  const [PJ_NAME, setPJ_NAME] = useState(project.PJ_NAME);
+  const [PJ_NAME, setPJ_NAME] = useState("");
   const [LABELS, setLABELS] = useState([]);
   const [P_Members, setP_Members] = useState([]);
   const [A_Members, setA_Members] = useState([]);
@@ -43,6 +43,7 @@ export default function ProjectDetail({ route, navigation }) {
       setLABELS(data.data.PROJECT_INFO.LABELS)
       setP_Members(data.data.PROJECT_INFO.PROJECT_MEMBERS)
       setA_Members(data.user)
+      setPJ_NAME(data.data.PROJECT_INFO.PJ_NAME)
 
     }
     else
@@ -274,6 +275,7 @@ export default function ProjectDetail({ route, navigation }) {
             borderRadius: 10,
           }}
           goBack={1}
+          PJ_NAME = {PJ_NAME}
           P_Members={P_Members}
           A_Members={A_Members}
           handleAddMem={handleAddMem}

@@ -17,6 +17,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import colors from "../constants/colors";
 
@@ -310,6 +311,7 @@ const PopUpModal = (props) => {
                     shadowOpacity: 1,
                     shadowRadius: 300,
                   }}
+                  PJ_NAME = {props.PJ_NAME}
                   handleAddMem={props.handleAddMem}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
@@ -369,10 +371,11 @@ const TaskModal = (props) => {
                     color: colors.textColor,
                     textAlign: "center",
                     fontWeight: "bold",
-                    fontSize: 28,
+                    fontSize: 25,
+                    maxWidth: 220
                   }}
                 >
-                  Task X
+                  {props.name}
                 </Text>
                 <Entypo
                   name={"edit"}
@@ -380,7 +383,7 @@ const TaskModal = (props) => {
                     color: colors.textColor,
                     fontSize: 23,
                     position: "absolute",
-                    right: 15,
+                    right: 0,
                     alignSelf: "center",
                   }}
                 />
@@ -485,8 +488,8 @@ const TaskModal = (props) => {
               </View>
               <View style={{ flexDirection: "row", alignItems: 'center', paddingTop: 20 }}>
               <TouchableOpacity style = {{flexDirection: 'row'}}>
-                <Ionicons
-                    name={"checkbox-outline"}
+              <MaterialIcons
+                    name={props.status === '1' ? "check-box": "check-box-outline-blank"}
                     style={{ fontSize: 25, color: colors.primary1 }} />
                 </TouchableOpacity>
 
@@ -648,12 +651,13 @@ const ProjectModal = (props) => {
                 <Text
                   style={{
                     color: colors.textColor,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontSize: 28,
+                    textAlign: "left",
+                    fontWeight: "600",
+                    fontSize: 25,
+                    maxWidth: 220
                   }}
                 >
-                  Project X
+                  {props.PJ_NAME}
                 </Text>
                 <Entypo
                   name={"edit"}
@@ -661,7 +665,7 @@ const ProjectModal = (props) => {
                     color: colors.textColor,
                     fontSize: 23,
                     position: "absolute",
-                    right: 15,
+                    right: 0,
                     alignSelf: "center",
                   }}
                 />
