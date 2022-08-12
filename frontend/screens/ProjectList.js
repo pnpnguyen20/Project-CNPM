@@ -183,10 +183,6 @@ const ProjectList = ({ route, navigation }) => {
                                 }}>Due date: 10/10/2000</Text>
                             </View>
                         </View>
-
-
-                        {/* <View style={{ width: "100%", height: .1, opacity: .25, backgroundColor: colors.textColor, position: "absolute", bottom: 0, }} /> */}
-
                     </TouchableOpacity>)
                 }
             </ScrollView>
@@ -200,7 +196,9 @@ const ProjectList = ({ route, navigation }) => {
                     width: 65,
                     height: 65,
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    shadowRadius: 30,
+                    shadowOpacity: .2
                 }}>
                     <Entypo
                         name={"plus"}
