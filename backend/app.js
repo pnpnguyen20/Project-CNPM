@@ -443,9 +443,11 @@ app.put('/delete/member', async (req, res, next) => {
       return
     }
     else
+    {
     message.message="Member don't exist in the project"
     res.json({data:{},message})
     return
+    }
   }
   else
   {
@@ -496,7 +498,8 @@ app.post('/label', async (req, res, next) => {
           LB_NAME:req.body["data"]["LB_NAME"]
         }
       })
-      res.json({data:{},message})}
+      res.json({data:{},message})
+      return}
     
     else{
       await prisma.lABEL.create({
@@ -506,7 +509,8 @@ app.post('/label', async (req, res, next) => {
           LB_NAME:req.body["data"]["LB_NAME"]
         }
       })
-      res.json({data:{},message})}
+      res.json({data:{},message})
+      return}
   }
   else
   {
