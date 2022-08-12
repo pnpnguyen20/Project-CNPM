@@ -78,15 +78,14 @@ const SignInScreen = ({ navigation }) => {
             })
         const message = data.message
         if (message.success) {
-            console.log(message)
             return true
         }
-        else return false
+        return false
 
     }
 
-    const loginHandle = (un, pw) => {
-        if (tryLogin(un, pw) == true) {
+    const loginHandle = async (un, pw) => {
+        if (await tryLogin(un, pw)) {
             AsyncStorage.setItem('un', un);
             AsyncStorage.setItem('pw', pw);
             navigation.navigate("BotTab")
