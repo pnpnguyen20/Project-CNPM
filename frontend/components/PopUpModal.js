@@ -290,7 +290,7 @@ const PopUpModal = (props) => {
                   }}
                   onPress={() => {
                     setProjectVisible(true);
-                    //props.close();
+
                   }}
                 >
                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
@@ -311,7 +311,7 @@ const PopUpModal = (props) => {
                     shadowOpacity: 1,
                     shadowRadius: 300,
                   }}
-                  PJ_NAME = {props.PJ_NAME}
+                  PJ_NAME={props.PJ_NAME}
                   handleAddMem={props.handleAddMem}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
@@ -479,7 +479,7 @@ const TaskModal = (props) => {
                   }}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
-                  handleDeleteMem = {props.handleDeleteMem}
+                  handleDeleteMem={props.handleDeleteMem}
                   close={() => {
                     setmodalVisible(false);
                   }}
@@ -487,13 +487,13 @@ const TaskModal = (props) => {
 
               </View>
               <View style={{ flexDirection: "row", alignItems: 'center', paddingTop: 20 }}>
-              <TouchableOpacity style = {{flexDirection: 'row'}}>
-              <MaterialIcons
-                    name={props.status === '1' ? "check-box": "check-box-outline-blank"}
+                <TouchableOpacity style={{ flexDirection: 'row' }}>
+                  <MaterialIcons
+                    name={props.status === '1' ? "check-box" : "check-box-outline-blank"}
                     style={{ fontSize: 25, color: colors.primary1 }} />
                 </TouchableOpacity>
 
-                <Text style = {{marginLeft: 10, fontSize: 15, fontWeight: '500'}}>
+                <Text style={{ marginLeft: 10, fontSize: 15, fontWeight: '500' }}>
                   Mark as completed
                 </Text>
               </View>
@@ -764,7 +764,6 @@ const ProjectModal = (props) => {
                     borderRadius: 10,
                     alignSelf: "center",
                     top: '16%',
-
                     flexDirection: "column",
                     shadowOpacity: 1,
                     shadowRadius: 300,
@@ -842,6 +841,8 @@ const MemberPopUpModal = (props) => {
                 shadowOpacity: 0.5,
                 shadowRadius: 75,
                 shadowColor: colors.textColor,
+
+
               }}>
                 <Text
                   style={{
@@ -918,7 +919,11 @@ const MemberModal = (props) => {
           onPress={() => props.close()}
         >
           <Pressable style={props.styles}>
-            <View style={{ padding: 25, paddingVertical: 30 }}>
+            <View style={{
+              padding: 25,
+              paddingVertical: 30,
+              maxHeight: 500
+            }}>
               <View style={{ flexDirection: "row", paddingBottom: 15 }}>
 
                 <TouchableOpacity onPress={() => props.close()}>
@@ -967,13 +972,12 @@ const MemberModal = (props) => {
                   borderRadius: 10,
                   alignSelf: "center",
                   top: '16%',
-
                   flexDirection: "column",
                   shadowOpacity: 1,
                   shadowRadius: 300,
                 }}
                 A_Members={props.A_Members}
-                handleAddMem = {props.handleAddMem}
+                handleAddMem={props.handleAddMem}
                 close={() => {
                   setaddModalVisible(false);
                 }}
@@ -1081,7 +1085,11 @@ const AddMemberModal = (props) => {
           onPress={() => props.close()}
         >
           <Pressable style={props.styles}>
-            <View style={{ padding: 25, paddingVertical: 30 }}>
+            <View style={{
+              padding: 25,
+              paddingVertical: 30,
+              maxHeight: 650,
+            }}>
               <View style={{ flexDirection: "row", paddingBottom: 10 }}>
 
                 <TouchableOpacity onPress={() => props.close()}>
@@ -1169,7 +1177,7 @@ const AddMemberModal = (props) => {
                     </Text>
 
                     <TouchableOpacity
-                      onPress={() => {setid(item.USER_ACCOUNT.US_ACCOUNT)}}
+                      onPress={() => { setid(item.USER_ACCOUNT.US_ACCOUNT) }}
                       style={{ position: "absolute", right: 0 }}
                     >
                       <Ionicons
@@ -1185,7 +1193,7 @@ const AddMemberModal = (props) => {
               </ScrollView>
 
 
-              <TouchableOpacity onPress={() => {props.handleAddMem(id)}} style={styles.commandButton}>
+              <TouchableOpacity onPress={() => { props.handleAddMem(id) }} style={styles.commandButton}>
                 <Text style={styles.panelButtonTitle}>Confirm</Text>
               </TouchableOpacity>
             </View>
@@ -1197,7 +1205,7 @@ const AddMemberModal = (props) => {
   );
 };
 
-export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, AddMemberModal};
+export { PopUpModal, InputModal, ModalInputBoardName, TaskModal, ProjectInputModal, ProjectModal, MemberModal, AddMemberModal };
 
 const styles = StyleSheet.create({
   commandButton: {
