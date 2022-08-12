@@ -27,8 +27,8 @@ POST   http://localhost:9696/login
 Content-Type: application/json
 
 {
-    "US_ID":4,
-    "US_ACCOUNT":"goporo1",
+    "US_ID":99,
+    "US_ACCOUNT":"test2",
     "US_PASSWORD":"123456",
     "TOKEN":null
 }
@@ -96,12 +96,12 @@ Content-Type: application/json
   }
 }
 ### delete Project
-DELETE  http://localhost:9696/project
+PUT  http://localhost:9696/project
 Content-Type: application/json
 
 {
   "access": {
-    "PJ_ID":4
+    "PJ_ID":14
     ,"MEM_ID":3
     ,"MEM_POS":0
 }}

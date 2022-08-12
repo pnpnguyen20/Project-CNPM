@@ -27,8 +27,8 @@ const Task = (props) => {
       </Text>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <MaterialIcons
-          name={props.status === '1' ? "check-box": "check-box-outline-blank"}
-          style={{ fontSize: 15, color: colors.textColor}} />
+          name={props.status === '1' ? "check-box" : "check-box-outline-blank"}
+          style={{ fontSize: 15, color: colors.textColor }} />
         <Text
           style={{
             color: colors.textColor,
@@ -38,7 +38,7 @@ const Task = (props) => {
           }}
         >
           Completed
-          
+
         </Text>
       </View>
     </View>

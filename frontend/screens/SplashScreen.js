@@ -9,11 +9,11 @@ const SplashScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor= '#528ae6' barStyle="light-content" />
+            <StatusBar backgroundColor='#528ae6' barStyle="light-content" />
             <View style={styles.header}>
                 <Animatable.Image
                     animation="bounceIn"
-                    duraton="1500"
+                    duraton="1000"
                     source={require('../assets/logo.png')}
                     style={styles.logo}
                     resizeMode="stretch"
@@ -33,7 +33,7 @@ const SplashScreen = ({ navigation }) => {
                     <Button
                         onPress={() => navigation.navigate('SignInScreen')}
                         title="Get Started"
-                        color= {colors.primary2}
+                        color={colors.primary2}
                     />
                 </View>
             </Animatable.View>

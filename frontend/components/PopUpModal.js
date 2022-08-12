@@ -810,7 +810,8 @@ const TaskAddMemberModal = (props) => {
               </ScrollView>
 
 
-              <TouchableOpacity style={styles.commandButton}>
+              <TouchableOpacity
+                style={styles.commandButton}>
                 <Text style={styles.panelButtonTitle}>Confirm</Text>
               </TouchableOpacity>
             </View>
@@ -1036,23 +1037,28 @@ const ProjectModal = (props) => {
                 Team Members
               </Text>
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
-                {props.P_Members.map((item, index) =>
-                  <TouchableOpacity
-                    key={index}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      borderRadius: 15,
-                      maxWidth: 100
-                    }}>
-                    <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)}
+                {props.P_Members.map((item, index) => {
+                  if (index < 2) {
+                    return <TouchableOpacity
+                      key={index}
                       style={{
-                        width: 40,
-                        height: 40,
-                        marginRight: 10,
-                        borderRadius: 50,
-                      }} />
-                  </TouchableOpacity>
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        borderRadius: 15,
+                        maxWidth: 100
+                      }}>
+                      <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)}
+                        style={{
+                          width: 40,
+                          height: 40,
+                          marginRight: 10,
+                          borderRadius: 50,
+                        }} />
+                    </TouchableOpacity>
+                  }
+
+                }
+
                 )}
 
                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
@@ -1169,7 +1175,7 @@ const MemberPopUpModal = (props) => {
                   }}
                 />
                 <TouchableOpacity
-                  style={{ paddingVertical: 10, paddingLeft: 15,}}
+                  style={{ paddingVertical: 10, paddingLeft: 15, }}
                   onPress={() => { props.handleAssign(props.ID), props.close() }}
                 >
                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
@@ -1486,8 +1492,9 @@ const AddMemberModal = (props) => {
               </ScrollView>
 
 
-              <TouchableOpacity onPress={() => { props.handleAddMem(id) }} style={styles.commandButton}>
-                <Text style={styles.panelButtonTitle}>Confirm</Text>
+              <TouchableOpacity onPress={() => { props.handleAddMem(id); props.close() }} style={styles.commandButton}>
+                <Text
+                  style={styles.panelButtonTitle}>Confirm</Text>
               </TouchableOpacity>
             </View>
 
