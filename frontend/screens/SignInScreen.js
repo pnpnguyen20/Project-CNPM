@@ -16,6 +16,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
 import { useTheme } from 'react-native-paper';
+import axios from '../components/axios';
 
 const SignInScreen = ({ navigation }) => {
 
@@ -69,10 +70,31 @@ const SignInScreen = ({ navigation }) => {
         });
     }
 
+    const tryLogin = async (un, pw) => {
+        const { data } = await axios.put('/login',
+            {
+                "US_ACCOUNT": un,
+                "US_PASSWORD": pw,
+            })
+        const message = data.message
+        if (message.success) {
+            console.log(message)
+            return true
+        }
+        else return false
+
+    }
+
     const loginHandle = (un, pw) => {
-        AsyncStorage.setItem('un', un);
-        AsyncStorage.setItem('pw', pw);
-        navigation.navigate("BotTab")
+        if (tryLogin(un, pw) == true) {
+            AsyncStorage.setItem('un', un);
+            AsyncStorage.setItem('pw', pw);
+            navigation.navigate("BotTab")
+        }
+        else {
+            alert("Username or Password is not correct!!")
+        }
+
     }
 
     return (
