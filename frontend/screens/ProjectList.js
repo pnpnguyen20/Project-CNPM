@@ -55,6 +55,7 @@ const ProjectList = ({ route, navigation }) => {
         const fetchproducts = async () => {
             const un = await AsyncStorage.getItem('un');
             const pw = await AsyncStorage.getItem('pw');
+
             setUsername(un)
             setPassword(pw)
             const { data } = await axios.put('/login',
