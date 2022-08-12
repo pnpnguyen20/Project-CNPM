@@ -456,8 +456,24 @@ const TaskModal = (props) => {
                 Members
               </Text>
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
-                <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-                <Image source={require("../assets/prj_icon.png")} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
+                {props.P_Members.map((item, index) =>
+                  <TouchableOpacity
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+
+                      alignItems: 'center',
+                      borderRadius: 15,
+                    }}>
+                    <Image source={require(`../assets/user-ava/user${item.PROJECT_MEMBERS.MEM_ID % 9}.png`)}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        marginRight: 10,
+                        borderRadius: 50,
+                      }} />
+                  </TouchableOpacity>
+                )}
                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
                   <Ionicons
                     name="ios-ellipsis-horizontal-circle-sharp"
@@ -647,25 +663,9 @@ const TaskMemberModal = (props) => {
                         setModalVisible(!ModalVisible)
                       }}>
                       <Entypo
-                        name="dots-three-horizontal"
-                        style={{ fontSize: 20, color: colors.textColor, marginLeft: 5 }} />
+                        name="remove-circle"
+                        style={{ fontSize: 20, color: colors.warning, marginLeft: 5 }} />
                     </TouchableOpacity>
-
-                    {/* <MemberPopUpModal
-                      isVisible={ModalVisible}
-                      styles={{
-                        backgroundColor: colors.mainBackground,
-                        width: 230,
-                        right: 10,
-                        position: "absolute",
-                        borderRadius: 10,
-                      }}
-                      ID={MEMID}
-                      handleDeleteMem={props.handleDeleteMem}
-                      close={() => {
-                        setModalVisible(false);
-                      }}
-                    /> */}
                   </TouchableOpacity>
                 )}
 
@@ -1035,8 +1035,24 @@ const ProjectModal = (props) => {
                 Team Members
               </Text>
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
-                <Image source={require(`../assets/user-ava/user${props.P_Members[0].MEM_ID % 9}.png`)} style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} />
-                {/* <Image source={require(`../assets/user-ava/user${props.P_Members[1].MEM_ID % 9}.png`)}  style={{ borderRadius: 50, width: 40, height: 40, marginRight: 7 }} /> */}
+                {props.P_Members.map((item, index) =>
+                  <TouchableOpacity
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      borderRadius: 15,
+                      maxWidth: 100
+                    }}>
+                    <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        marginRight: 10,
+                        borderRadius: 50,
+                      }} />
+                  </TouchableOpacity>
+                )}
 
                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
                   <Ionicons
