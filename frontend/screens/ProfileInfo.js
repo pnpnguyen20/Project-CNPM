@@ -32,7 +32,7 @@ const ProfileInfo = ({ navigation }) => {
           <FontAwesome name="user-o" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Name</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>àkajfjalf</Text>
+            <Text style={{ color: colors.textColor, }}>Kiyotoka</Text>
           </View>
         </View>
 
@@ -40,7 +40,7 @@ const ProfileInfo = ({ navigation }) => {
           <FontAwesome name="envelope-o" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Email</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>agaewrqwfasf</Text>
+            <Text style={{ color: colors.textColor, }}>Kiyotoka@gmail.com</Text>
           </View>
         </View>
 
@@ -48,7 +48,7 @@ const ProfileInfo = ({ navigation }) => {
           <Feather name="phone" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Phone</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>Tagadgag</Text>
+            <Text style={{ color: colors.textColor, }}>012345678</Text>
           </View>
         </View>
 
@@ -56,7 +56,7 @@ const ProfileInfo = ({ navigation }) => {
           <FontAwesome name="calendar" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Birth date</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>ágadbvsdava</Text>
+            <Text style={{ color: colors.textColor, }}>Jul 7 2000</Text>
           </View>
         </View>
 
@@ -65,7 +65,7 @@ const ProfileInfo = ({ navigation }) => {
           <Icon name="human-male-female" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Gender</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>ágadbvsdava</Text>
+            <Text style={{ color: colors.textColor, }}>Male</Text>
           </View>
         </View>
 
@@ -73,7 +73,7 @@ const ProfileInfo = ({ navigation }) => {
           <Icon name="map-marker-outline" color={colors.inactive} size={20} />
           <Text style={{ color: colors.primary1, marginLeft: 10 }}>Address</Text>
           <View style={{ marginLeft: "auto" }}>
-            <Text style={{ color: colors.textColor, }}>aqwfasvaf</Text>
+            <Text style={{ color: colors.textColor, }}>2773 Tail Ends Road, USA</Text>
           </View>
         </View>
       </View>

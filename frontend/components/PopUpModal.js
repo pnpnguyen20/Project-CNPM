@@ -6,16 +6,13 @@ import {
   Text,
   Pressable,
   View,
-  TouchableWithoutFeedback,
   TouchableOpacity,
   TextInput,
   Image,
   Keyboard,
   ScrollView
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
-import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -601,8 +598,6 @@ const TaskMemberModal = (props) => {
                     style={{
                       color: colors.primary1,
                       fontSize: 27,
-                      //marginLeft: 60,
-
                     }}
                   />
                 </TouchableOpacity>
@@ -1056,10 +1051,7 @@ const ProjectModal = (props) => {
                         }} />
                     </TouchableOpacity>
                   }
-
-                }
-
-                )}
+                })}
 
                 <TouchableOpacity onPress={() => { setmodalVisible(!modalVisible) }}>
                   <Ionicons
@@ -1448,7 +1440,7 @@ const AddMemberModal = (props) => {
               </View>
               <ScrollView style={{ paddingTop: 15 }}>
                 {filteredData.map((item, index) =>
-                  <TouchableOpacity
+                  <View
                     key={index}
                     style={{
                       flexDirection: 'row',
@@ -1476,7 +1468,7 @@ const AddMemberModal = (props) => {
                     </Text>
 
                     <TouchableOpacity
-                      onPress={() => { setid(item.USER_ACCOUNT.US_ACCOUNT) }}
+                      onPress={() => { setid(item.USER_ACCOUNT.US_ACCOUNT); props.handleAddMem(item.USER_ACCOUNT.US_ACCOUNT) }}
                       style={{ position: "absolute", right: 0 }}
                     >
                       <Ionicons
@@ -1485,14 +1477,14 @@ const AddMemberModal = (props) => {
                           fontSize: 30, color: colors.primary1, marginLeft: 5
                         }} />
                     </TouchableOpacity>
-                  </TouchableOpacity>
+                  </View>
 
                 )}
 
               </ScrollView>
 
 
-              <TouchableOpacity onPress={() => { props.handleAddMem(id); props.close() }} style={styles.commandButton}>
+              <TouchableOpacity onPress={() => { props.close() }} style={styles.commandButton}>
                 <Text
                   style={styles.panelButtonTitle}>Confirm</Text>
               </TouchableOpacity>

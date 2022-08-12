@@ -1,13 +1,10 @@
-import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, TextInput, Button } from "react-native";
+import { View, TouchableOpacity, Image, Text, ScrollView, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { React, useEffect, useState } from "react";
 import colors from "../constants/colors";
-import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import { tempData } from "../components";
 import { ProjectInputModal } from "../components/PopUpModal";
-
 import axios from "../components/axios";
 
 
@@ -150,7 +147,6 @@ const ProjectList = ({ route, navigation }) => {
                         onPress={() => navigation.navigate("ProjectDetail", item)}
                         style={{
                             minHeight: 100,
-                            // width: "100%",
                             flexDirection: 'row',
                             alignItems: 'center',
                             backgroundColor: colors.primary3,

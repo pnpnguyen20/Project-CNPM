@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Dimensions, StyleSheet, StatusBar, Image, Button } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, StatusBar, Image, Button } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { useTheme } from '@react-navigation/native';
 import colors from '../constants/colors';

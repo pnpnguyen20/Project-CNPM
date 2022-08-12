@@ -5,7 +5,7 @@ import SignUpScreen from '../screens/SignUpScreen';
 import SignInScreen from '../screens/SignInScreen';
 const Stack = createNativeStackNavigator();
 
-const StartScreen = ({ navigation }) => (
+const StartScreen = () => (
     <Stack.Navigator headerMode='none' >
         <Stack.Screen options={{ headerShown: false }} name='SplashScreen' component={SplashScreen} />
         <Stack.Screen options={{ headerShown: false }} name="SignInScreen" component={SignInScreen} />

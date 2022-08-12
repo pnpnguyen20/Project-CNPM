@@ -7,7 +7,6 @@ import {
     Platform,
     StyleSheet,
     StatusBar,
-    Alert
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import colors from '../constants/colors';
@@ -30,7 +29,6 @@ const SignInScreen = ({ navigation }) => {
     });
 
     const { colors } = useTheme();
-
 
     const textInputChange = (val) => {
         if (val.trim().length >= 5) {

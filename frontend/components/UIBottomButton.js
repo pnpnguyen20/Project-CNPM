@@ -1,7 +1,5 @@
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { TouchableOpacity } from "react-native";
-
-import { View, Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import React from "react";
 import colors from "../constants/colors";
 

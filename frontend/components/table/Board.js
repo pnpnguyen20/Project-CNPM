@@ -4,14 +4,12 @@ import {
   TouchableOpacity,
   TextInput,
   Keyboard,
-  ScrollView,
   KeyboardAvoidingView,
   Platform,
   FlatList
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-
-import { forwardRef, React, useRef, useState } from "react";
+import { React, useRef, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Task from "./Task";
 import BoardModal from "./BoardModal";
@@ -41,8 +39,8 @@ const Board = (props) => {
       <Task
 
         text={item.TASK_NAME}
-        member = {item.TASK_RESPONDSIPLE}
-        status = {item.TASK_STATUS}
+        member={item.TASK_RESPONDSIPLE}
+        status={item.TASK_STATUS}
       />
     </TouchableOpacity>
 
@@ -125,7 +123,6 @@ const Board = (props) => {
             color: colors.textColor,
             fontSize: 18,
             marginStart: 15,
-            // fontFamily: 'system-ui',
           }}
         >
           {props.title}
@@ -185,8 +182,8 @@ const Board = (props) => {
         A_Members={props.P_Members}
         handleDeleteTask={handleDeleteTask}
         id={clickedID}
-        status = {clickstatus}
-        name = {taskname}
+        status={clickstatus}
+        name={taskname}
       />
       <FlatList
 
@@ -215,7 +212,6 @@ const Board = (props) => {
           }}
           autoFocus={true}
           onBlur={() => Keyboard.dismiss()}
-        // keybo
         />
       ) : (
         <TouchableOpacity

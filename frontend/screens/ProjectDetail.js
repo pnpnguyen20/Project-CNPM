@@ -1,19 +1,15 @@
-import { Component, React, useCallback, useEffect, useRef, useState } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import {
   Text,
   View,
   TouchableOpacity,
-  ScrollView,
   FlatList,
-  Pressable
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Entypo } from "@expo/vector-icons";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import { Board, tempData } from "../components";
-
-import { PopUpModal, ProjectModal, MemberModal, AddMemberModal } from "../components/PopUpModal";
+import { Board } from "../components";
+import { PopUpModal } from "../components/PopUpModal";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import colors from "../constants/colors";
 import axios from "../components/axios";
@@ -58,7 +54,6 @@ export default function ProjectDetail({ route, navigation }) {
     setNeedRefresh(!needRefresh)
   }
 
-  //post new board
   const postBoard = (LB_ID, LB_NAME) => {
     axios.post('/label', {
       "access": {
@@ -72,12 +67,10 @@ export default function ProjectDetail({ route, navigation }) {
         "LB_NAME": LB_NAME
       }
     })
-
     setNeedRefresh(!needRefresh)
   }
 
   const postMem = (US_ACCOUNT) => {
-
     axios.post('/member', {
       "access": {
         "PJ_ID": route.params.PROJECT_INFO.PJ_ID
@@ -89,7 +82,6 @@ export default function ProjectDetail({ route, navigation }) {
         "US_ACCOUNT": US_ACCOUNT,
       }
     })
-
     setNeedRefresh(!needRefresh)
   }
 
@@ -214,10 +206,6 @@ export default function ProjectDetail({ route, navigation }) {
         paddingTop: 10
       }}
     >
-      {/* nut reload */}
-      {/* <TouchableOpacity style={{ width: 200, height: 200, backgroundColor: 'blue' }} onPress={() => {
-        setNeedRefresh(!needRefresh)
-      }} /> */}
       <View
         style={{
           flexDirection: "row",
@@ -305,7 +293,6 @@ export default function ProjectDetail({ route, navigation }) {
         />
       </View>
 
-      {/* item2 */}
       <View
         style={{
           flexDirection: "row",
@@ -313,7 +300,6 @@ export default function ProjectDetail({ route, navigation }) {
         }}
       >
       </View>
-      {/* item3 */}
 
       <FlatList
         ref={scrollRef1}

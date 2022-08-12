@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView, Platform, StatusBar } from "react-native";
+import { View, TouchableOpacity, Image, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import colors from "../constants/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/Feather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "../components/axios";
 
-const Account = ({ route, navigation }) => {
+const Account = ({ navigation }) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
