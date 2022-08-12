@@ -45,7 +45,7 @@ const ProjectList = ({ route, navigation }) => {
     const searchProject = (e) => {
         let text = e.toLowerCase()
         let filteredName = projects.filter((item) => {
-            return item.PJ_NAME.toLowerCase().includes(text)
+            return item.PROJECT_INFO.PJ_NAME.toLowerCase().includes(text)
         })
         setFilteredData(filteredName);
     }
@@ -81,7 +81,6 @@ const ProjectList = ({ route, navigation }) => {
         fetchproducts();
     }, [route.params, needRefresh])
 
-    const { PJ_ID, PJ_NAME, a1, a2, a3, a4, a5, LABELS } = projects
     return (
         <SafeAreaView style={{
             backgroundColor: colors.mainBackground,
