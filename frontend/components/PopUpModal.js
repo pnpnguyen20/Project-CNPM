@@ -464,7 +464,7 @@ const TaskModal = (props) => {
                     style={{ borderRadius: 50, fontSize: 50, color: colors.primary1 }} />
                 </TouchableOpacity>
 
-                <MemberModal
+                <TaskMemberModal
                   isVisible={modalVisible}
                   styles={{
                     backgroundColor: colors.mainBackground,
@@ -533,6 +533,294 @@ const TaskModal = (props) => {
     </View>
   );
 };
+
+
+const TaskMemberModal = (props) => {
+  const [ModalVisible, setModalVisible] = useState(false);
+  const [addModalVisible, setaddModalVisible] = useState(false);
+  const [MEMID, setMEMID] = useState();
+
+  return (
+    <View>
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => props.close()}
+        >
+          <Pressable style={props.styles}>
+            <View style={{
+              padding: 25,
+              paddingVertical: 30,
+              maxHeight: 500
+            }}>
+              <View style={{ flexDirection: "row", paddingBottom: 15 }}>
+
+                <TouchableOpacity onPress={() => props.close()}>
+                  <Ionicons
+                    name={"arrow-back"}
+                    style={{
+                      color: colors.primary1,
+                      fontSize: 25,
+                      marginRight: 15,
+                      alignSelf: 'center'
+                    }}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                  <Text
+                    style={{
+                      color: colors.textColor,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: 20,
+                    }}
+                  >Member</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{ position: "absolute", right: 9, }} onPress={() => { setaddModalVisible(!addModalVisible) }}>
+                  <Ionicons
+                    name={"add-circle-outline"}
+                    style={{
+                      color: colors.primary1,
+                      fontSize: 27,
+                      //marginLeft: 60,
+
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+
+
+
+              <TaskAddMemberModal
+                isVisible={addModalVisible}
+                styles={{
+                  backgroundColor: colors.mainBackground,
+                  width: 350,
+                  borderRadius: 10,
+                  alignSelf: "center",
+                  top: '16%',
+                  flexDirection: "column",
+                  shadowOpacity: 1,
+                  shadowRadius: 300,
+                }}
+                A_Members={props.A_Members}
+                //handleAddMem={props.handleAddMem}
+                close={() => {
+                  setaddModalVisible(false);
+                }}
+              />
+
+              <ScrollView>
+                {props.P_Members.map((item, index) =>
+                  <TouchableOpacity
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+
+                      alignItems: 'center',
+                      borderRadius: 15,
+                      paddingBottom: 10,
+                    }}>
+                    <Image source={require(`../assets/user-ava/user${item.PROJECT_MEMBERS.MEM_ID % 9}.png`)}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        marginRight: 10,
+                        borderRadius: 50,
+                      }} />
+
+                    <Text style={{
+                      fontSize: 17,
+                      color: colors.textColor,
+                      alignContent: 'center',
+                      margin: 5,
+                      fontWeight: "700"
+                    }}>
+                      {item.PROJECT_MEMBERS.USER_INFO.USER_ACCOUNT.US_ACCOUNT}
+                    </Text>
+
+                    <TouchableOpacity style={{ position: "absolute", right: 15, }}
+                      onPress={() => {
+                        //setMEMID(item.MEM_ID)
+                        setModalVisible(!ModalVisible)
+                      }}>
+                      <Entypo
+                        name="dots-three-horizontal"
+                        style={{ fontSize: 20, color: colors.textColor, marginLeft: 5 }} />
+                    </TouchableOpacity>
+
+                    {/* <MemberPopUpModal
+                      isVisible={ModalVisible}
+                      styles={{
+                        backgroundColor: colors.mainBackground,
+                        width: 230,
+                        right: 10,
+                        position: "absolute",
+                        borderRadius: 10,
+                      }}
+                      ID={MEMID}
+                      handleDeleteMem={props.handleDeleteMem}
+                      close={() => {
+                        setModalVisible(false);
+                      }}
+                    /> */}
+                  </TouchableOpacity>
+                )}
+
+              </ScrollView>
+            </View>
+
+          </Pressable>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
+
+
+const TaskAddMemberModal = (props) => {
+  const [text, setText] = useState('');
+  const [filteredData, setFilteredData] = useState(props.A_Members);
+  const [id, setid] = useState("");
+
+  const searchMember = (e) => {
+    let text = e.toLowerCase()
+    let filteredName = props.A_Members.filter((item) => {
+      return item.USER_INFO.USER_ACCOUNT.US_ACCOUNT.toLowerCase().includes(text)
+    })
+    setFilteredData(filteredName);
+  }
+
+  return (
+    <View >
+      <Modal animationType="none" transparent={true} visible={props.isVisible}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => props.close()}
+        >
+          <Pressable style={props.styles}>
+            <View style={{
+              padding: 25,
+              paddingVertical: 30,
+              maxHeight: 500,
+            }}>
+              <View style={{ flexDirection: "row", paddingBottom: 10 }}>
+
+                <TouchableOpacity onPress={() => props.close()}>
+                  <Ionicons
+                    name={"arrow-back"}
+                    style={{
+                      color: colors.primary1,
+                      fontSize: 25,
+                      marginRight: 15,
+                      alignSelf: 'center'
+                    }}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                  <Text
+                    style={{
+                      color: colors.textColor,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: 20,
+                    }}
+                  >Add member</Text>
+                </TouchableOpacity>
+
+              </View>
+
+              <View style={{
+                flexDirection: 'row',
+                backgroundColor: colors.primary3,
+                opacity: .75,
+                borderRadius: 10,
+              }}>
+                <Entypo
+                  name={"magnifying-glass"}
+                  style={{
+                    color: colors.textColor,
+                    fontSize: 22,
+                    alignSelf: 'center',
+                    margin: 5,
+                    marginHorizontal: 10,
+                  }}
+                />
+                <TextInput
+                  style={{
+                    flex: 1,
+                    height: 30,
+                    alignSelf: 'center',
+                    color: colors.textColor,
+                    fontSize: 17,
+                  }}
+                  placeholder={"Search members"}
+                  placeholderTextColor={colors.textColor}
+                  value={text}
+                  onChangeText={(text) => { searchMember(text), setText(text) }}
+                />
+              </View>
+              <ScrollView style={{ paddingTop: 15 }}>
+                {filteredData.map((item, index) =>
+                  <TouchableOpacity
+                    key={index}
+                    style={{
+                      flexDirection: 'row',
+
+                      alignItems: 'center',
+                      borderRadius: 15,
+                      paddingBottom: 15,
+                    }}>
+                    <Image source={require(`../assets/user-ava/user${item.MEM_ID % 9}.png`)}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        marginRight: 10,
+                        borderRadius: 50,
+                      }} />
+
+                    <Text style={{
+                      fontSize: 17,
+                      color: colors.textColor,
+                      alignContent: 'center',
+                      margin: 5,
+                      fontWeight: "700"
+                    }}>
+                      {item.USER_INFO.USER_ACCOUNT.US_ACCOUNT}
+                    </Text>
+
+                    <TouchableOpacity
+                      //onPress={() => { setid(item.USER_ACCOUNT.US_ACCOUNT) }}
+                      style={{ position: "absolute", right: 0 }}
+                    >
+                      <Ionicons
+                        name={item.added ? "checkmark-circle" : "add-circle-outline"}
+                        style={{
+                          fontSize: 30, color: colors.primary1, marginLeft: 5
+                        }} />
+                    </TouchableOpacity>
+                  </TouchableOpacity>
+
+                )}
+
+              </ScrollView>
+
+
+              <TouchableOpacity style={styles.commandButton}>
+                <Text style={styles.panelButtonTitle}>Confirm</Text>
+              </TouchableOpacity>
+            </View>
+
+          </Pressable>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+};
+
 
 const ProjectInputModal = (props) => {
   const [title, setTitle] = useState("");
@@ -1088,7 +1376,7 @@ const AddMemberModal = (props) => {
             <View style={{
               padding: 25,
               paddingVertical: 30,
-              maxHeight: 650,
+              maxHeight: 500,
             }}>
               <View style={{ flexDirection: "row", paddingBottom: 10 }}>
 

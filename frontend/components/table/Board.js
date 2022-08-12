@@ -27,6 +27,7 @@ const Board = (props) => {
   const [taskModalVisible, setTaskModalVisible] = useState(false)
   const [clickedID, setClickedID] = useState("");
   const [clickstatus, setclickstatus] = useState("");
+  const [taskMem, settaskMem] = useState([]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -34,6 +35,7 @@ const Board = (props) => {
         setClickedID(item.TASK_ID);
         setTaskname(item.TASK_NAME);
         setclickstatus(item.TASK_STATUS)
+        settaskMem(item.TASK_RESPONDSIPLE)
         setTaskModalVisible(true)
       }}>
       <Task
@@ -179,8 +181,8 @@ const Board = (props) => {
         close={() => {
           setTaskModalVisible(!taskModalVisible);
         }}
-        P_Members={props.P_Members}
-        A_Members={props.A_Members}
+        P_Members={taskMem}
+        A_Members={props.P_Members}
         handleDeleteTask={handleDeleteTask}
         id={clickedID}
         status = {clickstatus}
