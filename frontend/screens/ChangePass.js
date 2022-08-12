@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, TextInput, StyleSheet } from 'react-native';
-
+import React from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from "../constants/colors";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const ChangePass = ({ navigation }) => {
@@ -70,18 +68,8 @@ const ChangePass = ({ navigation }) => {
         </View>
 
         <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
-            <Text style={styles.panelButtonTitle}>Confirm</Text>
+          <Text style={styles.panelButtonTitle}>Confirm</Text>
         </TouchableOpacity>
-
-        {/* <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
-            <Text style={styles.panelButtonTitle}>Confirm</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("account")}>
-            <Text style={styles.panelButtonTitle}>Cancel</Text>
-          </TouchableOpacity>
-        </View> */}
 
       </View>
     </SafeAreaView>
@@ -124,7 +112,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    //marginTop: Platform.OS === 'android' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

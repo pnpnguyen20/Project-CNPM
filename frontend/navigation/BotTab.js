@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import AboutUs from "../screens/AboutUs";
 import EditProfile from "../screens/EditProfile";
 import ChangePass from "../screens/ChangePass";
@@ -9,10 +8,8 @@ import ProjectDetail from "../screens/ProjectDetail";
 import Notification from "../screens/Notification";
 import Account from "../screens/Account";
 import ProfileInfo from "../screens/ProfileInfo";
-
 import colors from "../constants/colors";
 import ProjectList from "../screens/ProjectList";
-import { useEffect } from "react";
 
 
 const Stack = createNativeStackNavigator();

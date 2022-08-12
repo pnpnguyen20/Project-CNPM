@@ -12,7 +12,6 @@ import * as Animatable from 'react-native-animatable';
 import colors from '../constants/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-
 import { useTheme } from 'react-native-paper';
 import axios from '../components/axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';

@@ -1,12 +1,9 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-
 import colors from "../constants/colors";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const EditProfile = ({ navigation }) => {
@@ -121,18 +118,8 @@ const EditProfile = ({ navigation }) => {
         </View>
 
         <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
-            <Text style={styles.panelButtonTitle}>Confirm</Text>
+          <Text style={styles.panelButtonTitle}>Confirm</Text>
         </TouchableOpacity>
-
-        {/* <View style={{ flexDirection: "column", alignSelf: "center", marginVertical: 30 }}>
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
-            <Text style={styles.panelButtonTitle}>Confirm</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate("ProfileInfo")}>
-            <Text style={styles.panelButtonTitle}>Cancel</Text>
-          </TouchableOpacity>
-        </View> */}
 
       </View>
     </SafeAreaView>
@@ -176,7 +163,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    //marginTop: Platform.OS === 'android' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

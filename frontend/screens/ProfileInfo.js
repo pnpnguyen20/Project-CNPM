@@ -1,13 +1,12 @@
-import { React, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-
+import { React } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import colors from "../constants/colors";
 
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileInfo = ({ navigation }) => {
   return (
@@ -106,8 +105,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: 10,
-    //borderBottomWidth: 1,
-    //borderBottomColor: '#f2f2f2',
     paddingBottom: 5,
   },
   actionError: {
@@ -119,7 +116,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    //marginTop: Platform.OS === 'android' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

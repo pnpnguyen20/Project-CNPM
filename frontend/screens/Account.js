@@ -9,16 +9,12 @@ import axios from "../components/axios";
 const Account = ({ navigation }) => {
 
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [usid, setUSID] = useState(0)
 
   useEffect(() => {
     const fetchproducts = async () => {
       const un = await AsyncStorage.getItem('un');
       const pw = await AsyncStorage.getItem('pw');
-
-      setUsername(un)
-      setPassword(pw)
       const { data } = await axios.put('/login',
         {
           "US_ACCOUNT": un,
