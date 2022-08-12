@@ -47,7 +47,7 @@ const Account = ({ route, navigation }) => {
           <View style={{ marginTop: 30, paddingHorizontal: 29, flexDirection: "column", alignItems: "center" }}>
             <Image style={styles.profile_pic} source={require(`../assets/user-ava/user${usid % 9}.png`)} />
             <Text style={{ fontSize: 24, fontWeight: 'bold', color: colors.textColor, marginBottom: 5 }}>{username.toUpperCase()}</Text>
-            <Text style={{ fontSize: 14, lineHeight: 14, fontWeight: '500', color: colors.textColor, opacity: .7 }}>tqthinh20@clc.fitus.edu.vn</Text>
+            <Text style={{ fontSize: 14, lineHeight: 14, fontWeight: '500', color: colors.textColor, opacity: .7 }}>{username}@clc.fitus.edu.vn</Text>
           </View>
         </View>
 
