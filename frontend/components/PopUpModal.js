@@ -313,6 +313,7 @@ const PopUpModal = (props) => {
                   }}
                   PJ_NAME={props.PJ_NAME}
                   handleAddMem={props.handleAddMem}
+                  handleAssign={props.handleAssign}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
                   handleDeleteMem={props.handleDeleteMem}
@@ -1073,6 +1074,7 @@ const ProjectModal = (props) => {
                     shadowRadius: 300,
                   }}
                   handleAddMem={props.handleAddMem}
+                  handleAssign={props.handleAssign}
                   P_Members={props.P_Members}
                   A_Members={props.A_Members}
                   handleDeleteMem={props.handleDeleteMem}
@@ -1166,23 +1168,9 @@ const MemberPopUpModal = (props) => {
                     opacity: 0.5,
                   }}
                 />
-
-                <View
-                  style={{
-                    height: 0.5,
-                    backgroundColor: colors.textColor,
-                    opacity: 0.5,
-                  }}
-                />
                 <TouchableOpacity
-                  style={{
-                    paddingVertical: 10,
-                    paddingLeft: 15,
-                  }}
-                  onPress={() => {
-                    setProjectVisible(true);
-                    props.close();
-                  }}
+                  style={{ paddingVertical: 10, paddingLeft: 15,}}
+                  onPress={() => { props.handleAssign(props.ID), props.close() }}
                 >
                   <Text style={{ color: colors.textColor, fontSize: 15 }}>
                     Assign to team leader
@@ -1197,7 +1185,7 @@ const MemberPopUpModal = (props) => {
                 />
                 <TouchableOpacity
                   style={{ paddingVertical: 10, paddingLeft: 15 }}
-                  onPress={() => { props.handleDeleteMem(props.ID) }}
+                  onPress={() => { props.handleDeleteMem(props.ID), props.close() }}
                 >
                   <Text style={{ color: colors.warning, fontSize: 15, fontWeight: "bold", }}>Remove member</Text>
                 </TouchableOpacity>
@@ -1319,7 +1307,7 @@ const MemberModal = (props) => {
 
                     <TouchableOpacity style={{ position: "absolute", right: 45, }}>
                       <Ionicons
-                        name={item.MEM_POS === 0 ? "flag" : "flag-outline"}
+                        name={item.MEM_POS === 1 ? "flag" : "flag-outline"}
                         style={{
                           color: colors.primary1,
                           fontSize: 25,
@@ -1349,6 +1337,7 @@ const MemberModal = (props) => {
                         borderRadius: 10,
                       }}
                       ID={MEMID}
+                      handleAssign={props.handleAssign}
                       handleDeleteMem={props.handleDeleteMem}
                       close={() => {
                         setModalVisible(false);

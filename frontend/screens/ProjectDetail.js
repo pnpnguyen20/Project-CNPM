@@ -98,6 +98,23 @@ export default function ProjectDetail({ route, navigation }) {
     postMem(US_ACCOUNT)
   };
 
+  const AssignLeader = (ID) => {
+    axios.patch('/member', {
+      "access": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID
+        , "MEM_ID": route.params.MEM_ID
+        , "MEM_POS": 0
+      },
+      "data": {
+        "PJ_ID": route.params.PROJECT_INFO.PJ_ID,
+        "MEM_ID": ID,
+        "MEM_POS": 1
+      }
+    })
+
+    setNeedRefresh(!needRefresh)
+  }
+
   const scrollRef1 = useRef();
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -281,6 +298,7 @@ export default function ProjectDetail({ route, navigation }) {
           handleAddMem={handleAddMem}
           handleDeleteMem={handleDeleteMem}
           handleLeave={handleLeave}
+          handleAssign={AssignLeader}
           addBoard={handleAddBoard}
           close={() => {
             setModalVisible(false);
