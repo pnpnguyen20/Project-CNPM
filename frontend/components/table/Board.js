@@ -22,15 +22,18 @@ import axios from "../axios";
 
 const Board = (props) => {
   const [task, setTask] = useState({ text: "" });
-  // const [taskItems, setTaskItems] = useState(props.tasks ? props.tasks : []);
+  const [taskname, setTaskname] = useState();
   const [boardModalVisible, setBoardModalVisible] = useState(false);
   const [taskModalVisible, setTaskModalVisible] = useState(false)
-  const [clickedID, setClickedID] = useState();
+  const [clickedID, setClickedID] = useState("");
+  const [clickstatus, setclickstatus] = useState("");
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
       onPress={() => {
         setClickedID(item.TASK_ID);
+        setTaskname(item.TASK_NAME);
+        setclickstatus(item.TASK_STATUS)
         setTaskModalVisible(true)
       }}>
       <Task
@@ -180,6 +183,8 @@ const Board = (props) => {
         A_Members={props.A_Members}
         handleDeleteTask={handleDeleteTask}
         id={clickedID}
+        status = {clickstatus}
+        name = {taskname}
       />
       <FlatList
 
