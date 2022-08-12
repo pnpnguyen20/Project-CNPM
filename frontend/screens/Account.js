@@ -15,6 +15,7 @@ const Account = ({ navigation }) => {
     const fetchproducts = async () => {
       const un = await AsyncStorage.getItem('un');
       const pw = await AsyncStorage.getItem('pw');
+      setUsername(un);
       const { data } = await axios.put('/login',
         {
           "US_ACCOUNT": un,
