@@ -36,7 +36,8 @@ const Board = (props) => {
       <Task
 
         text={item.TASK_NAME}
-        memberName={"Nguyen Anh"}
+        member = {item.TASK_RESPONDSIPLE}
+        status = {item.TASK_STATUS}
       />
     </TouchableOpacity>
 

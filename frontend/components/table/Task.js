@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import colors from "../../constants/colors";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Task = (props) => {
   return (
@@ -25,24 +26,19 @@ const Task = (props) => {
         {props.text}
       </Text>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Image
-          style={{
-            width: 14,
-            height: 14,
-            marginRight: 5,
-            marginBottom: 5,
-            tintColor: colors.primary1,
-          }}
-          source={require("../../assets/check.png")}
-        />
+        <MaterialIcons
+          name={props.status === '1' ? "check-box": "check-box-outline-blank"}
+          style={{ fontSize: 15, color: colors.textColor}} />
         <Text
           style={{
             color: colors.textColor,
-            fontSize: 14,
+            fontSize: 15,
             opacity: 0.75,
+            marginLeft: 5
           }}
         >
-          {props.memberName}
+          Completed
+          
         </Text>
       </View>
     </View>
