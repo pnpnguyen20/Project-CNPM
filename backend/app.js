@@ -421,7 +421,7 @@ app.put('/delete/member', async (req, res, next) => {
   if(message.success&&project_service.member.US_POS<2){
     const member=new ProjectService.Project_Manager()
     message=await member.connect(req.body["data"]["MEM_ID"],req.body["data"]["PJ_ID"])
-    if(message.success)
+    if(message.success&&req.body["data"]["MEM_ID"]!=req.body["access"]["MEM_ID"])
     {
       await prisma.tASK_RESPONDSIPLE.deleteMany({
         where:{
